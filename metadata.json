@@ -1,0 +1,8 @@
+{
+  "name": "ATM Cash Forecasting & Decision-Support System",
+  "description": "Predicts ATM cash-outs and optimizes cash replenishment schedules with machine learning demand forecasting, CIT route planning, and real-time network monitoring.",
+  "permissions": [],
+  "capabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
