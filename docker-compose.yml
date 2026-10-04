@@ -1,0 +1,9 @@
+services:
+  api:
+    build: .
+    ports: ["8000:8000"]
+    env_file: .env          # copy .env.example to .env first; set API_KEY for production
+    volumes: ["atm_data:/data"]
+    restart: unless-stopped
+volumes:
+  atm_data:

@@ -1,20 +1,374 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232563eb' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><rect width='20' height='14' x='2' y='5' rx='2'/><line x1='2' x2='22' y1='10' y2='10'/></svg>" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ATM Cash Forecasting & Decision-Support System</title>
-    <meta name="description" content="Predicts ATM cash-outs and optimizes cash replenishment schedules with machine learning demand forecasting, CIT route planning, and real-time network monitoring." />
-    <meta property="og:title" content="ATM Cash Forecasting & Decision-Support System" />
-    <meta property="og:description" content="Predicts ATM cash-outs and optimizes cash replenishment schedules with machine learning demand forecasting, CIT route planning, and real-time network monitoring." />
-    <meta name="theme-color" content="#1e3a5f" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  </head>
-  <body class="bg-slate-50 text-slate-800 antialiased min-h-screen">
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ATM Cash Management Dashboard</title>
+<script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+<style>
+  :root {
+    --navy: #1e3a5f; --navy-light: #2c4a6e; --grey: #6b7280;
+    --red: #dc2626; --orange: #d97706; --green: #059669;
+    --card-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
+    --radius: 12px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: #f0f2f5; color: #1f2937; line-height: 1.5;
+    padding: 16px; min-height: 100vh;
+  }
+  .container { max-width: 1400px; margin: 0 auto; }
+  header {
+    display: flex; flex-wrap: wrap; justify-content: space-between;
+    align-items: center; margin-bottom: 20px; gap: 12px;
+  }
+  h1 { font-size: 1.6rem; color: var(--navy); font-weight: 700; }
+  .last-updated {
+    font-size: 0.85rem; color: var(--grey); background: white;
+    padding: 6px 12px; border-radius: 20px; box-shadow: var(--card-shadow);
+  }
+  .kpi-row {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px; margin-bottom: 24px;
+  }
+  .kpi-card {
+    background: white; border-radius: var(--radius); padding: 16px;
+    box-shadow: var(--card-shadow); text-align: center; transition: transform 0.15s;
+  }
+  .kpi-card:hover { transform: translateY(-2px); }
+  .kpi-title { color: var(--grey); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; }
+  .kpi-value { font-size: 1.7rem; font-weight: 700; margin-top: 4px; line-height: 1.2; }
+  .kpi-sub { font-size: 0.75rem; color: var(--grey); margin-top: 2px; }
+  .filters-bar {
+    background: white; border-radius: var(--radius); padding: 16px;
+    box-shadow: var(--card-shadow); margin-bottom: 20px;
+    display: flex; flex-wrap: wrap; gap: 12px; align-items: flex-end;
+  }
+  .filter-group { display: flex; flex-direction: column; gap: 4px; }
+  .filter-group label { font-size: 0.75rem; font-weight: 600; color: var(--grey); text-transform: uppercase; }
+  .filters-bar input, .filters-bar select {
+    font-size: 0.9rem; padding: 8px 12px; border: 1px solid #d1d5db;
+    border-radius: 8px; background: #fff; min-width: 140px;
+  }
+  .filters-bar input:focus, .filters-bar select:focus {
+    outline: none; border-color: var(--navy); box-shadow: 0 0 0 3px rgba(30,58,95,0.15);
+  }
+  .filters-bar input { min-width: 200px; }
+  .match-count { font-size: 0.8rem; color: var(--grey); align-self: center; margin-left: auto; }
+  .btn {
+    padding: 8px 16px; border: none; border-radius: 8px; font-size: 0.85rem;
+    font-weight: 600; cursor: pointer; transition: background 0.15s;
+  }
+  .btn-secondary { background: #e5e7eb; color: #374151; }
+  .btn-secondary:hover { background: #d1d5db; }
+  .detail-chart-row {
+    display: grid; grid-template-columns: 320px 1fr; gap: 16px; margin-bottom: 24px;
+  }
+  @media (max-width: 900px) { .detail-chart-row { grid-template-columns: 1fr; } }
+  .detail-card {
+    background: white; border-radius: var(--radius); padding: 20px;
+    box-shadow: var(--card-shadow);
+  }
+  .detail-card .atm-id { font-size: 1.25rem; font-weight: 700; color: var(--navy); }
+  .detail-card .atm-loc { color: var(--grey); font-size: 0.9rem; margin-bottom: 10px; }
+  .status-badge {
+    display: inline-block; color: white; padding: 4px 14px;
+    border-radius: 20px; font-weight: 600; font-size: 0.8rem; margin-bottom: 14px;
+  }
+  .detail-card hr { border: none; border-top: 1px solid #e5e7eb; margin: 12px 0; }
+  .detail-metric {
+    display: flex; justify-content: space-between; padding: 6px 0;
+    font-size: 0.9rem; border-bottom: 1px solid #f3f4f6;
+  }
+  .detail-metric:last-child { border-bottom: none; }
+  .detail-metric .label { color: var(--grey); }
+  .detail-metric .value { font-weight: 600; }
+  .progress-bar-wrap {
+    background: #e5e7eb; border-radius: 6px; height: 10px; margin: 8px 0 4px; overflow: hidden;
+  }
+  .progress-bar { height: 100%; border-radius: 6px; transition: width 0.3s; }
+  #chart {
+    background: white; border-radius: var(--radius);
+    box-shadow: var(--card-shadow); padding: 8px; min-height: 380px;
+  }
+  .table-section {
+    background: white; border-radius: var(--radius); box-shadow: var(--card-shadow);
+    overflow: hidden; margin-bottom: 20px;
+  }
+  .table-header {
+    display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center;
+    padding: 14px 18px; border-bottom: 1px solid #e5e7eb; gap: 10px;
+  }
+  .table-header h3 { font-size: 1rem; color: var(--navy); }
+  .table-wrap { overflow-x: auto; max-height: 520px; overflow-y: auto; }
+  table { border-collapse: collapse; width: 100%; font-size: 0.85rem; }
+  th {
+    background: var(--navy); color: white; padding: 10px 8px; text-align: center;
+    position: sticky; top: 0; z-index: 10; cursor: pointer; user-select: none; white-space: nowrap;
+  }
+  th:hover { background: var(--navy-light); }
+  th .sort-icon { opacity: 0.5; font-size: 0.7rem; margin-left: 3px; }
+  th.sorted .sort-icon { opacity: 1; }
+  td { padding: 8px; text-align: center; border-bottom: 1px solid #f3f4f6; }
+  tr:hover td { background: #f8fafc !important; }
+  tr.selected-row td {
+    border-top: 2px solid var(--navy); border-bottom: 2px solid var(--navy);
+    font-weight: 600; background: #eef2ff !important;
+  }
+  .status-pill {
+    display: inline-block; padding: 2px 10px; border-radius: 12px;
+    font-size: 0.75rem; font-weight: 600; color: white;
+  }
+  .pct-cell { font-weight: 600; }
+  .days-low { color: var(--red); font-weight: 700; }
+  .days-med { color: var(--orange); font-weight: 600; }
+  .days-ok { color: var(--green); }
+  .footnote { text-align: center; color: var(--grey); font-size: 0.8rem; padding: 12px; }
+  .empty-state { padding: 40px; text-align: center; color: var(--grey); }
+  @media (max-width: 600px) {
+    body { padding: 10px; }
+    h1 { font-size: 1.3rem; }
+    .kpi-value { font-size: 1.4rem; }
+    .filters-bar { flex-direction: column; align-items: stretch; }
+    .match-count { margin-left: 0; }
+  }
+
+  .banner { background:#fffbeb; border:1px solid #fcd34d; color:#92400e; border-radius:var(--radius); padding:10px 14px; margin-bottom:16px; font-size:.85rem; display:none; }
+  .banner.err { background:#fef2f2; border-color:#fca5a5; color:#991b1b; }
+  .btn-primary { background: var(--navy); color:#fff; } .btn-primary:hover { background: var(--navy-light); }
+  .detail-actions { margin-top:14px; display:flex; gap:8px; flex-wrap:wrap; }
+  .tag { font-size:.7rem; color:var(--grey); background:#f3f4f6; border-radius:8px; padding:1px 8px; margin-left:6px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>ATM Cash Management Dashboard</h1>
+    <div class="last-updated">Data as of <strong id="asOf">—</strong></div>
+  </header>
+  <div id="banner" class="banner"></div>
+
+  <div class="kpi-row" id="kpiRow"></div>
+
+  <div class="filters-bar">
+    <div class="filter-group"><label for="search">Search</label><input id="search" type="text" placeholder="ATM ID or location..."></div>
+    <div class="filter-group"><label for="statusFilter">Status</label>
+      <select id="statusFilter"><option value="all">All Statuses</option><option>Refill Now</option><option>Refill Soon</option><option>OK</option><option>No Data</option></select></div>
+    <div class="filter-group"><label for="daysFilter">Days of Cash</label>
+      <select id="daysFilter"><option value="all">Any</option><option value="lt1">&lt; 1 day</option><option value="lt2">&lt; 2 days</option><option value="lt3">&lt; 3 days</option><option value="gte3">&ge; 3 days</option></select></div>
+    <div class="filter-group"><label for="pctFilter">Remaining %</label>
+      <select id="pctFilter"><option value="all">Any</option><option value="lt20">&le; 20%</option><option value="lt40">&le; 40%</option><option value="gt40">&gt; 40%</option></select></div>
+    <div class="filter-group"><label for="atmSelect">Select ATM</label><select id="atmSelect" style="min-width:220px;"></select></div>
+    <button class="btn btn-secondary" id="resetFilters" type="button">Reset</button>
+    <a class="btn btn-secondary" id="csvLink" href="/api/refill-plan.csv" style="text-decoration:none;">Refill plan CSV</a>
+    <div class="match-count" id="matchCount"></div>
+  </div>
+
+  <div class="detail-chart-row"><div class="detail-card" id="detailCard"></div><div id="chart"></div></div>
+
+  <div class="table-section">
+    <div class="table-header"><h3>All ATMs — Status Overview</h3>
+      <span style="font-size:0.8rem;color:var(--grey);">Click column headers to sort · Click row to select</span></div>
+    <div class="table-wrap"><table id="statusTable"><thead><tr>
+      <th data-sort="ATMID">ATMID <span class="sort-icon">↕</span></th>
+      <th data-sort="Location">Location <span class="sort-icon">↕</span></th>
+      <th data-sort="ATM_Capacity">Capacity <span class="sort-icon">↕</span></th>
+      <th data-sort="Estimated_Cash_Remaining">Cash Remaining <span class="sort-icon">↕</span></th>
+      <th data-sort="Cash_Remaining_Pct">Remaining % <span class="sort-icon">↕</span></th>
+      <th data-sort="Days_of_Cash">Days of Cash <span class="sort-icon">↕</span></th>
+      <th data-sort="Predicted_Demand">Pred. Demand <span class="sort-icon">↕</span></th>
+      <th data-sort="Refill_Suggestion_Amount">Refill Sugg. <span class="sort-icon">↕</span></th>
+      <th data-sort="Status">Status <span class="sort-icon">↕</span></th>
+    </tr></thead><tbody id="statusTableBody"></tbody></table></div>
+  </div>
+  <div class="footnote">Thresholds: &le;20% = Refill Now · &le;40% = Refill Soon · Days of Cash = Cash Remaining ÷ Predicted Next-Day Demand.
+    Cash level is <b>reported</b> when a refill/balance event exists, otherwise <b>simulated</b> from real withdrawals.</div>
+</div>
+
+<script>
+const API = window.ATM_API_BASE || "";
+const statusColors = {"Refill Now":"#dc2626","Refill Soon":"#d97706","OK":"#059669","No Data":"#6b7280"};
+const statusTints  = {"Refill Now":"#fef2f2","Refill Soon":"#fffbeb","OK":"#ecfdf5","No Data":"#f3f4f6"};
+let atmData = [], kpiData = {}, selectedId = null, filteredCache = [];
+let currentSort = {key:"Days_of_Cash", asc:true};
+const historyCache = {};
+
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const fmt = n => (n == null || isNaN(n)) ? "—" : Math.round(Number(n)).toLocaleString();
+const fmtPct = n => (n == null || isNaN(n)) ? "—" : Number(n).toFixed(1) + "%";
+const fmtDays = n => (n == null || isNaN(n)) ? "—" : Number(n).toFixed(1);
+
+async function api(path, opts) {
+  const r = await fetch(API + path, opts);
+  if (!r.ok) { let d = r.statusText; try { d = (await r.json()).detail || d; } catch(e){} const e = new Error(d); e.status = r.status; throw e; }
+  return r.json();
+}
+function banner(msg, err) { const b = document.getElementById("banner"); b.textContent = msg || ""; b.className = "banner" + (err ? " err" : ""); b.style.display = msg ? "block" : "none"; }
+
+function renderKpis() {
+  const k = kpiData, c = (t, v, col, sub, small) => `<div class="kpi-card"><div class="kpi-title">${t}</div>
+    <div class="kpi-value" style="color:${col};${small ? "font-size:1.3rem;" : ""}">${v}</div>${sub ? `<div class="kpi-sub">${sub}</div>` : ""}</div>`;
+  document.getElementById("kpiRow").innerHTML =
+    c("Total ATMs", fmt(k.total_atms), "var(--navy)", k.no_data ? `+${k.no_data} no data` : "") +
+    c("Refill Now", fmt(k.refill_now), "var(--red)", "Critical") +
+    c("Refill Soon", fmt(k.refill_soon), "var(--orange)", "Action needed") +
+    c("&lt; 1 Day Cash", fmt(k.under_1_day), "var(--red)", "High urgency") +
+    c("Total Refill Needed", fmt(k.total_refill_needed), "var(--green)", "", true) +
+    c("Avg Days of Cash", fmtDays(k.avg_days_of_cash), "var(--navy)", `median ${fmtDays(k.median_days_of_cash)}`) +
+    c("Network Utilization", fmtPct(k.network_utilization_pct), "var(--navy)", "Cash remaining");
+}
+
+function getFiltered() {
+  const q = document.getElementById("search").value.trim().toLowerCase();
+  const status = document.getElementById("statusFilter").value, daysF = document.getElementById("daysFilter").value, pctF = document.getElementById("pctFilter").value;
+  return atmData.filter(r => {
+    if (q && !(String(r.ATMID).toLowerCase().includes(q) || String(r.Location).toLowerCase().includes(q))) return false;
+    if (status !== "all" && r.Status !== status) return false;
+    const noData = r.Status === "No Data";
+    if (daysF !== "all" || pctF !== "all") { if (noData) return false; }
+    const days = Number(r.Days_of_Cash) || 0, pct = Number(r.Cash_Remaining_Pct) || 0;
+    if (daysF === "lt1" && !(days < 1)) return false; if (daysF === "lt2" && !(days < 2)) return false;
+    if (daysF === "lt3" && !(days < 3)) return false; if (daysF === "gte3" && !(days >= 3)) return false;
+    if (pctF === "lt20" && !(pct <= 20)) return false; if (pctF === "lt40" && !(pct <= 40)) return false; if (pctF === "gt40" && !(pct > 40)) return false;
+    return true;
+  });
+}
+function sortData(data) {
+  const {key, asc} = currentSort, order = {"Refill Now":0,"Refill Soon":1,"OK":2,"No Data":3};
+  return [...data].sort((a, b) => {
+    let va = a[key], vb = b[key];
+    if (key === "Status") { va = order[va] ?? 4; vb = order[vb] ?? 4; }
+    else if (typeof va === "string") { va = va.toLowerCase(); vb = String(vb).toLowerCase(); }
+    else { const na = va == null, nb = vb == null; if (na || nb) return na === nb ? 0 : na ? 1 : -1; va = Number(va); vb = Number(vb); }
+    return va < vb ? (asc ? -1 : 1) : va > vb ? (asc ? 1 : -1) : 0;
+  });
+}
+
+function refreshOptions() {
+  filteredCache = getFiltered();
+  const sorted = sortData(filteredCache);
+  document.getElementById("matchCount").textContent = `Showing ${sorted.length} of ${atmData.length} ATMs`;
+  const select = document.getElementById("atmSelect"); select.innerHTML = "";
+  sorted.forEach(r => { const o = document.createElement("option"); o.value = String(r.ATMID);
+    o.textContent = `${r.ATMID} — ${r.Status}${r.Days_of_Cash != null ? ` (${fmtDays(r.Days_of_Cash)}d)` : ""}`; select.appendChild(o); });
+  if (sorted.length) { selectedId = sorted.some(r => String(r.ATMID) === selectedId) ? selectedId : String(sorted[0].ATMID); select.value = selectedId; }
+  else selectedId = null;
+  document.querySelectorAll("th[data-sort]").forEach(th => {
+    th.classList.toggle("sorted", th.dataset.sort === currentSort.key);
+    th.querySelector(".sort-icon").textContent = th.dataset.sort === currentSort.key ? (currentSort.asc ? "↑" : "↓") : "↕";
+  });
+  renderDetail(); renderTable(sorted);
+}
+
+async function renderDetail() {
+  const card = document.getElementById("detailCard");
+  if (!selectedId) { card.innerHTML = "<div class='empty-state'>No ATM matches the current filters.</div>"; Plotly.purge("chart"); return; }
+  const row = atmData.find(r => String(r.ATMID) === selectedId);
+  if (!row) { card.innerHTML = "<div class='empty-state'>ATM not found.</div>"; Plotly.purge("chart"); return; }
+  const color = statusColors[row.Status] || "#6b7280", pct = Number(row.Cash_Remaining_Pct) || 0, days = Number(row.Days_of_Cash) || 0;
+  const barColor = pct > 40 ? statusColors["OK"] : color, noData = row.Status === "No Data";
+  card.innerHTML = `
+    <div class="atm-id">ATM ${esc(row.ATMID)}</div><div class="atm-loc">${row.Location !== "ATM " + row.ATMID ? esc(row.Location) : "&nbsp;"}</div>
+    <div class="status-badge" style="background:${color};">${esc(row.Status)}</div>
+    ${noData ? `<div style="font-size:.85rem;color:var(--grey)">No data since <b>${esc(row.Last_Data_Date || "—")}</b>. Excluded from KPIs and forecasts.</div>` : `
+    <div class="progress-bar-wrap"><div class="progress-bar" style="width:${Math.min(pct,100)}%;background:${barColor};"></div></div>
+    <div style="font-size:0.8rem;color:var(--grey);margin-bottom:10px;">${fmtPct(pct)} of capacity remaining
+      <span class="tag">${esc(row.Balance_Source || "")}</span></div><hr>
+    <div class="detail-metric"><span class="label">Vault Capacity</span><span class="value">${fmt(row.ATM_Capacity)}</span></div>
+    <div class="detail-metric"><span class="label">Cash Remaining</span><span class="value">${fmt(row.Estimated_Cash_Remaining)}</span></div>
+    <div class="detail-metric"><span class="label">Days of Cash</span><span class="value" style="color:${days < 1 ? 'var(--red)' : days < 2 ? 'var(--orange)' : 'var(--green)'}">${fmtDays(row.Days_of_Cash)} days</span></div>
+    <div class="detail-metric"><span class="label">Predicted Next-Day Demand</span><span class="value">${fmt(row.Predicted_Demand)}</span></div>
+    <div class="detail-metric"><span class="label">Refill Suggestion (top-up)</span><span class="value">${fmt(row.Refill_Suggestion_Amount)}</span></div>
+    <div class="detail-metric"><span class="label">Policy Loading (forecast ×1.05)</span><span class="value">${fmt(row.Recommended_Loading)}</span></div>
+    ${row.Stockout_Risk ? `<div style="margin-top:8px;font-size:.8rem;color:var(--red);font-weight:600;">⚠ Cash on hand is below tomorrow's forecast demand</div>` : ""}
+    <div class="detail-actions"><button class="btn btn-primary" id="recordRefill" type="button">Record refill (full)</button></div>`}`;
+  const btn = document.getElementById("recordRefill"); if (btn) btn.onclick = () => recordRefill(row.ATMID);
+  drawChart(selectedId);
+}
+
+async function drawChart(id) {
+  const el = document.getElementById("chart");
+  try {
+    const h = historyCache[id] || (historyCache[id] = await api(`/api/atms/${encodeURIComponent(id)}/history`));
+    if (id !== selectedId) return;                         // user moved on while loading
+    if (!h.dates.length) { Plotly.purge("chart"); el.innerHTML = "<div class='empty-state'>No historical data available for this ATM.</div>"; return; }
+    const n = h.dates.length, fIdx = h.split.indexOf("Forecast");
+    const traces = [
+      {x: h.dates, y: h.actual, name: "Actual Demand", type: "scatter", mode: "lines", line: {color: "#2563eb", width: 2}, connectgaps: false},
+      {x: h.dates, y: h.predicted, name: "Predicted Demand", type: "scatter", mode: "lines", line: {color: "#dc2626", width: 2, dash: "dot"}}];
+    if (fIdx >= 0) traces.push({x: [h.dates[fIdx]], y: [h.predicted[fIdx]], name: "Tomorrow's forecast", type: "scatter", mode: "markers",
+      marker: {color: "#059669", size: 11, symbol: "diamond"}});
+    const shapes = [], ann = [];
+    ["Validation", "Test", "Live"].forEach(s => { const i = h.split.indexOf(s); if (i > 0) {
+      shapes.push({type: "line", x0: h.dates[i], x1: h.dates[i], yref: "paper", y0: 0, y1: 1, line: {color: "#9ca3af", width: 1, dash: "dash"}});
+      ann.push({x: h.dates[i], yref: "paper", y: 1, text: s, showarrow: false, font: {size: 10, color: "#6b7280"}, xanchor: "left"}); } });
+    Plotly.newPlot("chart", traces, {
+      title: {text: `Actual vs Predicted Demand — ATM ${id}`, font: {size: 14}}, template: "plotly_white",
+      xaxis: {title: "Date demand occurred", gridcolor: "#f0f0f0"}, yaxis: {title: "Cash Demand", gridcolor: "#f0f0f0"},
+      legend: {orientation: "h", y: 1.12}, margin: {t: 50, b: 50, l: 60, r: 20}, height: 380, hovermode: "x unified", shapes, annotations: ann,
+    }, {responsive: true, displayModeBar: true});
+  } catch (e) { Plotly.purge("chart"); el.innerHTML = `<div class='empty-state'>Could not load history: ${esc(e.message)}</div>`; }
+}
+
+function renderTable(sorted) {
+  const body = document.getElementById("statusTableBody"); body.innerHTML = "";
+  sorted.forEach(r => {
+    const tr = document.createElement("tr"), id = String(r.ATMID), days = Number(r.Days_of_Cash);
+    if (id === selectedId) tr.className = "selected-row";
+    const dcls = r.Days_of_Cash == null ? "" : days < 1 ? "days-low" : days < 2 ? "days-med" : "days-ok";
+    tr.style.background = statusTints[r.Status] || "";
+    tr.innerHTML = `<td>${esc(r.ATMID)}</td><td style="text-align:left">${esc(r.Location)}</td><td>${fmt(r.ATM_Capacity)}</td>
+      <td>${fmt(r.Estimated_Cash_Remaining)}</td><td class="pct-cell">${fmtPct(r.Cash_Remaining_Pct)}</td>
+      <td class="${dcls}">${fmtDays(r.Days_of_Cash)}</td><td>${fmt(r.Predicted_Demand)}</td><td>${fmt(r.Refill_Suggestion_Amount)}</td>
+      <td><span class="status-pill" style="background:${statusColors[r.Status] || "#6b7280"}">${esc(r.Status)}</span></td>`;
+    tr.addEventListener("click", () => { selectedId = id; document.getElementById("atmSelect").value = id; renderDetail(); renderTable(sortData(filteredCache)); });
+    body.appendChild(tr);
+  });
+}
+
+async function recordRefill(id) {
+  if (!confirm(`Record that ATM ${id} was refilled to full today?\nThis replaces the simulated cash level with a reported one.`)) return;
+  const headers = {"Content-Type": "application/json"}, key = sessionStorage.getItem("atm_api_key");
+  if (key) headers["X-API-Key"] = key;
+  const body = JSON.stringify({atm_id: id, event_date: document.getElementById("asOf").textContent, event_type: "refill"});
+  try { await api("/api/cash-events", {method: "POST", headers, body}); await load(); }
+  catch (e) {
+    if (e.status === 401) { const k = prompt("This action needs the API key:"); if (k) { sessionStorage.setItem("atm_api_key", k); return recordRefill(id); } }
+    else banner("Could not record refill: " + e.message, true);
+  }
+}
+
+async function load() {
+  try {
+    const d = await api("/api/dashboard");
+    atmData = d.atms; kpiData = d.kpis; document.getElementById("asOf").textContent = d.as_of || "—";
+    Object.keys(historyCache).forEach(k => delete historyCache[k]);
+    renderKpis();
+    if (!atmData.length) banner("No data loaded yet. Upload history with POST /api/data/upload (see /docs).");
+    else {
+      api("/api/data-quality").then(q => {
+        const bits = [];
+        if (q.stale_atms && q.stale_atms.length) bits.push(`${q.stale_atms.length} ATM(s) have stopped reporting`);
+        if (q.network_gaps && q.network_gaps.length) bits.push(q.network_gaps.map(g => `no data ${g.from} → ${g.to} (${g.days} days)`).join("; "));
+        banner(bits.length ? "Data quality: " + bits.join(" · ") : "");
+      }).catch(() => {});
+    }
+    refreshOptions();
+  } catch (e) { banner("Cannot reach the API: " + e.message, true); }
+}
+
+document.getElementById("search").addEventListener("input", refreshOptions);
+["statusFilter","daysFilter","pctFilter"].forEach(i => document.getElementById(i).addEventListener("change", refreshOptions));
+document.getElementById("atmSelect").addEventListener("change", e => { selectedId = e.target.value; renderDetail(); renderTable(sortData(filteredCache)); });
+document.getElementById("resetFilters").addEventListener("click", () => {
+  document.getElementById("search").value = ""; ["statusFilter","daysFilter","pctFilter"].forEach(i => document.getElementById(i).value = "all");
+  currentSort = {key: "Days_of_Cash", asc: true}; refreshOptions(); });
+document.querySelectorAll("th[data-sort]").forEach(th => th.addEventListener("click", () => {
+  const key = th.dataset.sort;
+  currentSort = currentSort.key === key ? {key, asc: !currentSort.asc} : {key, asc: ["Days_of_Cash","Cash_Remaining_Pct","Status"].includes(key)};
+  refreshOptions(); }));
+load();
+</script>
+</body>
 </html>
