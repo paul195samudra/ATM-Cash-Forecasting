@@ -8,7 +8,7 @@ import {
   AlertTriangle,
   AlertOctagon,
   CheckCircle2,
-  DollarSign,
+  Banknote,
   Truck,
   ArrowRight,
   Search,
@@ -465,7 +465,7 @@ export const RegionalClusterView: React.FC<RegionalClusterViewProps> = ({
               <div className="mt-2 flex justify-between items-center text-[10px] text-slate-500 pt-1 border-t border-slate-100">
                 <span>Refill Pipeline:</span>
                 <span className="font-mono font-bold text-emerald-800">
-                  ${(c.totalRefillNeeded / 1000000).toFixed(2)}M
+                  ৳{(c.totalRefillNeeded / 1000000).toFixed(2)}M
                 </span>
               </div>
             </div>
@@ -486,11 +486,11 @@ export const RegionalClusterView: React.FC<RegionalClusterViewProps> = ({
             <p className="text-xs text-slate-500 mt-1">
               {clusterAtms.length} ATMs deployed in this geographic cluster · Total Vault Liquidity:{' '}
               <strong className="font-mono text-slate-800">
-                ${(activeCluster.totalRemainingCash / 1000000).toFixed(2)}M
+                ৳{(activeCluster.totalRemainingCash / 1000000).toFixed(2)}M
               </strong>{' '}
               · Immediate Refill Capital Needed:{' '}
               <strong className="font-mono text-emerald-800">
-                ${(activeCluster.totalRefillNeeded / 1000000).toFixed(2)}M
+                ৳{(activeCluster.totalRefillNeeded / 1000000).toFixed(2)}M
               </strong>
             </p>
           </div>
@@ -543,7 +543,7 @@ export const RegionalClusterView: React.FC<RegionalClusterViewProps> = ({
                     <div>
                       <span className="text-[10px] text-slate-400 block font-sans">Cash Remaining</span>
                       <strong className="text-slate-800">
-                        ${Math.round(atm.Estimated_Cash_Remaining).toLocaleString()}
+                        ৳{Math.round(atm.Estimated_Cash_Remaining).toLocaleString()}
                       </strong>
                     </div>
                     <div>
@@ -566,7 +566,7 @@ export const RegionalClusterView: React.FC<RegionalClusterViewProps> = ({
                 <div className="mt-3 pt-2 border-t border-slate-200 flex justify-between items-center text-xs">
                   <span className="text-slate-400 text-[10px]">Refill Needed:</span>
                   <span className="font-mono font-bold text-emerald-800">
-                    ${Math.round(atm.Refill_Suggestion_Amount).toLocaleString()}
+                    ৳{Math.round(atm.Refill_Suggestion_Amount).toLocaleString()}
                   </span>
                 </div>
               </div>

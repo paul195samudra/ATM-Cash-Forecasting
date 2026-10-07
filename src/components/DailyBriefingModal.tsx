@@ -9,7 +9,7 @@ import {
   Clock,
   Calendar,
   CheckCircle2,
-  DollarSign,
+  Banknote,
   Fuel,
   ShieldCheck,
   AlertTriangle
@@ -90,7 +90,7 @@ export const DailyBriefingModal: React.FC<DailyBriefingModalProps> = ({
                 Required Outflow
               </span>
               <span className="text-2xl font-black font-mono text-emerald-800 mt-1 block">
-                ${(totalRefillReq / 1000000).toFixed(2)}M
+                ৳{(totalRefillReq / 1000000).toFixed(2)}M
               </span>
               <span className="text-[10px] text-emerald-600 mt-0.5 block">Total vault request</span>
             </div>
@@ -124,9 +124,9 @@ export const DailyBriefingModal: React.FC<DailyBriefingModalProps> = ({
               <li className="flex items-start gap-2 p-2.5 rounded-lg bg-slate-50 border border-slate-200">
                 <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
                 <div>
-                  <strong className="text-slate-900 block">Service Level Commitment: 99.5%</strong>
+                  <strong className="text-slate-900 block">Operational Uptime Commitment: 99.5%</strong>
                   <span>
-                    Zero reported customer cash-out events yesterday. Maintain SLA buffer policy.
+                    Zero reported customer cash-out events yesterday. Maintain target reserve buffer policy.
                   </span>
                 </div>
               </li>

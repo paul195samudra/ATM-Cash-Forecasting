@@ -204,21 +204,21 @@ export const AtmChart: React.FC<AtmChartProps> = ({ atm, policy }) => {
             <div className="bg-slate-50 rounded-lg p-2.5 border border-slate-100">
               <div className="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Forecast MAE</div>
               <div className="text-sm font-bold text-slate-800 font-mono mt-0.5">
-                ${Math.round(stats.mae).toLocaleString()}
+                ৳{Math.round(stats.mae).toLocaleString()}
               </div>
               <div className="text-[10px] text-slate-500">Mean absolute error</div>
             </div>
             <div className="bg-slate-50 rounded-lg p-2.5 border border-slate-100">
               <div className="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Avg Daily Demand</div>
               <div className="text-sm font-bold text-blue-700 font-mono mt-0.5">
-                ${Math.round(stats.avgActual).toLocaleString()}
+                ৳{Math.round(stats.avgActual).toLocaleString()}
               </div>
               <div className="text-[10px] text-slate-500">Over selected window</div>
             </div>
             <div className="bg-slate-50 rounded-lg p-2.5 border border-slate-100">
               <div className="text-[10px] uppercase font-bold text-slate-400 tracking-wider">Peak Demand</div>
               <div className="text-sm font-bold text-amber-700 font-mono mt-0.5">
-                ${Math.round(stats.peakActual).toLocaleString()}
+                ৳{Math.round(stats.peakActual).toLocaleString()}
               </div>
               <div className="text-[10px] text-slate-500">Highest daily outflow</div>
             </div>
@@ -274,7 +274,7 @@ export const AtmChart: React.FC<AtmChartProps> = ({ atm, policy }) => {
                     fontFamily="IBM Plex Mono, monospace"
                     fill="#94a3b8"
                   >
-                    ${(t.val / 1000).toFixed(0)}k
+                    ৳{(t.val / 1000).toFixed(0)}k
                   </text>
                 </g>
               ))}
@@ -383,19 +383,19 @@ export const AtmChart: React.FC<AtmChartProps> = ({ atm, policy }) => {
                   <span className="text-blue-400 flex items-center gap-1">
                     <span className="w-2 h-2 rounded-full bg-blue-500 inline-block"></span> Actual:
                   </span>
-                  <span className="font-bold">${Math.round(activeActual).toLocaleString()}</span>
+                  <span className="font-bold">৳{Math.round(activeActual).toLocaleString()}</span>
                 </div>
                 <div className="flex justify-between gap-4 mt-1">
                   <span className="text-red-400 flex items-center gap-1">
                     <span className="w-2 h-2 rounded-full bg-red-500 inline-block"></span> Predicted:
                   </span>
-                  <span className="font-bold">${Math.round(activePredicted).toLocaleString()}</span>
+                  <span className="font-bold">৳{Math.round(activePredicted).toLocaleString()}</span>
                 </div>
                 <div className="flex justify-between gap-4 mt-1 pt-1 border-t border-slate-800 text-[11px] text-slate-400">
                   <span>Deviation:</span>
                   <span className={activeActual > activePredicted ? 'text-amber-400' : 'text-emerald-400'}>
                     {activeActual > activePredicted ? '+' : ''}
-                    {Math.round(activeActual - activePredicted).toLocaleString()}
+                    ৳{Math.round(activeActual - activePredicted).toLocaleString()}
                   </span>
                 </div>
               </div>

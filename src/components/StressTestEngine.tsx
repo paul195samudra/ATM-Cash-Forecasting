@@ -7,7 +7,7 @@ import {
   Flame,
   ShieldAlert,
   Clock,
-  DollarSign,
+  Banknote,
   Truck,
   ArrowRight,
   TrendingDown,
@@ -209,7 +209,7 @@ export const StressTestEngine: React.FC<StressTestEngineProps> = ({
         <div className="bg-white p-4 rounded-xl border border-slate-200 shadow-xs">
           <span className="text-[11px] uppercase font-bold text-slate-400">Additional Capital Buffer</span>
           <div className="text-2xl font-black text-indigo-700 font-mono my-1">
-            +${(testResult.additionalCashRequired / 1000000).toFixed(2)}M
+            +৳{(testResult.additionalCashRequired / 1000000).toFixed(2)}M
           </div>
           <span className="text-[11px] text-slate-500">Vault liquidity to absorb shock</span>
         </div>
@@ -217,7 +217,7 @@ export const StressTestEngine: React.FC<StressTestEngineProps> = ({
         <div className="bg-white p-4 rounded-xl border border-slate-200 shadow-xs">
           <span className="text-[11px] uppercase font-bold text-slate-400">Lost Interchange Revenue</span>
           <div className="text-2xl font-black text-amber-700 font-mono my-1">
-            ${(testResult.potentialLostInterchange / 1000).toFixed(0)}k
+            ৳{(testResult.potentialLostInterchange / 1000).toFixed(0)}k
           </div>
           <span className="text-[11px] text-slate-500">Fee margin loss if unrefilled</span>
         </div>
@@ -268,16 +268,16 @@ export const StressTestEngine: React.FC<StressTestEngineProps> = ({
                         {a.Location.replace('(location not in dataset)', '').trim() || 'Central Regional Hub'}
                       </td>
                       <td className="py-2.5 px-3 text-right font-mono text-slate-600">
-                        ${Math.round(a.Estimated_Cash_Remaining).toLocaleString()}
+                        ৳{Math.round(a.Estimated_Cash_Remaining).toLocaleString()}
                       </td>
                       <td className="py-2.5 px-3 text-right font-mono font-bold text-rose-600">
-                        ${Math.round(a.stressedCash).toLocaleString()}
+                        ৳{Math.round(a.stressedCash).toLocaleString()}
                       </td>
                       <td className="py-2.5 px-3 text-center font-mono font-bold text-rose-600">
                         {a.stressedDays.toFixed(1)}d
                       </td>
                       <td className="py-2.5 px-3 text-right font-mono font-bold text-emerald-800">
-                        ${Math.round(a.stressedRefillNeeded).toLocaleString()}
+                        ৳{Math.round(a.stressedRefillNeeded).toLocaleString()}
                       </td>
                       <td className="py-2.5 px-3 text-center">
                         <button

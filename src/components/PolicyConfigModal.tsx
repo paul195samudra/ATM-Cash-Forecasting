@@ -10,7 +10,7 @@ import {
   Scale,
   Percent,
   Clock,
-  DollarSign
+  Banknote
 } from 'lucide-react';
 
 interface PolicyConfigModalProps {
@@ -197,13 +197,13 @@ export const PolicyConfigModal: React.FC<PolicyConfigModalProps> = ({
 
             <div className="bg-slate-50 p-3.5 rounded-xl border border-slate-200">
               <label className="block font-bold text-slate-800 mb-1">
-                CIT Delivery Fee per Stop ($)
+                CIT Delivery Fee per Stop (BDT ৳)
               </label>
               <input
                 type="number"
-                step={25}
-                min={100}
-                max={1000}
+                step={250}
+                min={500}
+                max={10000}
                 value={draft.citCostPerStop}
                 onChange={(e) =>
                   setDraft((prev) => ({ ...prev, citCostPerStop: Number(e.target.value) }))

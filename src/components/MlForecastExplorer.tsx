@@ -41,8 +41,8 @@ export const MlForecastExplorer: React.FC = () => {
     {
       name: 'Seasonal-Naive Baseline',
       modelType: 'Heuristic Baseline',
-      mae: '$48,200',
-      rmse: '$72,100',
+      mae: '৳48,200',
+      rmse: '৳72,100',
       mape: '18.4%',
       costLoss: '100% (Baseline)',
       verdict: 'Over-stocks cash; frequent holiday cash-outs.',
@@ -51,8 +51,8 @@ export const MlForecastExplorer: React.FC = () => {
     {
       name: 'SARIMA & Prophet',
       modelType: 'Time-Series Decomposition',
-      mae: '$39,600',
-      rmse: '$58,300',
+      mae: '৳39,600',
+      rmse: '৳58,300',
       mape: '14.1%',
       costLoss: '-26.3%',
       verdict: 'Captures weekly rhythm, slow to react to payday bursts.',
@@ -61,8 +61,8 @@ export const MlForecastExplorer: React.FC = () => {
     {
       name: 'XGBoost Regressor (Production)',
       modelType: 'Gradient Boosted Trees',
-      mae: '$26,450',
-      rmse: '$41,200',
+      mae: '৳26,450',
+      rmse: '৳41,200',
       mape: '9.8%',
       costLoss: '-42.8%',
       verdict: 'Best non-linear interaction across holidays, lags, and paydays.',
@@ -281,7 +281,7 @@ export const MlForecastExplorer: React.FC = () => {
 
               <div>
                 <label className="block font-semibold text-slate-700 mb-1">
-                  Current Cash in Cassette ($)
+                  Current Cash in Cassette (BDT ৳)
                 </label>
                 <input
                   type="range"
@@ -293,15 +293,15 @@ export const MlForecastExplorer: React.FC = () => {
                   className="w-full"
                 />
                 <div className="flex justify-between font-mono text-[11px] text-slate-500 mt-1">
-                  <span>$50k</span>
-                  <span className="font-bold text-slate-900">${currentBalance.toLocaleString()}</span>
-                  <span>${capacity.toLocaleString()}</span>
+                  <span>৳50k</span>
+                  <span className="font-bold text-slate-900">৳{currentBalance.toLocaleString()}</span>
+                  <span>৳{capacity.toLocaleString()}</span>
                 </div>
               </div>
 
               <div>
                 <label className="block font-semibold text-slate-700 mb-1">
-                  Machine Vault Capacity ($)
+                  Machine Vault Capacity (BDT ৳)
                 </label>
                 <select
                   value={capacity}
@@ -312,9 +312,9 @@ export const MlForecastExplorer: React.FC = () => {
                   }}
                   className="w-full p-2 border border-slate-300 rounded-lg bg-slate-50 font-mono text-xs"
                 >
-                  <option value={800000}>$800,000 (2 Cassettes)</option>
-                  <option value={1500000}>$1,500,000 (3 Cassettes)</option>
-                  <option value={2250000}>$2,250,000 (4 Full Cassettes)</option>
+                  <option value={800000}>৳800,000 (2 Cassettes)</option>
+                  <option value={1500000}>৳1,500,000 (3 Cassettes)</option>
+                  <option value={2250000}>৳2,250,000 (4 Full Cassettes)</option>
                 </select>
               </div>
 
@@ -366,7 +366,7 @@ export const MlForecastExplorer: React.FC = () => {
               <div>
                 <div className="text-slate-400 text-[10px] uppercase">Predicted Next-Day Demand</div>
                 <div className="text-lg font-bold font-mono text-indigo-300 mt-0.5">
-                  ${simulatedForecast.predictedDemand.toLocaleString()}
+                  ৳{simulatedForecast.predictedDemand.toLocaleString()}
                 </div>
               </div>
 
@@ -395,7 +395,7 @@ export const MlForecastExplorer: React.FC = () => {
               <div>
                 <div className="text-slate-400 text-[10px] uppercase">Recommended CIT Refill</div>
                 <div className="text-lg font-bold font-mono text-emerald-400 mt-0.5">
-                  ${simulatedForecast.refillSuggestion.toLocaleString()}
+                  ৳{simulatedForecast.refillSuggestion.toLocaleString()}
                 </div>
               </div>
             </div>

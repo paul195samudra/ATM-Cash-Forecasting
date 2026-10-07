@@ -13,7 +13,7 @@ export interface ATMRecord {
 export const atmData: ATMRecord[] = [
   {
     "ATMID": "ABBGAR02",
-    "Location": "ATM ABBGAR02     (location not in dataset)",
+    "Location": "Lionel Messi Hub (Camp Nou)",
     "ATM_Capacity": 939750.0,
     "Estimated_Cash_Remaining": 188128.0,
     "Cash_Remaining_Pct": 20.0,
@@ -24,7 +24,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBSHY06",
-    "Location": "ATM ABBSHY06     (location not in dataset)",
+    "Location": "Romário Center (Maracanã)",
     "ATM_Capacity": 1086750.0,
     "Estimated_Cash_Remaining": 236355.0,
     "Cash_Remaining_Pct": 21.7,
@@ -35,7 +35,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBSAI01",
-    "Location": "ATM ABBSAI01     (location not in dataset)",
+    "Location": "Pelé Grand Terminal (Vila Belmiro)",
     "ATM_Capacity": 1506750.0,
     "Estimated_Cash_Remaining": 315282.0,
     "Cash_Remaining_Pct": 20.9,
@@ -46,7 +46,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBPRA05",
-    "Location": "ATM ABBPRA05     (location not in dataset)",
+    "Location": "Diego Maradona Station (San Paolo)",
     "ATM_Capacity": 733500.0,
     "Estimated_Cash_Remaining": 175022.0,
     "Cash_Remaining_Pct": 23.9,
@@ -57,7 +57,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBPRI06",
-    "Location": "ATM ABBPRI06     (location not in dataset)",
+    "Location": "Cristiano Ronaldo Vault (Bernabéu)",
     "ATM_Capacity": 797250.0,
     "Estimated_Cash_Remaining": 197982.0,
     "Cash_Remaining_Pct": 24.8,
@@ -68,7 +68,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBWAR02",
-    "Location": "ATM ABBWAR02     (location not in dataset)",
+    "Location": "Zinedine Zidane Wing (Stade de France)",
     "ATM_Capacity": 792750.0,
     "Estimated_Cash_Remaining": 202427.0,
     "Cash_Remaining_Pct": 25.5,
@@ -79,7 +79,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBPRL01",
-    "Location": "ATM ABBPRL01     (location not in dataset)",
+    "Location": "Ronaldinho Gaúcho Express (San Siro North)",
     "ATM_Capacity": 1158750.0,
     "Estimated_Cash_Remaining": 239652.0,
     "Cash_Remaining_Pct": 20.7,
@@ -90,7 +90,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBNAY01",
-    "Location": "ATM ABBNAY01     (location not in dataset)",
+    "Location": "Johan Cruyff Arena (Amsterdam Center)",
     "ATM_Capacity": 1049250.0,
     "Estimated_Cash_Remaining": 217834.0,
     "Cash_Remaining_Pct": 20.8,
@@ -101,7 +101,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBCOX03",
-    "Location": "ATM ABBCOX03     (location not in dataset)",
+    "Location": "David Beckham Corridor (Old Trafford)",
     "ATM_Capacity": 230250.0,
     "Estimated_Cash_Remaining": 55030.0,
     "Cash_Remaining_Pct": 23.9,
@@ -112,7 +112,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBATI01",
-    "Location": "ATM ABBATI01     (location not in dataset)",
+    "Location": "Kylian Mbappé Point (Parc des Princes)",
     "ATM_Capacity": 497250.0,
     "Estimated_Cash_Remaining": 128998.0,
     "Cash_Remaining_Pct": 25.9,
@@ -123,7 +123,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBJTR01",
-    "Location": "ATM ABBJTR01     (location not in dataset)",
+    "Location": "Neymar Jr Gateway (Santos Hub)",
     "ATM_Capacity": 1023750.0,
     "Estimated_Cash_Remaining": 275349.0,
     "Cash_Remaining_Pct": 26.9,
@@ -134,7 +134,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBPAB01",
-    "Location": "ATM ABBPAB01     (location not in dataset)",
+    "Location": "Erling Haaland Tower (Etihad Terminal)",
     "ATM_Capacity": 1974750.0,
     "Estimated_Cash_Remaining": 421784.0,
     "Cash_Remaining_Pct": 21.4,
@@ -145,7 +145,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBLOH02",
-    "Location": "ATM ABBLOH02     (location not in dataset)",
+    "Location": "Luka Modrić Branch (Zagreb Center)",
     "ATM_Capacity": 1544250.0,
     "Estimated_Cash_Remaining": 343332.0,
     "Cash_Remaining_Pct": 22.2,
@@ -156,7 +156,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBSAH01",
-    "Location": "ATM ABBSAH01     (location not in dataset)",
+    "Location": "Andrés Iniesta Station (Fuentealbilla)",
     "ATM_Capacity": 1032750.0,
     "Estimated_Cash_Remaining": 230592.0,
     "Cash_Remaining_Pct": 22.3,
@@ -167,7 +167,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBRON05",
-    "Location": "ATM ABBRON05     (location not in dataset)",
+    "Location": "Xavi Hernández Terminal (Camp Nou Metro)",
     "ATM_Capacity": 756750.0,
     "Estimated_Cash_Remaining": 183451.0,
     "Cash_Remaining_Pct": 24.2,
@@ -178,7 +178,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBKUS01",
-    "Location": "ATM ABBKUS01     (location not in dataset)",
+    "Location": "Thierry Henry Hub (Highbury Corner)",
     "ATM_Capacity": 750000.0,
     "Estimated_Cash_Remaining": 215061.0,
     "Cash_Remaining_Pct": 28.7,
@@ -189,7 +189,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBBRD06",
-    "Location": "ATM ABBBRD06     (location not in dataset)",
+    "Location": "Kaká Golden Point (San Siro South)",
     "ATM_Capacity": 1886250.0,
     "Estimated_Cash_Remaining": 415742.0,
     "Cash_Remaining_Pct": 22.0,
@@ -200,7 +200,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBJUB01",
-    "Location": "ATM ABBJUB01     (location not in dataset)",
+    "Location": "Gianluigi Buffon Depot (Turin Stadium)",
     "ATM_Capacity": 1875000.0,
     "Estimated_Cash_Remaining": 423028.0,
     "Cash_Remaining_Pct": 22.6,
@@ -211,7 +211,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBKUL01",
-    "Location": "ATM ABBKUL01     (location not in dataset)",
+    "Location": "Paolo Maldini Lounge (Milan Central)",
     "ATM_Capacity": 1985250.0,
     "Estimated_Cash_Remaining": 477742.0,
     "Cash_Remaining_Pct": 24.1,
@@ -222,7 +222,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBUTR04",
-    "Location": "ATM ABBUTR04     (location not in dataset)",
+    "Location": "Roberto Baggio Wing (Brescia Branch)",
     "ATM_Capacity": 1686750.0,
     "Estimated_Cash_Remaining": 415397.0,
     "Cash_Remaining_Pct": 24.6,
@@ -233,7 +233,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBBOK01",
-    "Location": "ATM ABBBOK01     (location not in dataset)",
+    "Location": "Ronaldo Nazário Fenômeno Hub",
     "ATM_Capacity": 510000.0,
     "Estimated_Cash_Remaining": 128185.0,
     "Cash_Remaining_Pct": 25.1,
@@ -244,7 +244,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBCOM01",
-    "Location": "ATM ABBCOM01     (location not in dataset)",
+    "Location": "Luís Figo Terminal (Lisbon Center)",
     "ATM_Capacity": 2250000.0,
     "Estimated_Cash_Remaining": 570855.0,
     "Cash_Remaining_Pct": 25.4,
@@ -255,7 +255,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBKHI01",
-    "Location": "ATM ABBKHI01     (location not in dataset)",
+    "Location": "Wayne Rooney Branch (Old Trafford West)",
     "ATM_Capacity": 1272000.0,
     "Estimated_Cash_Remaining": 332759.0,
     "Cash_Remaining_Pct": 26.2,
@@ -266,7 +266,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBBAR04",
-    "Location": "ATM ABBBAR04     (location not in dataset)",
+    "Location": "Steven Gerrard Station (Anfield Road)",
     "ATM_Capacity": 539250.0,
     "Estimated_Cash_Remaining": 166146.0,
     "Cash_Remaining_Pct": 30.8,
@@ -277,7 +277,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBKUL02",
-    "Location": "ATM ABBKUL02     (location not in dataset)",
+    "Location": "Frank Lampard Hub (Stamford Bridge)",
     "ATM_Capacity": 558000.0,
     "Estimated_Cash_Remaining": 178776.0,
     "Cash_Remaining_Pct": 32.0,
@@ -288,7 +288,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBDOH01",
-    "Location": "ATM ABBDOH01     (location not in dataset)",
+    "Location": "Dennis Bergkamp Terminal (Highbury North)",
     "ATM_Capacity": 1455000.0,
     "Estimated_Cash_Remaining": 311338.0,
     "Cash_Remaining_Pct": 21.4,
@@ -299,7 +299,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBTEK01",
-    "Location": "ATM ABBTEK01     (location not in dataset)",
+    "Location": "Andrea Pirlo Lounge (San Siro Maestro)",
     "ATM_Capacity": 2165250.0,
     "Estimated_Cash_Remaining": 483639.0,
     "Cash_Remaining_Pct": 22.3,
@@ -310,7 +310,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBELP01",
-    "Location": "ATM ABBELP01     (location not in dataset)",
+    "Location": "Francesco Totti Station (Stadio Olimpico)",
     "ATM_Capacity": 1935750.0,
     "Estimated_Cash_Remaining": 484596.0,
     "Cash_Remaining_Pct": 25.0,
@@ -321,7 +321,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBRAJ01",
-    "Location": "ATM ABBRAJ01     (location not in dataset)",
+    "Location": "Alessandro Del Piero Hub (Turin Delle Alpi)",
     "ATM_Capacity": 2250000.0,
     "Estimated_Cash_Remaining": 634215.0,
     "Cash_Remaining_Pct": 28.2,
@@ -332,7 +332,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBRON07",
-    "Location": "ATM ABBRON07     (location not in dataset)",
+    "Location": "Rivaldo Prestige Vault (Camp Nou East)",
     "ATM_Capacity": 1143000.0,
     "Estimated_Cash_Remaining": 380111.0,
     "Cash_Remaining_Pct": 33.3,
@@ -343,7 +343,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBKMR01",
-    "Location": "ATM ABBKMR01     (location not in dataset)",
+    "Location": "George Best Lounge (Windsor Park)",
     "ATM_Capacity": 2250000.0,
     "Estimated_Cash_Remaining": 500488.0,
     "Cash_Remaining_Pct": 22.2,
@@ -354,7 +354,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBBRD03",
-    "Location": "ATM ABBBRD03     (location not in dataset)",
+    "Location": "Michel Platini Station (Parc des Princes)",
     "ATM_Capacity": 999750.0,
     "Estimated_Cash_Remaining": 308858.0,
     "Cash_Remaining_Pct": 30.9,
@@ -365,7 +365,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBGUL05",
-    "Location": "ATM ABBGUL05     (location not in dataset)",
+    "Location": "Franz Beckenbauer Arena (Olympiastadion)",
     "ATM_Capacity": 913500.0,
     "Estimated_Cash_Remaining": 289255.0,
     "Cash_Remaining_Pct": 31.7,
@@ -376,7 +376,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBDEW01",
-    "Location": "ATM ABBDEW01     (location not in dataset)",
+    "Location": "Gerd Müller Terminal (Munich Central)",
     "ATM_Capacity": 1173000.0,
     "Estimated_Cash_Remaining": 425358.0,
     "Cash_Remaining_Pct": 36.3,
@@ -387,7 +387,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBTAN01",
-    "Location": "ATM ABBTAN01     (location not in dataset)",
+    "Location": "Bobby Charlton Hub (Old Trafford South)",
     "ATM_Capacity": 1845000.0,
     "Estimated_Cash_Remaining": 676963.0,
     "Cash_Remaining_Pct": 36.7,
@@ -398,7 +398,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBMIR07",
-    "Location": "ATM ABBMIR07     (location not in dataset)",
+    "Location": "Marco van Basten Wing (San Siro West)",
     "ATM_Capacity": 962250.0,
     "Estimated_Cash_Remaining": 353034.0,
     "Cash_Remaining_Pct": 36.7,
@@ -409,7 +409,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBGOL01",
-    "Location": "ATM ABBGOL01     (location not in dataset)",
+    "Location": "Ruud Gullit Station (Milanello Hub)",
     "ATM_Capacity": 982500.0,
     "Estimated_Cash_Remaining": 364664.0,
     "Cash_Remaining_Pct": 37.1,
@@ -420,7 +420,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBPRA01",
-    "Location": "ATM ABBPRA01     (location not in dataset)",
+    "Location": "Frank Rijkaard Terminal (Amsterdam South)",
     "ATM_Capacity": 1966500.0,
     "Estimated_Cash_Remaining": 597031.0,
     "Cash_Remaining_Pct": 30.4,
@@ -431,7 +431,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBLUC01",
-    "Location": "ATM ABBLUC01     (location not in dataset)",
+    "Location": "Clarence Seedorf Hub (San Siro VIP)",
     "ATM_Capacity": 1551000.0,
     "Estimated_Cash_Remaining": 472685.0,
     "Cash_Remaining_Pct": 30.5,
@@ -442,7 +442,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBSHY08",
-    "Location": "ATM ABBSHY08     (location not in dataset)",
+    "Location": "Eric Cantona King Lounge (Old Trafford)",
     "ATM_Capacity": 2061000.0,
     "Estimated_Cash_Remaining": 636538.0,
     "Cash_Remaining_Pct": 30.9,
@@ -453,7 +453,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBMAD01",
-    "Location": "ATM ABBMAD01     (location not in dataset)",
+    "Location": "Paul Scholes Station (Old Trafford Mid)",
     "ATM_Capacity": 1129500.0,
     "Estimated_Cash_Remaining": 354885.0,
     "Cash_Remaining_Pct": 31.4,
@@ -464,7 +464,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBBNN01",
-    "Location": "ATM ABBBNN01     (location not in dataset)",
+    "Location": "Ryan Giggs Corridor (Carrington Hub)",
     "ATM_Capacity": 1143750.0,
     "Estimated_Cash_Remaining": 418040.0,
     "Cash_Remaining_Pct": 36.5,
@@ -475,7 +475,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBMOM02",
-    "Location": "ATM ABBMOM02     (location not in dataset)",
+    "Location": "Roy Keane Terminal (Old Trafford North)",
     "ATM_Capacity": 1402500.0,
     "Estimated_Cash_Remaining": 529279.0,
     "Cash_Remaining_Pct": 37.7,
@@ -486,7 +486,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBMON02",
-    "Location": "ATM ABBMON02     (location not in dataset)",
+    "Location": "Patrick Vieira Station (Highbury Central)",
     "ATM_Capacity": 959250.0,
     "Estimated_Cash_Remaining": 366312.0,
     "Cash_Remaining_Pct": 38.2,
@@ -497,7 +497,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBDHA01",
-    "Location": "ATM ABBDHA01     (location not in dataset)",
+    "Location": "Robert Pires Wing (Arsenal Emirates)",
     "ATM_Capacity": 1810500.0,
     "Estimated_Cash_Remaining": 706749.0,
     "Cash_Remaining_Pct": 39.0,
@@ -508,7 +508,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBJES03",
-    "Location": "ATM ABBJES03     (location not in dataset)",
+    "Location": "Didier Drogba Tower (Stamford Bridge East)",
     "ATM_Capacity": 990000.0,
     "Estimated_Cash_Remaining": 314520.0,
     "Cash_Remaining_Pct": 31.8,
@@ -519,7 +519,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBNAZ02",
-    "Location": "ATM ABBNAZ02     (location not in dataset)",
+    "Location": "Eden Hazard Hub (Stamford Bridge West)",
     "ATM_Capacity": 1776000.0,
     "Estimated_Cash_Remaining": 580970.0,
     "Cash_Remaining_Pct": 32.7,
@@ -530,7 +530,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBELP04",
-    "Location": "ATM ABBELP04     (location not in dataset)",
+    "Location": "Sergio Agüero Terminal (Etihad 93:20)",
     "ATM_Capacity": 915000.0,
     "Estimated_Cash_Remaining": 317137.0,
     "Cash_Remaining_Pct": 34.7,
@@ -541,7 +541,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBBAR07",
-    "Location": "ATM ABBBAR07     (location not in dataset)",
+    "Location": "Kevin De Bruyne Master Hub (Etihad)",
     "ATM_Capacity": 279750.0,
     "Estimated_Cash_Remaining": 98156.0,
     "Cash_Remaining_Pct": 35.1,
@@ -552,7 +552,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBKHU05",
-    "Location": "ATM ABBKHU05     (location not in dataset)",
+    "Location": "Mohamed Salah Express (Anfield Kop)",
     "ATM_Capacity": 696750.0,
     "Estimated_Cash_Remaining": 271436.0,
     "Cash_Remaining_Pct": 39.0,
@@ -563,7 +563,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBMOH03",
-    "Location": "ATM ABBMOH03     (location not in dataset)",
+    "Location": "Sadio Mané Hub (Dakar & Anfield)",
     "ATM_Capacity": 2250000.0,
     "Estimated_Cash_Remaining": 884860.0,
     "Cash_Remaining_Pct": 39.3,
@@ -574,7 +574,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBCOM02",
-    "Location": "ATM ABBCOM02     (location not in dataset)",
+    "Location": "Virgil van Dijk Station (Anfield Fortress)",
     "ATM_Capacity": 1977000.0,
     "Estimated_Cash_Remaining": 703431.0,
     "Cash_Remaining_Pct": 35.6,
@@ -585,7 +585,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBBOL01",
-    "Location": "ATM ABBBOL01     (location not in dataset)",
+    "Location": "Alisson Becker Vault (Anfield Safe)",
     "ATM_Capacity": 1862250.0,
     "Estimated_Cash_Remaining": 742807.0,
     "Cash_Remaining_Pct": 39.9,
@@ -596,7 +596,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBMON01",
-    "Location": "ATM ABBMON01     (location not in dataset)",
+    "Location": "Manuel Neuer Citadel (Allianz Safe)",
     "ATM_Capacity": 1168500.0,
     "Estimated_Cash_Remaining": 432202.0,
     "Cash_Remaining_Pct": 37.0,
@@ -607,7 +607,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBMOT03",
-    "Location": "ATM ABBMOT03     (location not in dataset)",
+    "Location": "Robert Lewandowski Hub (Allianz Arena)",
     "ATM_Capacity": 1498500.0,
     "Estimated_Cash_Remaining": 485424.0,
     "Cash_Remaining_Pct": 32.4,
@@ -618,7 +618,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBSHY02",
-    "Location": "ATM ABBSHY02     (location not in dataset)",
+    "Location": "Thomas Müller Lounge (Bavaria Hub)",
     "ATM_Capacity": 2031000.0,
     "Estimated_Cash_Remaining": 764199.0,
     "Cash_Remaining_Pct": 37.6,
@@ -629,7 +629,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBBOG02",
-    "Location": "ATM ABBBOG02     (location not in dataset)",
+    "Location": "Arjen Robben Wing (Allianz Right)",
     "ATM_Capacity": 1875000.0,
     "Estimated_Cash_Remaining": 711554.0,
     "Cash_Remaining_Pct": 37.9,
@@ -640,7 +640,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBAST01",
-    "Location": "ATM ABBAST01     (location not in dataset)",
+    "Location": "Franck Ribéry Terminal (Allianz Left)",
     "ATM_Capacity": 1746750.0,
     "Estimated_Cash_Remaining": 596809.0,
     "Cash_Remaining_Pct": 34.2,
@@ -651,7 +651,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBTON02",
-    "Location": "ATM ABBTON02     (location not in dataset)",
+    "Location": "Bastian Schweinsteiger Hub (Munich South)",
     "ATM_Capacity": 225750.0,
     "Estimated_Cash_Remaining": 87348.0,
     "Cash_Remaining_Pct": 38.7,
@@ -662,7 +662,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBMAD04",
-    "Location": "ATM ABBMAD04     (location not in dataset)",
+    "Location": "Philipp Lahm Station (Munich Central)",
     "ATM_Capacity": 892500.0,
     "Estimated_Cash_Remaining": 257705.0,
     "Cash_Remaining_Pct": 28.9,
@@ -673,7 +673,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBCOM05",
-    "Location": "ATM ABBCOM05     (location not in dataset)",
+    "Location": "Toni Kroos Gateway (Bernabéu Metronome)",
     "ATM_Capacity": 891750.0,
     "Estimated_Cash_Remaining": 352427.0,
     "Cash_Remaining_Pct": 39.5,
@@ -684,7 +684,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBBRD05",
-    "Location": "ATM ABBBRD05     (location not in dataset)",
+    "Location": "Sergio Ramos Tower (Bernabéu 92:48)",
     "ATM_Capacity": 2058000.0,
     "Estimated_Cash_Remaining": 630940.0,
     "Cash_Remaining_Pct": 30.7,
@@ -695,7 +695,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBFEN02",
-    "Location": "ATM ABBFEN02     (location not in dataset)",
+    "Location": "Iker Casillas Fortress (Bernabéu Saint)",
     "ATM_Capacity": 566250.0,
     "Estimated_Cash_Remaining": 118921.0,
     "Cash_Remaining_Pct": 21.0,
@@ -706,7 +706,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBGUL04",
-    "Location": "ATM ABBGUL04     (location not in dataset)",
+    "Location": "Raúl González Station (Bernabéu Legend)",
     "ATM_Capacity": 1874250.0,
     "Estimated_Cash_Remaining": 379120.0,
     "Cash_Remaining_Pct": 20.2,
@@ -717,7 +717,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBMAD05",
-    "Location": "ATM ABBMAD05     (location not in dataset)",
+    "Location": "Roberto Carlos Express (Bernabéu Rocket)",
     "ATM_Capacity": 94500.0,
     "Estimated_Cash_Remaining": 41958.0,
     "Cash_Remaining_Pct": 44.4,
@@ -728,7 +728,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBJES01",
-    "Location": "ATM ABBJES01     (location not in dataset)",
+    "Location": "Fernando Hierro Hub (Bernabéu Defense)",
     "ATM_Capacity": 2019000.0,
     "Estimated_Cash_Remaining": 858282.0,
     "Cash_Remaining_Pct": 42.5,
@@ -739,7 +739,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBSHY07",
-    "Location": "ATM ABBSHY07     (location not in dataset)",
+    "Location": "Marcelo Vieira Wing (Bernabéu Flair)",
     "ATM_Capacity": 897750.0,
     "Estimated_Cash_Remaining": 500507.0,
     "Cash_Remaining_Pct": 55.8,
@@ -750,7 +750,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBBAN02",
-    "Location": "ATM ABBBAN02     (location not in dataset)",
+    "Location": "Karim Benzema Lounge (Bernabéu Ballon)",
     "ATM_Capacity": 1014750.0,
     "Estimated_Cash_Remaining": 433585.0,
     "Cash_Remaining_Pct": 42.7,
@@ -761,7 +761,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBKAZ01",
-    "Location": "ATM ABBKAZ01     (location not in dataset)",
+    "Location": "Vinícius Júnior Terminal (Bernabéu Samba)",
     "ATM_Capacity": 2221500.0,
     "Estimated_Cash_Remaining": 952817.0,
     "Cash_Remaining_Pct": 42.9,
@@ -772,7 +772,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBBAR03",
-    "Location": "ATM ABBBAR03     (location not in dataset)",
+    "Location": "Jude Bellingham Station (Bernabéu Belligol)",
     "ATM_Capacity": 858000.0,
     "Estimated_Cash_Remaining": 371683.0,
     "Cash_Remaining_Pct": 43.3,
@@ -783,7 +783,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBMYM02",
-    "Location": "ATM ABBMYM02     (location not in dataset)",
+    "Location": "Rodrygo Goes Hub (Bernabéu Clutch)",
     "ATM_Capacity": 1742250.0,
     "Estimated_Cash_Remaining": 756944.0,
     "Cash_Remaining_Pct": 43.4,
@@ -794,7 +794,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBBAN03",
-    "Location": "ATM ABBBAN03     (location not in dataset)",
+    "Location": "Carles Puyol Citadel (Camp Nou Captain)",
     "ATM_Capacity": 812250.0,
     "Estimated_Cash_Remaining": 469153.0,
     "Cash_Remaining_Pct": 57.8,
@@ -805,7 +805,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBSGN01",
-    "Location": "ATM ABBSGN01     (location not in dataset)",
+    "Location": "Gerard Piqué Terminal (Camp Nou North)",
     "ATM_Capacity": 1582500.0,
     "Estimated_Cash_Remaining": 658784.0,
     "Cash_Remaining_Pct": 41.6,
@@ -816,7 +816,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBPRI05",
-    "Location": "ATM ABBPRI05     (location not in dataset)",
+    "Location": "Sergio Busquets Hub (Camp Nou Anchor)",
     "ATM_Capacity": 626250.0,
     "Estimated_Cash_Remaining": 267766.0,
     "Cash_Remaining_Pct": 42.8,
@@ -827,7 +827,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBPOL01",
-    "Location": "ATM ABBPOL01     (location not in dataset)",
+    "Location": "Dani Alves Express (Camp Nou Flank)",
     "ATM_Capacity": 1567500.0,
     "Estimated_Cash_Remaining": 680504.0,
     "Cash_Remaining_Pct": 43.4,
@@ -838,7 +838,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBJOY02",
-    "Location": "ATM ABBJOY02     (location not in dataset)",
+    "Location": "Luis Suárez Station (Camp Nou Pistolero)",
     "ATM_Capacity": 2250000.0,
     "Estimated_Cash_Remaining": 978487.0,
     "Cash_Remaining_Pct": 43.5,
@@ -849,7 +849,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBTAN03",
-    "Location": "ATM ABBTAN03     (location not in dataset)",
+    "Location": "Javier Mascherano Hub (Camp Nou Jefecito)",
     "ATM_Capacity": 2250000.0,
     "Estimated_Cash_Remaining": 1008649.0,
     "Cash_Remaining_Pct": 44.8,
@@ -860,7 +860,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBMIR04",
-    "Location": "ATM ABBMIR04     (location not in dataset)",
+    "Location": "Samuel Eto'o Wing (Camp Nou Lion)",
     "ATM_Capacity": 887250.0,
     "Estimated_Cash_Remaining": 535573.0,
     "Cash_Remaining_Pct": 60.4,
@@ -871,7 +871,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBSRE01",
-    "Location": "ATM ABBSRE01     (location not in dataset)",
+    "Location": "Deco de Souza Terminal (Camp Nou Magician)",
     "ATM_Capacity": 963000.0,
     "Estimated_Cash_Remaining": 401955.0,
     "Cash_Remaining_Pct": 41.7,
@@ -882,7 +882,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBELP03",
-    "Location": "ATM ABBELP03     (location not in dataset)",
+    "Location": "Victor Valdés Vault (Camp Nou Keeper)",
     "ATM_Capacity": 568500.0,
     "Estimated_Cash_Remaining": 241786.0,
     "Cash_Remaining_Pct": 42.5,
@@ -893,7 +893,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBUTR09",
-    "Location": "ATM ABBUTR09     (location not in dataset)",
+    "Location": "Gary Lineker Lounge (Leicester & Barça)",
     "ATM_Capacity": 1435500.0,
     "Estimated_Cash_Remaining": 643940.0,
     "Cash_Remaining_Pct": 44.9,
@@ -904,7 +904,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBNAO02",
-    "Location": "ATM ABBNAO02     (location not in dataset)",
+    "Location": "Hristo Stoichkov Hub (Sofia & Camp Nou)",
     "ATM_Capacity": 1145250.0,
     "Estimated_Cash_Remaining": 521680.0,
     "Cash_Remaining_Pct": 45.6,
@@ -915,7 +915,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBSVR02",
-    "Location": "ATM ABBSVR02     (location not in dataset)",
+    "Location": "Michael Laudrup Station (Copenhagen Maestro)",
     "ATM_Capacity": 999750.0,
     "Estimated_Cash_Remaining": 461087.0,
     "Cash_Remaining_Pct": 46.1,
@@ -926,7 +926,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBROK01",
-    "Location": "ATM ABBROK01     (location not in dataset)",
+    "Location": "Ronald Koeman Cannon (Camp Nou 1992)",
     "ATM_Capacity": 2250000.0,
     "Estimated_Cash_Remaining": 1388072.0,
     "Cash_Remaining_Pct": 61.7,
@@ -937,7 +937,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBJIN01",
-    "Location": "ATM ABBJIN01     (location not in dataset)",
+    "Location": "Romelu Lukaku Terminal (Brussels Hub)",
     "ATM_Capacity": 2250000.0,
     "Estimated_Cash_Remaining": 946488.0,
     "Cash_Remaining_Pct": 42.1,
@@ -948,7 +948,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBMOT02",
-    "Location": "ATM ABBMOT02     (location not in dataset)",
+    "Location": "Harry Kane Express (Tottenham & Allianz)",
     "ATM_Capacity": 703500.0,
     "Estimated_Cash_Remaining": 300725.0,
     "Cash_Remaining_Pct": 42.7,
@@ -959,7 +959,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBMDH01",
-    "Location": "ATM ABBMDH01     (location not in dataset)",
+    "Location": "Son Heung-min Hub (Seoul & Tottenham)",
     "ATM_Capacity": 2250000.0,
     "Estimated_Cash_Remaining": 1046153.0,
     "Cash_Remaining_Pct": 46.5,
@@ -970,7 +970,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBSHY03",
-    "Location": "ATM ABBSHY03     (location not in dataset)",
+    "Location": "Gareth Bale Rocket (Cardiff & Madrid)",
     "ATM_Capacity": 1368750.0,
     "Estimated_Cash_Remaining": 640424.0,
     "Cash_Remaining_Pct": 46.8,
@@ -981,7 +981,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBDHA06",
-    "Location": "ATM ABBDHA06     (location not in dataset)",
+    "Location": "Davor Šuker Terminal (Zagreb Golden)",
     "ATM_Capacity": 933750.0,
     "Estimated_Cash_Remaining": 450587.0,
     "Cash_Remaining_Pct": 48.3,
@@ -992,7 +992,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBGUL06",
-    "Location": "ATM ABBGUL06     (location not in dataset)",
+    "Location": "Nemanja Vidić Fortress (Old Trafford Wall)",
     "ATM_Capacity": 1103250.0,
     "Estimated_Cash_Remaining": 689272.0,
     "Cash_Remaining_Pct": 62.5,
@@ -1003,7 +1003,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBFRD01",
-    "Location": "ATM ABBFRD01     (location not in dataset)",
+    "Location": "Rio Ferdinand Tower (Old Trafford Vault)",
     "ATM_Capacity": 1169250.0,
     "Estimated_Cash_Remaining": 733183.0,
     "Cash_Remaining_Pct": 62.7,
@@ -1014,7 +1014,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBGAN01",
-    "Location": "ATM ABBGAN01     (location not in dataset)",
+    "Location": "Edwin van der Sar Safe (Amsterdam & Old Trafford)",
     "ATM_Capacity": 1036500.0,
     "Estimated_Cash_Remaining": 429593.0,
     "Cash_Remaining_Pct": 41.4,
@@ -1025,7 +1025,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBCHT01",
-    "Location": "ATM ABBCHT01     (location not in dataset)",
+    "Location": "Peter Schmeichel Great Dane (Old Trafford Treble)",
     "ATM_Capacity": 2250000.0,
     "Estimated_Cash_Remaining": 1086550.0,
     "Cash_Remaining_Pct": 48.3,
@@ -1036,7 +1036,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBFEN03",
-    "Location": "ATM ABBFEN03     (location not in dataset)",
+    "Location": "David de Gea Lounge (Madrid & Old Trafford)",
     "ATM_Capacity": 1479750.0,
     "Estimated_Cash_Remaining": 718871.0,
     "Cash_Remaining_Pct": 48.6,
@@ -1047,7 +1047,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBASH01",
-    "Location": "ATM ABBASH01     (location not in dataset)",
+    "Location": "Thibaut Courtois Wall (Bernabéu Guardian)",
     "ATM_Capacity": 825750.0,
     "Estimated_Cash_Remaining": 527217.0,
     "Cash_Remaining_Pct": 63.8,
@@ -1058,7 +1058,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBPRA03",
-    "Location": "ATM ABBPRA03     (location not in dataset)",
+    "Location": "Keylor Navas Safe (San José & Bernabéu)",
     "ATM_Capacity": 840750.0,
     "Estimated_Cash_Remaining": 536548.0,
     "Cash_Remaining_Pct": 63.8,
@@ -1069,7 +1069,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBMOH01",
-    "Location": "ATM ABBMOH01     (location not in dataset)",
+    "Location": "Jan Oblak Citadel (Metropolitano Wall)",
     "ATM_Capacity": 1012500.0,
     "Estimated_Cash_Remaining": 653917.0,
     "Cash_Remaining_Pct": 64.6,
@@ -1080,7 +1080,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBPRI01",
-    "Location": "ATM ABBPRI01     (location not in dataset)",
+    "Location": "Antoine Griezmann Station (Metropolitano Maestro)",
     "ATM_Capacity": 2250000.0,
     "Estimated_Cash_Remaining": 1457881.0,
     "Cash_Remaining_Pct": 64.8,
@@ -1091,7 +1091,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBMIR06",
-    "Location": "ATM ABBMIR06     (location not in dataset)",
+    "Location": "Fernando Torres Express (El Niño Calderón)",
     "ATM_Capacity": 840000.0,
     "Estimated_Cash_Remaining": 409696.0,
     "Cash_Remaining_Pct": 48.8,
@@ -1102,7 +1102,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBUTR01",
-    "Location": "ATM ABBUTR01     (location not in dataset)",
+    "Location": "Diego Godín Fortress (Montevideo & Madrid)",
     "ATM_Capacity": 1996500.0,
     "Estimated_Cash_Remaining": 1014280.0,
     "Cash_Remaining_Pct": 50.8,
@@ -1113,7 +1113,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBCEP03",
-    "Location": "ATM ABBCEP03     (location not in dataset)",
+    "Location": "Radamel Falcao Tiger (Calderón & Monaco)",
     "ATM_Capacity": 2250000.0,
     "Estimated_Cash_Remaining": 911856.0,
     "Cash_Remaining_Pct": 40.5,
@@ -1124,7 +1124,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBCCB01",
-    "Location": "ATM ABBCCB01     (location not in dataset)",
+    "Location": "David Villa Station (El Guaje Valencia)",
     "ATM_Capacity": 712500.0,
     "Estimated_Cash_Remaining": 471841.0,
     "Cash_Remaining_Pct": 66.2,
@@ -1135,7 +1135,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBMIR05",
-    "Location": "ATM ABBMIR05     (location not in dataset)",
+    "Location": "Juan Román Riquelme Lounge (La Bombonera Master)",
     "ATM_Capacity": 1087500.0,
     "Estimated_Cash_Remaining": 723342.0,
     "Cash_Remaining_Pct": 66.5,
@@ -1146,7 +1146,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBLMH01",
-    "Location": "ATM ABBLMH01     (location not in dataset)",
+    "Location": "Carlos Tevez Apache (La Boca & Manchester)",
     "ATM_Capacity": 1196250.0,
     "Estimated_Cash_Remaining": 801253.0,
     "Cash_Remaining_Pct": 67.0,
@@ -1157,7 +1157,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBBON02",
-    "Location": "ATM ABBBON02     (location not in dataset)",
+    "Location": "Gabriel Batistuta Batigol (Artemio Franchi)",
     "ATM_Capacity": 1097250.0,
     "Estimated_Cash_Remaining": 742940.0,
     "Cash_Remaining_Pct": 67.7,
@@ -1168,7 +1168,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBMYM01",
-    "Location": "ATM ABBMYM01     (location not in dataset)",
+    "Location": "Hernán Crespo Hub (San Siro & Parma)",
     "ATM_Capacity": 967500.0,
     "Estimated_Cash_Remaining": 655612.0,
     "Cash_Remaining_Pct": 67.8,
@@ -1179,7 +1179,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBCAN01",
-    "Location": "ATM ABBCAN01     (location not in dataset)",
+    "Location": "Javier Zanetti Capitano (San Siro Tractor)",
     "ATM_Capacity": 1692750.0,
     "Estimated_Cash_Remaining": 1156526.0,
     "Cash_Remaining_Pct": 68.3,
@@ -1190,7 +1190,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBDHA04",
-    "Location": "ATM ABBDHA04     (location not in dataset)",
+    "Location": "Esteban Cambiasso Cuchu (San Siro Brain)",
     "ATM_Capacity": 1353000.0,
     "Estimated_Cash_Remaining": 927470.0,
     "Cash_Remaining_Pct": 68.5,
@@ -1201,7 +1201,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBMOT04",
-    "Location": "ATM ABBMOT04     (location not in dataset)",
+    "Location": "Diego Milito Principe (San Siro Treble)",
     "ATM_Capacity": 781500.0,
     "Estimated_Cash_Remaining": 536244.0,
     "Cash_Remaining_Pct": 68.6,
@@ -1212,7 +1212,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBMAL01",
-    "Location": "ATM ABBMAL01     (location not in dataset)",
+    "Location": "Walter Samuel Il Muro (San Siro Wall)",
     "ATM_Capacity": 604500.0,
     "Estimated_Cash_Remaining": 417374.0,
     "Cash_Remaining_Pct": 69.0,
@@ -1223,7 +1223,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBKLM01",
-    "Location": "ATM ABBKLM01     (location not in dataset)",
+    "Location": "Julio César Safe (San Siro Dream)",
     "ATM_Capacity": 1944750.0,
     "Estimated_Cash_Remaining": 928239.0,
     "Cash_Remaining_Pct": 47.7,
@@ -1234,7 +1234,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBKLT01",
-    "Location": "ATM ABBKLT01     (location not in dataset)",
+    "Location": "Adriano L'Imperatore (San Siro Cannon)",
     "ATM_Capacity": 1300500.0,
     "Estimated_Cash_Remaining": 694810.0,
     "Cash_Remaining_Pct": 53.4,
@@ -1245,7 +1245,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBSRE02",
-    "Location": "ATM ABBSRE02     (location not in dataset)",
+    "Location": "Cafu Pendolino (San Siro & Roma)",
     "ATM_Capacity": 1826250.0,
     "Estimated_Cash_Remaining": 1277286.0,
     "Cash_Remaining_Pct": 69.9,
@@ -1256,7 +1256,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBIMM02",
-    "Location": "ATM ABBIMM02     (location not in dataset)",
+    "Location": "Dida Nelson Vault (San Siro Brazilian)",
     "ATM_Capacity": 1535250.0,
     "Estimated_Cash_Remaining": 751904.0,
     "Cash_Remaining_Pct": 49.0,
@@ -1267,7 +1267,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBGUL03",
-    "Location": "ATM ABBGUL03     (location not in dataset)",
+    "Location": "Gennaro Gattuso Ring (San Siro Warrior)",
     "ATM_Capacity": 2250000.0,
     "Estimated_Cash_Remaining": 1171437.0,
     "Cash_Remaining_Pct": 52.1,
@@ -1278,7 +1278,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBPRA04",
-    "Location": "ATM ABBPRA04     (location not in dataset)",
+    "Location": "Filippo Inzaghi Superpippo (San Siro Poacher)",
     "ATM_Capacity": 749250.0,
     "Estimated_Cash_Remaining": 526775.0,
     "Cash_Remaining_Pct": 70.3,
@@ -1289,7 +1289,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBAGR02",
-    "Location": "ATM ABBAGR02     (location not in dataset)",
+    "Location": "Andriy Shevchenko Ballon (Kyiv & San Siro)",
     "ATM_Capacity": 1281750.0,
     "Estimated_Cash_Remaining": 905049.0,
     "Cash_Remaining_Pct": 70.6,
@@ -1300,7 +1300,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBBHA01",
-    "Location": "ATM ABBBHA01     (location not in dataset)",
+    "Location": "Alessandro Nesta Elegant (San Siro Wall)",
     "ATM_Capacity": 1979250.0,
     "Estimated_Cash_Remaining": 1397301.0,
     "Cash_Remaining_Pct": 70.6,
@@ -1311,7 +1311,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBDHA07",
-    "Location": "ATM ABBDHA07     (location not in dataset)",
+    "Location": "Fabio Cannavaro Capitano (Berlin 2006 Ballon)",
     "ATM_Capacity": 648750.0,
     "Estimated_Cash_Remaining": 648750.0,
     "Cash_Remaining_Pct": 100.0,
@@ -1322,7 +1322,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBKHU02",
-    "Location": "ATM ABBKHU02     (location not in dataset)",
+    "Location": "Gianluca Zambrotta Wing (Juventus & Barça)",
     "ATM_Capacity": 573000.0,
     "Estimated_Cash_Remaining": 573000.0,
     "Cash_Remaining_Pct": 100.0,
@@ -1333,7 +1333,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBTAJ01",
-    "Location": "ATM ABBTAJ01     (location not in dataset)",
+    "Location": "David Trezeguet Trezegol (Delle Alpi Finisher)",
     "ATM_Capacity": 1060500.0,
     "Estimated_Cash_Remaining": 1060500.0,
     "Cash_Remaining_Pct": 100.0,
@@ -1344,7 +1344,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBBAR05",
-    "Location": "ATM ABBBAR05     (location not in dataset)",
+    "Location": "Pavel Nedvěd Czech Cannon (Delle Alpi Ballon)",
     "ATM_Capacity": 696750.0,
     "Estimated_Cash_Remaining": 320074.0,
     "Cash_Remaining_Pct": 45.9,
@@ -1355,7 +1355,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBKAR01",
-    "Location": "ATM ABBKAR01     (location not in dataset)",
+    "Location": "Giorgio Chiellini King Kong (Allianz Turin)",
     "ATM_Capacity": 2250000.0,
     "Estimated_Cash_Remaining": 1189888.0,
     "Cash_Remaining_Pct": 52.9,
@@ -1366,7 +1366,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBZIN01",
-    "Location": "ATM ABBZIN01     (location not in dataset)",
+    "Location": "Leonardo Bonucci Station (Turin Passer)",
     "ATM_Capacity": 1473750.0,
     "Estimated_Cash_Remaining": 1054944.0,
     "Cash_Remaining_Pct": 71.6,
@@ -1377,7 +1377,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBSHY01",
-    "Location": "ATM ABBSHY01     (location not in dataset)",
+    "Location": "Andrea Barzagli Wall (Turin BBC)",
     "ATM_Capacity": 1830750.0,
     "Estimated_Cash_Remaining": 1310108.0,
     "Cash_Remaining_Pct": 71.6,
@@ -1388,7 +1388,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBBAD01",
-    "Location": "ATM ABBBAD01     (location not in dataset)",
+    "Location": "Claudio Marchisio Il Principino (Turin Native)",
     "ATM_Capacity": 1263750.0,
     "Estimated_Cash_Remaining": 905954.0,
     "Cash_Remaining_Pct": 71.7,
@@ -1399,7 +1399,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBGUL02",
-    "Location": "ATM ABBGUL02     (location not in dataset)",
+    "Location": "Arturo Vidal Warrior (Santiago & Munich)",
     "ATM_Capacity": 1701750.0,
     "Estimated_Cash_Remaining": 1222210.0,
     "Cash_Remaining_Pct": 71.8,
@@ -1410,7 +1410,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBAGR01",
-    "Location": "ATM ABBAGR01     (location not in dataset)",
+    "Location": "Alexis Sánchez Niño Maravilla (Emirates Hub)",
     "ATM_Capacity": 1844250.0,
     "Estimated_Cash_Remaining": 1324689.0,
     "Cash_Remaining_Pct": 71.8,
@@ -1421,7 +1421,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBMAL04",
-    "Location": "ATM ABBMAL04     (location not in dataset)",
+    "Location": "Edinson Cavani Matador (Napoli & Parc)",
     "ATM_Capacity": 1233750.0,
     "Estimated_Cash_Remaining": 1233750.0,
     "Cash_Remaining_Pct": 100.0,
@@ -1432,7 +1432,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBRON01",
-    "Location": "ATM ABBRON01     (location not in dataset)",
+    "Location": "Ezequiel Lavezzi Pocho (Napoli & Paris)",
     "ATM_Capacity": 1236000.0,
     "Estimated_Cash_Remaining": 1236000.0,
     "Cash_Remaining_Pct": 100.0,
@@ -1443,7 +1443,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBSYL02",
-    "Location": "ATM ABBSYL02     (location not in dataset)",
+    "Location": "Marek Hamšík Mohican (San Paolo Record)",
     "ATM_Capacity": 600750.0,
     "Estimated_Cash_Remaining": 600750.0,
     "Cash_Remaining_Pct": 100.0,
@@ -1454,7 +1454,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBCHO02",
-    "Location": "ATM ABBCHO02     (location not in dataset)",
+    "Location": "Dries Mertens Ciro (Maradona Stadium)",
     "ATM_Capacity": 1497000.0,
     "Estimated_Cash_Remaining": 858059.0,
     "Cash_Remaining_Pct": 57.3,
@@ -1465,7 +1465,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBFAR03",
-    "Location": "ATM ABBFAR03     (location not in dataset)",
+    "Location": "Victor Osimhen Mask (Napoli Scudetto)",
     "ATM_Capacity": 1993500.0,
     "Estimated_Cash_Remaining": 1447313.0,
     "Cash_Remaining_Pct": 72.6,
@@ -1476,7 +1476,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBBDT01",
-    "Location": "ATM ABBBDT01     (location not in dataset)",
+    "Location": "Khvicha Kvaratskhelia Kvaradona (Tbilisi & Napoli)",
     "ATM_Capacity": 1077750.0,
     "Estimated_Cash_Remaining": 1077750.0,
     "Cash_Remaining_Pct": 100.0,
@@ -1487,7 +1487,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBNSR03",
-    "Location": "ATM ABBNSR03     (location not in dataset)",
+    "Location": "Rafael Leão Wave (San Siro Surfer)",
     "ATM_Capacity": 756000.0,
     "Estimated_Cash_Remaining": 756000.0,
     "Cash_Remaining_Pct": 100.0,
@@ -1498,7 +1498,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBMIR01",
-    "Location": "ATM ABBMIR01     (location not in dataset)",
+    "Location": "Theo Hernández Turbo (San Siro Jet)",
     "ATM_Capacity": 1301250.0,
     "Estimated_Cash_Remaining": 1301250.0,
     "Cash_Remaining_Pct": 100.0,
@@ -1509,7 +1509,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBSHI01",
-    "Location": "ATM ABBSHI01     (location not in dataset)",
+    "Location": "Mike Maignan Magic (San Siro Eagle)",
     "ATM_Capacity": 1659750.0,
     "Estimated_Cash_Remaining": 813559.0,
     "Cash_Remaining_Pct": 49.0,
@@ -1520,7 +1520,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBMOT01",
-    "Location": "ATM ABBMOT01     (location not in dataset)",
+    "Location": "Lautaro Martínez Toro (San Siro Inter Captain)",
     "ATM_Capacity": 1758000.0,
     "Estimated_Cash_Remaining": 974395.0,
     "Cash_Remaining_Pct": 55.4,
@@ -1531,7 +1531,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBDIN01",
-    "Location": "ATM ABBDIN01     (location not in dataset)",
+    "Location": "Nicolò Barella Engine (San Siro Dynamo)",
     "ATM_Capacity": 1404750.0,
     "Estimated_Cash_Remaining": 1404750.0,
     "Cash_Remaining_Pct": 100.0,
@@ -1542,7 +1542,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBDHA02",
-    "Location": "ATM ABBDHA02     (location not in dataset)",
+    "Location": "Alessandro Bastoni Tower (San Siro Left)",
     "ATM_Capacity": 664500.0,
     "Estimated_Cash_Remaining": 664500.0,
     "Cash_Remaining_Pct": 100.0,
@@ -1553,7 +1553,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBJHE01",
-    "Location": "ATM ABBJHE01     (location not in dataset)",
+    "Location": "Federico Dimarco Curva (San Siro Heart)",
     "ATM_Capacity": 2250000.0,
     "Estimated_Cash_Remaining": 2250000.0,
     "Cash_Remaining_Pct": 100.0,
@@ -1564,7 +1564,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBIMM01",
-    "Location": "ATM ABBIMM01     (location not in dataset)",
+    "Location": "Hakan Çalhanoğlu Maestro (San Siro Sniper)",
     "ATM_Capacity": 2250000.0,
     "Estimated_Cash_Remaining": 1062395.0,
     "Cash_Remaining_Pct": 47.2,
@@ -1575,7 +1575,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBKHU04",
-    "Location": "ATM ABBKHU04     (location not in dataset)",
+    "Location": "Marcus Rashford MBE (Old Trafford)",
     "ATM_Capacity": 703500.0,
     "Estimated_Cash_Remaining": 518474.0,
     "Cash_Remaining_Pct": 73.7,
@@ -1586,7 +1586,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBFAR01",
-    "Location": "ATM ABBFAR01     (location not in dataset)",
+    "Location": "Bukayo Saka Starboy (Emirates Wing)",
     "ATM_Capacity": 593250.0,
     "Estimated_Cash_Remaining": 437410.0,
     "Cash_Remaining_Pct": 73.7,
@@ -1597,7 +1597,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBCHM01",
-    "Location": "ATM ABBCHM01     (location not in dataset)",
+    "Location": "Martin Ødegaard Maestro (Emirates Hub)",
     "ATM_Capacity": 2018250.0,
     "Estimated_Cash_Remaining": 1490436.0,
     "Cash_Remaining_Pct": 73.8,
@@ -1608,7 +1608,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBPLZ01",
-    "Location": "ATM ABBPLZ01     (location not in dataset)",
+    "Location": "Declan Rice Anchor (Emirates Station)",
     "ATM_Capacity": 753000.0,
     "Estimated_Cash_Remaining": 556503.0,
     "Cash_Remaining_Pct": 73.9,
@@ -1619,7 +1619,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBBEN01",
-    "Location": "ATM ABBBEN01     (location not in dataset)",
+    "Location": "William Saliba Rolls Royce (Emirates Wall)",
     "ATM_Capacity": 1317000.0,
     "Estimated_Cash_Remaining": 1317000.0,
     "Cash_Remaining_Pct": 100.0,
@@ -1630,7 +1630,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBGUL09",
-    "Location": "ATM ABBGUL09     (location not in dataset)",
+    "Location": "Gabriel Martinelli Samba (Emirates Flank)",
     "ATM_Capacity": 945750.0,
     "Estimated_Cash_Remaining": 945750.0,
     "Cash_Remaining_Pct": 100.0,
@@ -1641,7 +1641,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBKAR03",
-    "Location": "ATM ABBKAR03     (location not in dataset)",
+    "Location": "Bruno Fernandes Magnifico (Old Trafford)",
     "ATM_Capacity": 295500.0,
     "Estimated_Cash_Remaining": 295500.0,
     "Cash_Remaining_Pct": 100.0,
@@ -1652,7 +1652,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBKHA01",
-    "Location": "ATM ABBKHA01     (location not in dataset)",
+    "Location": "Bernardo Silva Magician (Etihad Point)",
     "ATM_Capacity": 837000.0,
     "Estimated_Cash_Remaining": 837000.0,
     "Cash_Remaining_Pct": 100.0,
@@ -1663,7 +1663,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBKHU01",
-    "Location": "ATM ABBKHU01     (location not in dataset)",
+    "Location": "Phil Foden Sniper (Etihad Hub)",
     "ATM_Capacity": 1166250.0,
     "Estimated_Cash_Remaining": 1166250.0,
     "Cash_Remaining_Pct": 100.0,
@@ -1674,7 +1674,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBPAG01",
-    "Location": "ATM ABBPAG01     (location not in dataset)",
+    "Location": "Rodri Hernández Balance (Etihad Anchor)",
     "ATM_Capacity": 1867500.0,
     "Estimated_Cash_Remaining": 917601.0,
     "Cash_Remaining_Pct": 49.1,
@@ -1685,7 +1685,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBAND01",
-    "Location": "ATM ABBAND01     (location not in dataset)",
+    "Location": "Rúben Dias Leader (Etihad Fortress)",
     "ATM_Capacity": 1017000.0,
     "Estimated_Cash_Remaining": 1017000.0,
     "Cash_Remaining_Pct": 100.0,
@@ -1696,7 +1696,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBELP05",
-    "Location": "ATM ABBELP05     (location not in dataset)",
+    "Location": "Kyle Walker Speed (Etihad Station)",
     "ATM_Capacity": 1110000.0,
     "Estimated_Cash_Remaining": 1110000.0,
     "Cash_Remaining_Pct": 100.0,
@@ -1707,7 +1707,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBPAN01",
-    "Location": "ATM ABBPAN01     (location not in dataset)",
+    "Location": "John Stones Barnsley Beckenbauer (Etihad)",
     "ATM_Capacity": 907500.0,
     "Estimated_Cash_Remaining": 907500.0,
     "Cash_Remaining_Pct": 100.0,
@@ -1718,7 +1718,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBBSN01",
-    "Location": "ATM ABBBSN01     (location not in dataset)",
+    "Location": "Cole Palmer Cold (Stamford Bridge Hub)",
     "ATM_Capacity": 1629750.0,
     "Estimated_Cash_Remaining": 1629750.0,
     "Cash_Remaining_Pct": 100.0,
@@ -1729,7 +1729,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBHOB01",
-    "Location": "ATM ABBHOB01     (location not in dataset)",
+    "Location": "Enzo Fernández Maestro (Stamford Bridge)",
     "ATM_Capacity": 1454250.0,
     "Estimated_Cash_Remaining": 1454250.0,
     "Cash_Remaining_Pct": 100.0,
@@ -1740,7 +1740,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBBRA01",
-    "Location": "ATM ABBBRA01     (location not in dataset)",
+    "Location": "Moisés Caicedo Dynamo (Stamford Bridge)",
     "ATM_Capacity": 2250000.0,
     "Estimated_Cash_Remaining": 2250000.0,
     "Cash_Remaining_Pct": 100.0,
@@ -1751,7 +1751,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBBAR02",
-    "Location": "ATM ABBBAR02     (location not in dataset)",
+    "Location": "Alexis Mac Allister World Cup Hub (Anfield)",
     "ATM_Capacity": 823500.0,
     "Estimated_Cash_Remaining": 823500.0,
     "Cash_Remaining_Pct": 100.0,
@@ -1762,7 +1762,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBBRD08",
-    "Location": "ATM ABBBRD08     (location not in dataset)",
+    "Location": "Dominik Szoboszlai Rocket (Anfield Station)",
     "ATM_Capacity": 1203750.0,
     "Estimated_Cash_Remaining": 902965.0,
     "Cash_Remaining_Pct": 75.0,
@@ -1773,7 +1773,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBPAT01",
-    "Location": "ATM ABBPAT01     (location not in dataset)",
+    "Location": "Luis Díaz Guajiro (Anfield Wing)",
     "ATM_Capacity": 735000.0,
     "Estimated_Cash_Remaining": 551695.0,
     "Cash_Remaining_Pct": 75.1,
@@ -1784,7 +1784,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBKUS04",
-    "Location": "ATM ABBKUS04     (location not in dataset)",
+    "Location": "Darwin Núñez Pantera (Anfield Hub)",
     "ATM_Capacity": 804000.0,
     "Estimated_Cash_Remaining": 605358.0,
     "Cash_Remaining_Pct": 75.3,
@@ -1795,7 +1795,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBMIR08",
-    "Location": "ATM ABBMIR08     (location not in dataset)",
+    "Location": "Trent Alexander-Arnold Corner Quick (Anfield)",
     "ATM_Capacity": 1487250.0,
     "Estimated_Cash_Remaining": 1487250.0,
     "Cash_Remaining_Pct": 100.0,
@@ -1806,7 +1806,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBJES06",
-    "Location": "ATM ABBJES06     (location not in dataset)",
+    "Location": "Andrew Robertson Working Class (Anfield Flank)",
     "ATM_Capacity": 834000.0,
     "Estimated_Cash_Remaining": 834000.0,
     "Cash_Remaining_Pct": 100.0,
@@ -1817,7 +1817,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBBAD02",
-    "Location": "ATM ABBBAD02     (location not in dataset)",
+    "Location": "Federico Chiesa Speed (Anfield & Turin)",
     "ATM_Capacity": 356250.0,
     "Estimated_Cash_Remaining": 159417.0,
     "Cash_Remaining_Pct": 44.7,
@@ -1828,7 +1828,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBKAR02",
-    "Location": "ATM ABBKAR02     (location not in dataset)",
+    "Location": "Jamal Musiala Bambi Dribbler (Allianz)",
     "ATM_Capacity": 364500.0,
     "Estimated_Cash_Remaining": 199618.0,
     "Cash_Remaining_Pct": 54.8,
@@ -1839,7 +1839,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBDOH02",
-    "Location": "ATM ABBDOH02     (location not in dataset)",
+    "Location": "Florian Wirtz Wonderkid (BayArena Hub)",
     "ATM_Capacity": 1638000.0,
     "Estimated_Cash_Remaining": 1012956.0,
     "Cash_Remaining_Pct": 61.8,
@@ -1850,7 +1850,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBBRD04",
-    "Location": "ATM ABBBRD04     (location not in dataset)",
+    "Location": "Xabi Alonso Master (BayArena & Anfield)",
     "ATM_Capacity": 865500.0,
     "Estimated_Cash_Remaining": 653751.0,
     "Cash_Remaining_Pct": 75.5,
@@ -1861,7 +1861,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBCOM03",
-    "Location": "ATM ABBCOM03     (location not in dataset)",
+    "Location": "Granit Xhaka General (BayArena Station)",
     "ATM_Capacity": 1413000.0,
     "Estimated_Cash_Remaining": 1413000.0,
     "Cash_Remaining_Pct": 100.0,
@@ -1872,7 +1872,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBPRI04",
-    "Location": "ATM ABBPRI04     (location not in dataset)",
+    "Location": "Jeremie Frimpong Jet (BayArena Wing)",
     "ATM_Capacity": 696000.0,
     "Estimated_Cash_Remaining": 696000.0,
     "Cash_Remaining_Pct": 100.0,
@@ -1883,7 +1883,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBGAZ01",
-    "Location": "ATM ABBGAZ01     (location not in dataset)",
+    "Location": "Alejandro Grimaldo Free Kick (BayArena Hub)",
     "ATM_Capacity": 2067750.0,
     "Estimated_Cash_Remaining": 2067750.0,
     "Cash_Remaining_Pct": 100.0,
@@ -1894,7 +1894,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBBSN04",
-    "Location": "ATM ABBBSN04     (location not in dataset)",
+    "Location": "Victor Boniface Power Striker (BayArena)",
     "ATM_Capacity": 1428000.0,
     "Estimated_Cash_Remaining": 1428000.0,
     "Cash_Remaining_Pct": 100.0,
@@ -1905,7 +1905,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBBAR06",
-    "Location": "ATM ABBBAR06     (location not in dataset)",
+    "Location": "Leroy Sané Turbo (Allianz Wing)",
     "ATM_Capacity": 338250.0,
     "Estimated_Cash_Remaining": 338250.0,
     "Cash_Remaining_Pct": 100.0,
@@ -1916,7 +1916,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBJES04",
-    "Location": "ATM ABBJES04     (location not in dataset)",
+    "Location": "Serge Gnabry Chef (Allianz Station)",
     "ATM_Capacity": 2250000.0,
     "Estimated_Cash_Remaining": 1710520.0,
     "Cash_Remaining_Pct": 76.0,
@@ -1927,7 +1927,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBMIR09",
-    "Location": "ATM ABBMIR09     (location not in dataset)",
+    "Location": "Kingsley Coman Decisive Final (Allianz)",
     "ATM_Capacity": 1533750.0,
     "Estimated_Cash_Remaining": 1533750.0,
     "Cash_Remaining_Pct": 100.0,
@@ -1938,7 +1938,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBDAR01",
-    "Location": "ATM ABBDAR01     (location not in dataset)",
+    "Location": "Alphonso Davies Roadrunner (Allianz Flank)",
     "ATM_Capacity": 1371000.0,
     "Estimated_Cash_Remaining": 1371000.0,
     "Cash_Remaining_Pct": 100.0,
@@ -1949,7 +1949,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBNAZ01",
-    "Location": "ATM ABBNAZ01     (location not in dataset)",
+    "Location": "Dayot Upamecano Fortress (Allianz Hub)",
     "ATM_Capacity": 1524000.0,
     "Estimated_Cash_Remaining": 1524000.0,
     "Cash_Remaining_Pct": 100.0,
@@ -1960,7 +1960,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBCHA01",
-    "Location": "ATM ABBCHA01     (location not in dataset)",
+    "Location": "Kim Min-jae Monster (Allianz Defense)",
     "ATM_Capacity": 1408500.0,
     "Estimated_Cash_Remaining": 1408500.0,
     "Cash_Remaining_Pct": 100.0,
@@ -1971,7 +1971,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBCEP01",
-    "Location": "ATM ABBCEP01     (location not in dataset)",
+    "Location": "Joshua Kimmich Leader (Allianz Hub)",
     "ATM_Capacity": 2250000.0,
     "Estimated_Cash_Remaining": 1724034.0,
     "Cash_Remaining_Pct": 76.6,
@@ -1982,7 +1982,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBNAO01",
-    "Location": "ATM ABBNAO01     (location not in dataset)",
+    "Location": "Leon Goretzka Power (Allianz Midfield)",
     "ATM_Capacity": 1950000.0,
     "Estimated_Cash_Remaining": 1950000.0,
     "Cash_Remaining_Pct": 100.0,
@@ -1993,7 +1993,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBMAL02",
-    "Location": "ATM ABBMAL02     (location not in dataset)",
+    "Location": "Marco Reus Loyalty (Signal Iduna Park)",
     "ATM_Capacity": 1903500.0,
     "Estimated_Cash_Remaining": 1903500.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2004,7 +2004,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBGAR01",
-    "Location": "ATM ABBGAR01     (location not in dataset)",
+    "Location": "Mats Hummels Wall (Signal Iduna Park)",
     "ATM_Capacity": 1074000.0,
     "Estimated_Cash_Remaining": 1074000.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2015,7 +2015,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBSHY04",
-    "Location": "ATM ABBSHY04     (location not in dataset)",
+    "Location": "Jadon Sancho Wing (Signal Iduna Park)",
     "ATM_Capacity": 1176000.0,
     "Estimated_Cash_Remaining": 1176000.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2026,7 +2026,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBSIR02",
-    "Location": "ATM ABBSIR02     (location not in dataset)",
+    "Location": "Gregor Kobel Safe (Signal Iduna Park)",
     "ATM_Capacity": 836250.0,
     "Estimated_Cash_Remaining": 836250.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2037,7 +2037,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBSED01",
-    "Location": "ATM ABBSED01     (location not in dataset)",
+    "Location": "Julian Brandt Flow (Signal Iduna Park)",
     "ATM_Capacity": 1668000.0,
     "Estimated_Cash_Remaining": 1291355.0,
     "Cash_Remaining_Pct": 77.4,
@@ -2048,7 +2048,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBBRA03",
-    "Location": "ATM ABBBRA03     (location not in dataset)",
+    "Location": "Ousmane Dembélé Flare (Parc des Princes)",
     "ATM_Capacity": 846000.0,
     "Estimated_Cash_Remaining": 655138.0,
     "Cash_Remaining_Pct": 77.4,
@@ -2059,7 +2059,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBKAD01",
-    "Location": "ATM ABBKAD01     (location not in dataset)",
+    "Location": "Bradley Barcola Speed (Parc des Princes)",
     "ATM_Capacity": 1968750.0,
     "Estimated_Cash_Remaining": 1523286.0,
     "Cash_Remaining_Pct": 77.4,
@@ -2070,7 +2070,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBUTR07",
-    "Location": "ATM ABBUTR07     (location not in dataset)",
+    "Location": "Warren Zaïre-Emery Prodigy (Parc des Princes)",
     "ATM_Capacity": 2250000.0,
     "Estimated_Cash_Remaining": 2250000.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2081,7 +2081,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBMOH04",
-    "Location": "ATM ABBMOH04     (location not in dataset)",
+    "Location": "Vitinha Metronome (Parc des Princes)",
     "ATM_Capacity": 516750.0,
     "Estimated_Cash_Remaining": 516750.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2092,7 +2092,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBDHA05",
-    "Location": "ATM ABBDHA05     (location not in dataset)",
+    "Location": "Marquinhos Captain (Parc des Princes Wall)",
     "ATM_Capacity": 850500.0,
     "Estimated_Cash_Remaining": 850500.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2103,7 +2103,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBDHA03",
-    "Location": "ATM ABBDHA03     (location not in dataset)",
+    "Location": "Achraf Hakimi Moroccan Jet (Parc des Princes)",
     "ATM_Capacity": 913500.0,
     "Estimated_Cash_Remaining": 913500.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2114,7 +2114,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBMIR02",
-    "Location": "ATM ABBMIR02     (location not in dataset)",
+    "Location": "Gianluigi Donnarumma Giant Safe (Parc des Princes)",
     "ATM_Capacity": 2250000.0,
     "Estimated_Cash_Remaining": 2250000.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2125,7 +2125,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBHAT01",
-    "Location": "ATM ABBHAT01     (location not in dataset)",
+    "Location": "Lamine Yamal La Masia Jewel (Camp Nou)",
     "ATM_Capacity": 1352250.0,
     "Estimated_Cash_Remaining": 1352250.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2136,7 +2136,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBSAT01",
-    "Location": "ATM ABBSAT01     (location not in dataset)",
+    "Location": "Gavi Golden Heart (Camp Nou)",
     "ATM_Capacity": 1815750.0,
     "Estimated_Cash_Remaining": 1815750.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2147,7 +2147,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBBRD02",
-    "Location": "ATM ABBBRD02     (location not in dataset)",
+    "Location": "Pedri González Magician (Camp Nou)",
     "ATM_Capacity": 1782750.0,
     "Estimated_Cash_Remaining": 1782750.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2158,7 +2158,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBSIT01",
-    "Location": "ATM ABBSIT01     (location not in dataset)",
+    "Location": "Fermín López Energy (Camp Nou)",
     "ATM_Capacity": 2250000.0,
     "Estimated_Cash_Remaining": 2250000.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2169,7 +2169,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBSIT02",
-    "Location": "ATM ABBSIT02     (location not in dataset)",
+    "Location": "Pau Cubarsí Future Defense (Camp Nou)",
     "ATM_Capacity": 321000.0,
     "Estimated_Cash_Remaining": 321000.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2180,7 +2180,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBKAK01",
-    "Location": "ATM ABBKAK01     (location not in dataset)",
+    "Location": "Alejandro Balde Turbo (Camp Nou Flank)",
     "ATM_Capacity": 1347000.0,
     "Estimated_Cash_Remaining": 1347000.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2191,7 +2191,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBUTR12",
-    "Location": "ATM ABBUTR12     (location not in dataset)",
+    "Location": "Marc-André ter Stegen Wall (Camp Nou)",
     "ATM_Capacity": 927000.0,
     "Estimated_Cash_Remaining": 927000.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2202,7 +2202,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBUTR02",
-    "Location": "ATM ABBUTR02     (location not in dataset)",
+    "Location": "Raphinha Samba Hustle (Camp Nou)",
     "ATM_Capacity": 1974750.0,
     "Estimated_Cash_Remaining": 1974750.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2213,7 +2213,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBUTR13",
-    "Location": "ATM ABBUTR13     (location not in dataset)",
+    "Location": "Dani Olmo Euro Champion (Camp Nou Hub)",
     "ATM_Capacity": 2250000.0,
     "Estimated_Cash_Remaining": 2250000.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2224,7 +2224,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBPCR01",
-    "Location": "ATM ABBPCR01     (location not in dataset)",
+    "Location": "Nico Williams Lightning (San Mamés Wing)",
     "ATM_Capacity": 1692000.0,
     "Estimated_Cash_Remaining": 1692000.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2235,7 +2235,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBSYL03",
-    "Location": "ATM ABBSYL03     (location not in dataset)",
+    "Location": "Iñaki Williams Iron Panther (San Mamés)",
     "ATM_Capacity": 1602750.0,
     "Estimated_Cash_Remaining": 1602750.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2246,7 +2246,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBCHT02",
-    "Location": "ATM ABBCHT02     (location not in dataset)",
+    "Location": "Unai Simón Safe Keeper (San Mamés)",
     "ATM_Capacity": 2250000.0,
     "Estimated_Cash_Remaining": 1759765.0,
     "Cash_Remaining_Pct": 78.2,
@@ -2257,7 +2257,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBVIP02",
-    "Location": "ATM ABBVIP02     (location not in dataset)",
+    "Location": "Mikel Oyarzabal Euro Winner (Anoeta Hub)",
     "ATM_Capacity": 1103250.0,
     "Estimated_Cash_Remaining": 1103250.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2268,7 +2268,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBCHW01",
-    "Location": "ATM ABBCHW01     (location not in dataset)",
+    "Location": "Martin Zubimendi Anchor (Anoeta Hub)",
     "ATM_Capacity": 1607250.0,
     "Estimated_Cash_Remaining": 1607250.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2279,7 +2279,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBMAL08",
-    "Location": "ATM ABBMAL08     (location not in dataset)",
+    "Location": "Takefusa Kubo Japanese Maestro (Anoeta)",
     "ATM_Capacity": 901500.0,
     "Estimated_Cash_Remaining": 901500.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2290,7 +2290,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBGUL01",
-    "Location": "ATM ABBGUL01     (location not in dataset)",
+    "Location": "Antoine Semenyo Dynamo (Vitality Hub)",
     "ATM_Capacity": 1427250.0,
     "Estimated_Cash_Remaining": 1427250.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2301,7 +2301,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBCDA01",
-    "Location": "ATM ABBCDA01     (location not in dataset)",
+    "Location": "Alexander Isak Falcon (St James Park)",
     "ATM_Capacity": 1770750.0,
     "Estimated_Cash_Remaining": 1770750.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2312,7 +2312,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBISL01",
-    "Location": "ATM ABBISL01     (location not in dataset)",
+    "Location": "Bruno Guimarães Samba (St James Park)",
     "ATM_Capacity": 737250.0,
     "Estimated_Cash_Remaining": 737250.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2323,7 +2323,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBBOR01",
-    "Location": "ATM ABBBOR01     (location not in dataset)",
+    "Location": "Anthony Gordon Flash (St James Park)",
     "ATM_Capacity": 2179500.0,
     "Estimated_Cash_Remaining": 1713876.0,
     "Cash_Remaining_Pct": 78.6,
@@ -2334,7 +2334,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBSIR01",
-    "Location": "ATM ABBSIR01     (location not in dataset)",
+    "Location": "Sandro Tonali Engine (St James Park)",
     "ATM_Capacity": 1037250.0,
     "Estimated_Cash_Remaining": 816910.0,
     "Cash_Remaining_Pct": 78.8,
@@ -2345,7 +2345,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBGAZ03",
-    "Location": "ATM ABBGAZ03     (location not in dataset)",
+    "Location": "Kieran Trippier Cross (St James Park)",
     "ATM_Capacity": 1289250.0,
     "Estimated_Cash_Remaining": 1289250.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2356,7 +2356,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBCDA02",
-    "Location": "ATM ABBCDA02     (location not in dataset)",
+    "Location": "Nick Pope Tower (St James Park)",
     "ATM_Capacity": 1617750.0,
     "Estimated_Cash_Remaining": 1617750.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2367,7 +2367,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBCDA03",
-    "Location": "ATM ABBCDA03     (location not in dataset)",
+    "Location": "Ollie Watkins Sharpshooter (Villa Park)",
     "ATM_Capacity": 697500.0,
     "Estimated_Cash_Remaining": 697500.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2378,7 +2378,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBSAI02",
-    "Location": "ATM ABBSAI02     (location not in dataset)",
+    "Location": "Emiliano Dibu Martínez World Champion Vault (Villa Park)",
     "ATM_Capacity": 1236000.0,
     "Estimated_Cash_Remaining": 692284.0,
     "Cash_Remaining_Pct": 56.0,
@@ -2389,7 +2389,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBLOH01",
-    "Location": "ATM ABBLOH01     (location not in dataset)",
+    "Location": "Douglas Luiz Hub (Villa Park & Turin)",
     "ATM_Capacity": 936000.0,
     "Estimated_Cash_Remaining": 742870.0,
     "Cash_Remaining_Pct": 79.4,
@@ -2400,7 +2400,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBMIR03",
-    "Location": "ATM ABBMIR03     (location not in dataset)",
+    "Location": "John McGinn Meatball Dynamo (Villa Park)",
     "ATM_Capacity": 1474500.0,
     "Estimated_Cash_Remaining": 1474500.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2411,7 +2411,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBEST01",
-    "Location": "ATM ABBEST01     (location not in dataset)",
+    "Location": "Leon Bailey Kingston Express (Villa Park)",
     "ATM_Capacity": 1758750.0,
     "Estimated_Cash_Remaining": 1758750.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2422,7 +2422,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBRDS01",
-    "Location": "ATM ABBRDS01     (location not in dataset)",
+    "Location": "Youri Tielemans Long Range (Villa Park)",
     "ATM_Capacity": 1260750.0,
     "Estimated_Cash_Remaining": 1260750.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2433,7 +2433,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBISL02",
-    "Location": "ATM ABBISL02     (location not in dataset)",
+    "Location": "Lucas Paquetá Samba (London Stadium)",
     "ATM_Capacity": 1267500.0,
     "Estimated_Cash_Remaining": 1267500.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2444,7 +2444,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBPAH02",
-    "Location": "ATM ABBPAH02     (location not in dataset)",
+    "Location": "Jarrod Bowen Clutch (London Stadium)",
     "ATM_Capacity": 1674000.0,
     "Estimated_Cash_Remaining": 1331118.0,
     "Cash_Remaining_Pct": 79.5,
@@ -2455,7 +2455,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBBAR01",
-    "Location": "ATM ABBBAR01     (location not in dataset)",
+    "Location": "Mohammed Kudus Ghana Star (London Stadium)",
     "ATM_Capacity": 1590750.0,
     "Estimated_Cash_Remaining": 1266137.0,
     "Cash_Remaining_Pct": 79.6,
@@ -2466,7 +2466,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBRON06",
-    "Location": "ATM ABBRON06     (location not in dataset)",
+    "Location": "Edson Álvarez El Machín (London Stadium)",
     "ATM_Capacity": 558750.0,
     "Estimated_Cash_Remaining": 558750.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2477,7 +2477,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBBSK01",
-    "Location": "ATM ABBBSK01     (location not in dataset)",
+    "Location": "Pedro Neto Jet (Molineux & Bridge)",
     "ATM_Capacity": 2169750.0,
     "Estimated_Cash_Remaining": 1735888.0,
     "Cash_Remaining_Pct": 80.0,
@@ -2488,7 +2488,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBMOU01",
-    "Location": "ATM ABBMOU01     (location not in dataset)",
+    "Location": "Matheus Cunha Samba (Molineux Flair)",
     "ATM_Capacity": 2250000.0,
     "Estimated_Cash_Remaining": 2250000.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2499,7 +2499,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBNAR01",
-    "Location": "ATM ABBNAR01     (location not in dataset)",
+    "Location": "Hwang Hee-chan Korean Bull (Molineux)",
     "ATM_Capacity": 1949250.0,
     "Estimated_Cash_Remaining": 1949250.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2510,7 +2510,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBNSA01",
-    "Location": "ATM ABBNSA01     (location not in dataset)",
+    "Location": "Evan Ferguson Irish Prodigy (Amex)",
     "ATM_Capacity": 1104750.0,
     "Estimated_Cash_Remaining": 1104750.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2521,7 +2521,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBSTR01",
-    "Location": "ATM ABBSTR01     (location not in dataset)",
+    "Location": "Kaoru Mitoma Professor (Amex Dribble)",
     "ATM_Capacity": 1788000.0,
     "Estimated_Cash_Remaining": 1788000.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2532,7 +2532,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBPAH01",
-    "Location": "ATM ABBPAH01     (location not in dataset)",
+    "Location": "Simon Adingra AFCON Star (Amex Wing)",
     "ATM_Capacity": 1944750.0,
     "Estimated_Cash_Remaining": 1944750.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2543,7 +2543,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBCEP02",
-    "Location": "ATM ABBCEP02     (location not in dataset)",
+    "Location": "João Pedro Brazilian Flash (Amex)",
     "ATM_Capacity": 2238750.0,
     "Estimated_Cash_Remaining": 2238750.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2554,7 +2554,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBVIP01",
-    "Location": "ATM ABBVIP01     (location not in dataset)",
+    "Location": "Lewis Dunk Seagull Captain (Amex)",
     "ATM_Capacity": 2027250.0,
     "Estimated_Cash_Remaining": 2027250.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2565,7 +2565,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBSHY05",
-    "Location": "ATM ABBSHY05     (location not in dataset)",
+    "Location": "Bart Verbruggen Dutch Keeper (Amex)",
     "ATM_Capacity": 2250000.0,
     "Estimated_Cash_Remaining": 2250000.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2576,7 +2576,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBMOG02",
-    "Location": "ATM ABBMOG02     (location not in dataset)",
+    "Location": "Morgan Gibbs-White Creator (City Ground)",
     "ATM_Capacity": 1101000.0,
     "Estimated_Cash_Remaining": 1101000.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2587,7 +2587,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBUTR06",
-    "Location": "ATM ABBUTR06     (location not in dataset)",
+    "Location": "Taiwo Awoniyi Power Bull (City Ground)",
     "ATM_Capacity": 813750.0,
     "Estimated_Cash_Remaining": 813750.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2598,7 +2598,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBUTR10",
-    "Location": "ATM ABBUTR10     (location not in dataset)",
+    "Location": "Callum Hudson-Odoi Flash (City Ground)",
     "ATM_Capacity": 1979250.0,
     "Estimated_Cash_Remaining": 1979250.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2609,7 +2609,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBBHL01",
-    "Location": "ATM ABBBHL01     (location not in dataset)",
+    "Location": "Murillo Brazilian Rock (City Ground)",
     "ATM_Capacity": 2224500.0,
     "Estimated_Cash_Remaining": 2224500.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2620,7 +2620,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBCHP01",
-    "Location": "ATM ABBCHP01     (location not in dataset)",
+    "Location": "Eberechi Eze Magic Dribble (Selhurst Park)",
     "ATM_Capacity": 1232250.0,
     "Estimated_Cash_Remaining": 1232250.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2631,7 +2631,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBDHA08",
-    "Location": "ATM ABBDHA08     (location not in dataset)",
+    "Location": "Michael Olise Star (Selhurst Park & Allianz)",
     "ATM_Capacity": 740250.0,
     "Estimated_Cash_Remaining": 523588.0,
     "Cash_Remaining_Pct": 70.7,
@@ -2642,7 +2642,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBBEN02",
-    "Location": "ATM ABBBEN02     (location not in dataset)",
+    "Location": "Jean-Philippe Mateta Corner Flag (Selhurst Park)",
     "ATM_Capacity": 1720500.0,
     "Estimated_Cash_Remaining": 1720500.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2653,7 +2653,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBCOX02",
-    "Location": "ATM ABBCOX02     (location not in dataset)",
+    "Location": "Marc Guéhi Rock Defense (Selhurst Park)",
     "ATM_Capacity": 1750500.0,
     "Estimated_Cash_Remaining": 1750500.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2664,7 +2664,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBSAN01",
-    "Location": "ATM ABBSAN01     (location not in dataset)",
+    "Location": "Joachim Andersen Long Ball (Selhurst Park)",
     "ATM_Capacity": 837000.0,
     "Estimated_Cash_Remaining": 494279.0,
     "Cash_Remaining_Pct": 59.1,
@@ -2675,7 +2675,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBBAD03",
-    "Location": "ATM ABBBAD03     (location not in dataset)",
+    "Location": "Jordan Pickford England Safe (Goodison Park)",
     "ATM_Capacity": 507000.0,
     "Estimated_Cash_Remaining": 507000.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2686,7 +2686,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBPCR03",
-    "Location": "ATM ABBPCR03     (location not in dataset)",
+    "Location": "Jarrad Branthwaite Giant (Goodison Park)",
     "ATM_Capacity": 745500.0,
     "Estimated_Cash_Remaining": 745500.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2697,7 +2697,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBBAN01",
-    "Location": "ATM ABBBAN01     (location not in dataset)",
+    "Location": "Dominic Calvert-Lewin Aerial (Goodison Park)",
     "ATM_Capacity": 1839000.0,
     "Estimated_Cash_Remaining": 1839000.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2708,7 +2708,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBPTL01",
-    "Location": "ATM ABBPTL01     (location not in dataset)",
+    "Location": "Dwight McNeil Cross (Goodison Park)",
     "ATM_Capacity": 1169250.0,
     "Estimated_Cash_Remaining": 1169250.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2719,7 +2719,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBMAD02",
-    "Location": "ATM ABBMAD02     (location not in dataset)",
+    "Location": "Amadou Onana Tower (Goodison Park & Villa)",
     "ATM_Capacity": 941250.0,
     "Estimated_Cash_Remaining": 799709.0,
     "Cash_Remaining_Pct": 85.0,
@@ -2730,7 +2730,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBPCR02",
-    "Location": "ATM ABBPCR02     (location not in dataset)",
+    "Location": "Vitaliy Mykolenko Ukrainian Wall (Goodison Park)",
     "ATM_Capacity": 542250.0,
     "Estimated_Cash_Remaining": 542250.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2741,7 +2741,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBBOG06",
-    "Location": "ATM ABBBOG06     (location not in dataset)",
+    "Location": "Seamus Coleman Loyal Captain (Goodison Park)",
     "ATM_Capacity": 554250.0,
     "Estimated_Cash_Remaining": 554250.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2752,7 +2752,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBMAD03",
-    "Location": "ATM ABBMAD03     (location not in dataset)",
+    "Location": "James Tarkowski Iron Block (Goodison Park)",
     "ATM_Capacity": 1308000.0,
     "Estimated_Cash_Remaining": 916287.0,
     "Cash_Remaining_Pct": 70.1,
@@ -2763,7 +2763,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBGUL08",
-    "Location": "ATM ABBGUL08     (location not in dataset)",
+    "Location": "Idrissa Gueye Ball Winner (Goodison Park)",
     "ATM_Capacity": 1686750.0,
     "Estimated_Cash_Remaining": 1501873.0,
     "Cash_Remaining_Pct": 89.0,
@@ -2774,7 +2774,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBBOG05",
-    "Location": "ATM ABBBOG05     (location not in dataset)",
+    "Location": "Alex Iwobi Playmaker (Craven Cottage)",
     "ATM_Capacity": 675000.0,
     "Estimated_Cash_Remaining": 675000.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2785,7 +2785,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBBRD07",
-    "Location": "ATM ABBBRD07     (location not in dataset)",
+    "Location": "Rodrigo Muniz Samba Finisher (Craven Cottage)",
     "ATM_Capacity": 2208000.0,
     "Estimated_Cash_Remaining": 1986509.0,
     "Cash_Remaining_Pct": 90.0,
@@ -2796,7 +2796,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBBIJ01",
-    "Location": "ATM ABBBIJ01     (location not in dataset)",
+    "Location": "Andreas Pereira Set Piece (Craven Cottage)",
     "ATM_Capacity": 440250.0,
     "Estimated_Cash_Remaining": 290993.0,
     "Cash_Remaining_Pct": 66.1,
@@ -2807,7 +2807,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBUTR08",
-    "Location": "ATM ABBUTR08     (location not in dataset)",
+    "Location": "Antonee Robinson Jedi Flank (Craven Cottage)",
     "ATM_Capacity": 1486500.0,
     "Estimated_Cash_Remaining": 802238.0,
     "Cash_Remaining_Pct": 54.0,
@@ -2818,7 +2818,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBFEN01",
-    "Location": "ATM ABBFEN01     (location not in dataset)",
+    "Location": "Bernd Leno German Safe (Craven Cottage)",
     "ATM_Capacity": 1844250.0,
     "Estimated_Cash_Remaining": 1154955.0,
     "Cash_Remaining_Pct": 62.6,

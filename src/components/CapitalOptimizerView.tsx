@@ -2,7 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { ATMRecord } from '../data/atmData';
 import { OperationalPolicy } from '../types/operations';
 import {
-  DollarSign,
+  Banknote,
   TrendingDown,
   Percent,
   Truck,
@@ -26,7 +26,7 @@ export const CapitalOptimizerView: React.FC<CapitalOptimizerViewProps> = ({
   onOpenPolicyModal,
 }) => {
   const [interestRate, setInterestRate] = useState<number>(8.5); // 8.5% annual cost of capital
-  const [citCostPerStop, setCitCostPerStop] = useState<number>(180); // $180 per armored stop
+  const [citCostPerStop, setCitCostPerStop] = useState<number>(3500); // ৳3,500 per armored stop
   const [targetServiceLevel, setTargetServiceLevel] = useState<number>(99.2);
 
   const totalCapacity = useMemo(
@@ -44,22 +44,22 @@ export const CapitalOptimizerView: React.FC<CapitalOptimizerViewProps> = ({
 
   // Economic analysis
   const annualDemand = totalDailyDemand * 365;
-  const annualHoldingCostPerDollar = interestRate / 100;
+  const annualHoldingCostPerTaka = interestRate / 100;
 
   // Fleet Economic Order Quantity (EOQ): Q* = sqrt(2 * D * S / H)
   // where D = annualDemand, S = citCostPerStop * atms.length (approx), H = holding rate
-  const annualHoldingExpenseCurrent = totalHeldCash * annualHoldingCostPerDollar;
+  const annualHoldingExpenseCurrent = totalHeldCash * annualHoldingCostPerTaka;
   const estimatedAnnualCitRuns = Math.round((annualDemand / Math.max(1, totalHeldCash)) * atms.length);
   const annualCitExpenseCurrent = estimatedAnnualCitRuns * citCostPerStop;
 
   // Optimized cycle days
   const avgAtmDailyDemand = totalDailyDemand / Math.max(1, atms.length);
   const optimalOrderSizePerAtm = Math.sqrt(
-    (2 * (avgAtmDailyDemand * 365) * citCostPerStop) / annualHoldingCostPerDollar
+    (2 * (avgAtmDailyDemand * 365) * citCostPerStop) / annualHoldingCostPerTaka
   );
   const optimalCycleDays = Math.max(1, Math.round(optimalOrderSizePerAtm / Math.max(1, avgAtmDailyDemand)));
 
-  const optimizedAnnualHolding = (optimalOrderSizePerAtm / 2) * atms.length * annualHoldingCostPerDollar;
+  const optimizedAnnualHolding = (optimalOrderSizePerAtm / 2) * atms.length * annualHoldingCostPerTaka;
   const optimizedAnnualCit = (365 / optimalCycleDays) * atms.length * citCostPerStop;
   const totalOptimizedAnnual = optimizedAnnualHolding + optimizedAnnualCit;
   const totalCurrentAnnual = annualHoldingExpenseCurrent + annualCitExpenseCurrent;
@@ -133,13 +133,13 @@ export const CapitalOptimizerView: React.FC<CapitalOptimizerViewProps> = ({
               <span className="font-semibold text-slate-700 flex items-center gap-1">
                 <Truck className="w-3.5 h-3.5 text-indigo-600" /> Fixed CIT Armored Courier Fee
               </span>
-              <span className="font-mono font-bold text-slate-900 text-sm">${citCostPerStop} / stop</span>
+              <span className="font-mono font-bold text-slate-900 text-sm">৳{citCostPerStop} / stop</span>
             </div>
             <input
               type="range"
-              min="80"
-              max="350"
-              step="10"
+              min="1000"
+              max="10000"
+              step="250"
               value={citCostPerStop}
               onChange={(e) => setCitCostPerStop(Number(e.target.value))}
               className="w-full accent-blue-600 cursor-pointer"
@@ -192,7 +192,7 @@ export const CapitalOptimizerView: React.FC<CapitalOptimizerViewProps> = ({
             Optimal Batch Amount
           </span>
           <div className="text-2xl font-black font-mono text-emerald-800 mt-1">
-            ${Math.round(optimalOrderSizePerAtm).toLocaleString()}
+            ৳{Math.round(optimalOrderSizePerAtm).toLocaleString()}
           </div>
           <span className="text-[11px] text-slate-500 mt-1 block">
             Per machine delivery target
@@ -204,7 +204,7 @@ export const CapitalOptimizerView: React.FC<CapitalOptimizerViewProps> = ({
             Annual Cash Drag
           </span>
           <div className="text-2xl font-black font-mono text-slate-900 mt-1">
-            ${(annualHoldingExpenseCurrent / 1000000).toFixed(2)}M
+            ৳{(annualHoldingExpenseCurrent / 1000000).toFixed(2)}M
           </div>
           <span className="text-[11px] text-slate-500 mt-1 block">
             Current {interestRate}% holding loss
@@ -216,7 +216,7 @@ export const CapitalOptimizerView: React.FC<CapitalOptimizerViewProps> = ({
             Potential Net Savings
           </span>
           <div className="text-2xl font-black font-mono text-emerald-800 mt-1">
-            ${(potentialAnnualSavings / 1000).toFixed(0)}k/yr
+            ৳{(potentialAnnualSavings / 1000).toFixed(0)}k/yr
           </div>
           <span className="text-[11px] text-emerald-700 font-semibold mt-1 block">
             By optimizing carrier frequency
@@ -237,13 +237,13 @@ export const CapitalOptimizerView: React.FC<CapitalOptimizerViewProps> = ({
             </h4>
             <p>
               Idle cash holdings drop and interest costs decrease, but total fixed armored vehicle fees
-              skyrocket due to high visit counts ($ {citCostPerStop} per visit across 256 machines).
+              skyrocket due to high visit counts (৳{citCostPerStop} per visit across 256 machines).
             </p>
           </div>
 
           <div className="p-4 rounded-lg bg-slate-50 border border-slate-200">
             <h4 className="font-bold text-slate-900 flex items-center gap-1.5 mb-1.5">
-              <DollarSign className="w-4 h-4 text-amber-600" />
+              <Banknote className="w-4 h-4 text-amber-600" />
               If Refills Occur Too Rarely:
             </h4>
             <p>

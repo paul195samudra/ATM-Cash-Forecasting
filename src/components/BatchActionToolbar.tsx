@@ -43,7 +43,7 @@ export const BatchActionToolbar: React.FC<BatchActionToolbarProps> = ({
         </span>
         <span className="text-slate-400 text-xs">·</span>
         <span className="text-xs font-mono text-emerald-400 font-bold">
-          ${(totalRefillCash / 1000000).toFixed(2)}M Refill Cash
+          ৳{(totalRefillCash / 1000000).toFixed(2)}M Refill Cash
         </span>
       </div>
 

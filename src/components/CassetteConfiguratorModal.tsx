@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { ATMRecord } from '../data/atmData';
-import { calculateCassetteBreakdown } from '../utils/cashCalculations';
+import { calculateCassetteBreakdown, getAtmHorizonForecast } from '../utils/cashCalculations';
+import { defaultOperationalPolicy } from '../types/operations';
 import {
   Banknote,
   Printer,
@@ -9,7 +10,9 @@ import {
   CheckCircle2,
   Lock,
   Layers,
-  FileCheck
+  FileCheck,
+  Zap,
+  Clock
 } from 'lucide-react';
 
 interface CassetteConfiguratorModalProps {
@@ -23,6 +26,10 @@ export const CassetteConfiguratorModal: React.FC<CassetteConfiguratorModalProps>
   isOpen,
   onClose,
 }) => {
+  const horizon = useMemo(() => {
+    return getAtmHorizonForecast(atm, defaultOperationalPolicy);
+  }, [atm]);
+
   const [customAmount, setCustomAmount] = useState<number>(
     atm.Refill_Suggestion_Amount > 0
       ? atm.Refill_Suggestion_Amount
@@ -33,6 +40,9 @@ export const CassetteConfiguratorModal: React.FC<CassetteConfiguratorModalProps>
   const totalLoaded = cassettes.reduce((sum, c) => sum + c.totalValue, 0);
   const totalNotes = cassettes.reduce((sum, c) => sum + c.billCount, 0);
   const totalStraps = cassettes.reduce((sum, c) => sum + c.strapsCount, 0);
+
+  const totalNotes1000 = cassettes.filter((c) => c.noteValue === 1000).reduce((sum, c) => sum + c.billCount, 0);
+  const totalNotes500 = cassettes.filter((c) => c.noteValue === 500).reduce((sum, c) => sum + c.billCount, 0);
 
   if (!isOpen) return null;
 
@@ -73,7 +83,7 @@ export const CassetteConfiguratorModal: React.FC<CassetteConfiguratorModalProps>
           <div className="bg-blue-50/50 p-4 rounded-xl border border-blue-100 flex flex-wrap items-center justify-between gap-4">
             <div>
               <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
-                Total Replenishment Order Value ($)
+                Total Replenishment Order Value (BDT ৳)
               </label>
               <div className="flex items-center gap-2">
                 <input
@@ -83,24 +93,64 @@ export const CassetteConfiguratorModal: React.FC<CassetteConfiguratorModalProps>
                   onChange={(e) => setCustomAmount(Math.max(10000, Number(e.target.value)))}
                   className="font-mono text-lg font-extrabold text-blue-900 bg-white border border-blue-300 rounded-lg px-3 py-1.5 w-48 shadow-xs focus:ring-2 focus:ring-blue-500"
                 />
+              </div>
+
+              {/* Demand Horizon Quick Presets */}
+              <div className="flex flex-wrap items-center gap-1.5 mt-2.5">
+                <span className="text-[10px] text-slate-500 font-bold uppercase tracking-wider">
+                  Demand Presets:
+                </span>
+                <button
+                  type="button"
+                  onClick={() => setCustomAmount(horizon.t1Demand)}
+                  className={`text-[11px] font-semibold px-2.5 py-1 rounded-md cursor-pointer flex items-center gap-1 transition-all ${
+                    customAmount === horizon.t1Demand
+                      ? 'bg-blue-600 text-white shadow-xs'
+                      : 'bg-white text-blue-700 hover:bg-blue-100 border border-blue-200'
+                  }`}
+                >
+                  <Zap className="w-3 h-3" />
+                  <span>Tomorrow (T+1): ৳{(horizon.t1Demand / 1000).toFixed(0)}k</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setCustomAmount(horizon.t2Demand)}
+                  className={`text-[11px] font-semibold px-2.5 py-1 rounded-md cursor-pointer flex items-center gap-1 transition-all ${
+                    customAmount === horizon.t2Demand
+                      ? 'bg-indigo-600 text-white shadow-xs'
+                      : 'bg-white text-indigo-700 hover:bg-indigo-100 border border-indigo-200'
+                  }`}
+                >
+                  <Clock className="w-3 h-3" />
+                  <span>Next 2 Days (T+2): ৳{(horizon.t2Demand / 1000).toFixed(0)}k</span>
+                </button>
                 <button
                   type="button"
                   onClick={() => setCustomAmount(atm.Refill_Suggestion_Amount || 750000)}
-                  className="text-xs font-semibold text-blue-700 bg-white hover:bg-blue-100 border border-blue-200 px-3 py-2 rounded-lg cursor-pointer"
+                  className={`text-[11px] font-semibold px-2.5 py-1 rounded-md cursor-pointer transition-all ${
+                    customAmount === (atm.Refill_Suggestion_Amount || 750000)
+                      ? 'bg-slate-800 text-white shadow-xs'
+                      : 'bg-white text-slate-700 hover:bg-slate-100 border border-slate-300'
+                  }`}
                 >
-                  Use Model Refill ({atm.Refill_Suggestion_Amount > 0 ? `$${(atm.Refill_Suggestion_Amount / 1000).toFixed(0)}k` : 'Default'})
+                  Full Capacity Refill ({atm.Refill_Suggestion_Amount > 0 ? `৳${(atm.Refill_Suggestion_Amount / 1000).toFixed(0)}k` : 'Default'})
                 </button>
               </div>
             </div>
 
-            <div className="text-right text-xs">
+            <div className="text-right text-xs space-y-1">
               <span className="text-slate-500 block">Total Note Count:</span>
-              <span className="font-mono text-base font-bold text-slate-900">
+              <span className="font-mono text-base font-bold text-slate-900 block">
                 {totalNotes.toLocaleString()} bills ({totalStraps} straps)
               </span>
-              <span className="text-[11px] text-slate-400 block mt-0.5">
-                Rounded to 100-bill security bank bundles
-              </span>
+              <div className="flex flex-col items-end gap-1 font-mono text-[11px] pt-1">
+                <span className="px-2 py-0.5 rounded bg-purple-100 text-purple-900 border border-purple-200 font-bold">
+                  ৳1,000 Notes: {totalNotes1000.toLocaleString()} bills (৳{(totalNotes1000 * 1000).toLocaleString()})
+                </span>
+                <span className="px-2 py-0.5 rounded bg-teal-100 text-teal-900 border border-teal-200 font-bold">
+                  ৳500 Notes: {totalNotes500.toLocaleString()} bills (৳{(totalNotes500 * 500).toLocaleString()})
+                </span>
+              </div>
             </div>
           </div>
 
@@ -108,7 +158,7 @@ export const CassetteConfiguratorModal: React.FC<CassetteConfiguratorModalProps>
           <div>
             <h4 className="font-bold text-slate-800 text-sm mb-3 flex items-center gap-1.5">
               <Layers className="w-4 h-4 text-slate-600" />
-              <span>4-Cassette Mechanical Denomination Breakdown</span>
+              <span>4-Cassette Mechanical Denomination Breakdown (Bangladesh Bank Notes)</span>
             </h4>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -123,12 +173,12 @@ export const CassetteConfiguratorModal: React.FC<CassetteConfiguratorModalProps>
                         Cassette Slot #{c.cassetteNumber}
                       </span>
                       <span className="px-2 py-0.5 rounded text-xs font-extrabold font-mono bg-blue-600 text-white">
-                        ${c.noteValue} Bills
+                        ৳{c.noteValue} Notes
                       </span>
                     </div>
 
                     <div className="text-xl font-black font-mono text-slate-900">
-                      ${c.totalValue.toLocaleString()}
+                      ৳{c.totalValue.toLocaleString()}
                     </div>
 
                     <div className="text-xs text-slate-600 space-y-1 mt-2 font-mono">
@@ -206,7 +256,7 @@ export const CassetteConfiguratorModal: React.FC<CassetteConfiguratorModalProps>
           <div className="text-xs text-slate-500">
             Total Authorized Load:{' '}
             <strong className="font-mono text-slate-900 text-sm">
-              ${totalLoaded.toLocaleString()}
+              ৳{totalLoaded.toLocaleString()}
             </strong>
           </div>
 

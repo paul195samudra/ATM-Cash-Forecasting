@@ -1,14 +1,15 @@
 import React, { useMemo } from 'react';
 import { ATMRecord } from '../data/atmData';
 import { OperationalPolicy } from '../types/operations';
-import { calculateForwardDepletion } from '../utils/cashCalculations';
+import { calculateForwardDepletion, calculate1000And500NoteBreakdown } from '../utils/cashCalculations';
 import {
   TrendingDown,
   AlertOctagon,
   Clock,
   Calendar,
   CheckCircle2,
-  DollarSign
+  Banknote,
+  Zap
 } from 'lucide-react';
 
 interface DepletionTrajectoryChartProps {
@@ -70,6 +71,11 @@ export const DepletionTrajectoryChart: React.FC<DepletionTrajectoryChartProps> =
 
   const criticalY = getY(atm.ATM_Capacity * (policy.refillNowPctThreshold / 100));
 
+  const t1Demand = result.dailyPoints[0]?.projectedDemand || 0;
+  const t2Demand = t1Demand + (result.dailyPoints[1]?.projectedDemand || 0);
+  const t1Notes = calculate1000And500NoteBreakdown(t1Demand);
+  const t2Notes = calculate1000And500NoteBreakdown(t2Demand);
+
   return (
     <div className="bg-white rounded-xl p-5 border border-slate-200 shadow-xs flex flex-col justify-between">
       <div>
@@ -77,7 +83,7 @@ export const DepletionTrajectoryChart: React.FC<DepletionTrajectoryChartProps> =
         <div className="flex flex-wrap items-center justify-between pb-3 border-b border-slate-100 gap-2">
           <div>
             <div className="flex items-center gap-2">
-              <TrendingDown className="w-4 h-4 text-red-600" />
+              <TrendingDown className="w-4 h-4 text-rose-600" />
               <h3 className="font-bold text-slate-800 text-sm md:text-base">
                 7-Day Cash Depletion Trajectory — ATM {atm.ATMID}
               </h3>
@@ -89,17 +95,17 @@ export const DepletionTrajectoryChart: React.FC<DepletionTrajectoryChartProps> =
 
           <div className="text-right">
             {result.cashOutDate ? (
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-bold bg-red-100 text-red-700 animate-pulse">
-                <AlertOctagon className="w-3.5 h-3.5" /> Runs Empty on {result.cashOutDate}
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-semibold bg-rose-50 text-rose-700 border border-rose-200">
+                <AlertOctagon className="w-3.5 h-3.5 text-rose-600" /> Runs Empty on {result.cashOutDate}
               </span>
             ) : result.criticalDate ? (
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-bold bg-amber-100 text-amber-800">
-                <Clock className="w-3.5 h-3.5" /> Drops Below {policy.refillNowPctThreshold}% on{' '}
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-semibold bg-amber-50 text-amber-800 border border-amber-200">
+                <Clock className="w-3.5 h-3.5 text-amber-600" /> Drops Below {policy.refillNowPctThreshold}% on{' '}
                 {result.criticalDate}
               </span>
             ) : (
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-semibold bg-emerald-100 text-emerald-800">
-                <CheckCircle2 className="w-3.5 h-3.5" /> Safe through 7-Day Window
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200">
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" /> Safe through 7-Day Window
               </span>
             )}
           </div>
@@ -107,30 +113,30 @@ export const DepletionTrajectoryChart: React.FC<DepletionTrajectoryChartProps> =
 
         {/* Forecast KPI bar */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 my-3 text-xs">
-          <div className="bg-slate-50 p-2.5 rounded-lg border border-slate-100">
+          <div className="bg-slate-50 p-2.5 rounded-lg border border-slate-200/80">
             <span className="text-[10px] uppercase font-bold text-slate-400">Current Vault Cash</span>
             <div className="text-sm font-mono font-bold text-slate-800 mt-0.5">
-              ${Math.round(atm.Estimated_Cash_Remaining).toLocaleString()}
+              ৳{Math.round(atm.Estimated_Cash_Remaining).toLocaleString()}
             </div>
             <span className="text-[10px] text-slate-500">{atm.Cash_Remaining_Pct.toFixed(1)}% full</span>
           </div>
 
-          <div className="bg-slate-50 p-2.5 rounded-lg border border-slate-100">
+          <div className="bg-slate-50 p-2.5 rounded-lg border border-slate-200/80">
             <span className="text-[10px] uppercase font-bold text-slate-400">7-Day Outflow</span>
             <div className="text-sm font-mono font-bold text-blue-700 mt-0.5">
-              ${Math.round(result.total7DayDemand).toLocaleString()}
+              ৳{Math.round(result.total7DayDemand).toLocaleString()}
             </div>
             <span className="text-[10px] text-slate-500">Cumulative forecast</span>
           </div>
 
-          <div className="bg-slate-50 p-2.5 rounded-lg border border-slate-100">
+          <div className="bg-slate-50 p-2.5 rounded-lg border border-slate-200/80">
             <span className="text-[10px] uppercase font-bold text-slate-400">Projected Run-Out</span>
             <div
               className={`text-sm font-mono font-bold mt-0.5 ${
                 atm.Days_of_Cash < 1
-                  ? 'text-red-600'
+                  ? 'text-rose-600'
                   : atm.Days_of_Cash < 2
-                  ? 'text-amber-600'
+                  ? 'text-amber-700'
                   : 'text-emerald-700'
               }`}
             >
@@ -139,7 +145,7 @@ export const DepletionTrajectoryChart: React.FC<DepletionTrajectoryChartProps> =
             <span className="text-[10px] text-slate-500">Burn rate velocity</span>
           </div>
 
-          <div className="bg-slate-50 p-2.5 rounded-lg border border-slate-100">
+          <div className="bg-slate-50 p-2.5 rounded-lg border border-slate-200/80">
             <span className="text-[10px] uppercase font-bold text-slate-400">Optimal Load Window</span>
             <div className="text-sm font-mono font-bold text-emerald-800 mt-0.5">
               {result.criticalDate ? result.criticalDate.slice(5) : 'Day 4 - Day 5'}
@@ -239,7 +245,7 @@ export const DepletionTrajectoryChart: React.FC<DepletionTrajectoryChartProps> =
                     fill="#1e293b"
                     fontWeight="600"
                   >
-                    ${(pt.val / 1000).toFixed(0)}k
+                    ৳{(pt.val / 1000).toFixed(0)}k
                   </text>
                   {/* Date label */}
                   <text
@@ -269,25 +275,76 @@ export const DepletionTrajectoryChart: React.FC<DepletionTrajectoryChartProps> =
           </svg>
         </div>
 
+        {/* Short-Term Demand Horizon Quick Pill */}
+        <div className="flex flex-wrap items-center justify-between text-xs py-2.5 px-3 bg-slate-50/90 rounded-xl border border-slate-200/80 mt-4 mb-2 gap-2">
+          <div className="flex items-center gap-1.5 text-slate-700">
+            <Zap className="w-3.5 h-3.5 text-blue-600" />
+            <span className="font-bold text-[11px] uppercase tracking-wide text-slate-800">Forecast Refill Horizon & Note Mix:</span>
+          </div>
+          <div className="flex flex-wrap items-center gap-3 font-mono text-[11px]">
+            <span className="flex items-center gap-1">
+              <span className="text-slate-600">Tomorrow (T+1):</span>
+              <strong className="text-blue-700 font-bold">৳{Math.round(t1Demand).toLocaleString()}</strong>
+              <span className="text-[10px] text-slate-800 bg-slate-100 border border-slate-300/80 px-1 py-0.2 rounded font-medium">
+                {t1Notes.notes1000Count}×৳1k
+              </span>
+              <span className="text-[10px] text-emerald-950 bg-emerald-50 border border-emerald-200/80 px-1 py-0.2 rounded font-medium">
+                {t1Notes.notes500Count}×৳500
+              </span>
+            </span>
+            <span className="text-slate-300">|</span>
+            <span className="flex items-center gap-1">
+              <span className="text-slate-600">Next 2 Days (T+2):</span>
+              <strong className="text-slate-900 font-bold">৳{Math.round(t2Demand).toLocaleString()}</strong>
+              <span className="text-[10px] text-slate-800 bg-slate-100 border border-slate-300/80 px-1 py-0.2 rounded font-medium">
+                {t2Notes.notes1000Count}×৳1k
+              </span>
+              <span className="text-[10px] text-emerald-950 bg-emerald-50 border border-emerald-200/80 px-1 py-0.2 rounded font-medium">
+                {t2Notes.notes500Count}×৳500
+              </span>
+            </span>
+          </div>
+        </div>
+
         {/* Day-by-Day Forecast Breakdown Grid */}
-        <div className="grid grid-cols-7 gap-1 mt-4 pt-3 border-t border-slate-100 text-center text-xs">
+        <div className="grid grid-cols-7 gap-1 mt-1 text-center text-xs">
           {result.dailyPoints.map((pt, idx) => (
             <div
               key={idx}
-              className={`p-1.5 rounded-lg border ${
+              className={`p-1.5 rounded-lg border relative ${
                 pt.status === 'Refill Now'
-                  ? 'bg-red-50/70 border-red-200'
+                  ? 'bg-rose-50/40 border-rose-200'
                   : pt.status === 'Refill Soon'
-                  ? 'bg-amber-50/70 border-amber-200'
-                  : 'bg-slate-50 border-slate-100'
+                  ? 'bg-amber-50/40 border-amber-200'
+                  : 'bg-slate-50 border-slate-200/80'
               }`}
             >
+              {idx === 0 && (
+                <div className="text-[8px] font-bold uppercase text-blue-700 bg-blue-50 border border-blue-200 rounded px-1 mb-0.5">
+                  T+1 Tomorrow
+                </div>
+              )}
+              {idx === 1 && (
+                <div className="text-[8px] font-bold uppercase text-slate-800 bg-slate-100 border border-slate-200 rounded px-1 mb-0.5">
+                  T+2 Day 2
+                </div>
+              )}
               <div className="font-bold text-[10px] text-slate-700">
                 {pt.dayName.slice(0, 3)} {pt.isWeekend && <span className="text-blue-600">★</span>}
               </div>
               <div className="text-[10px] text-slate-500 font-mono mt-0.5">
-                -${(pt.projectedDemand / 1000).toFixed(0)}k
+                -৳{(pt.projectedDemand / 1000).toFixed(0)}k
               </div>
+              {idx === 0 && (
+                <div className="text-[8px] font-mono text-slate-700 bg-slate-100 rounded px-0.5 my-0.5 font-medium truncate">
+                  {t1Notes.notes1000Count}×1k · {t1Notes.notes500Count}×500
+                </div>
+              )}
+              {idx === 1 && (
+                <div className="text-[8px] font-mono text-slate-700 bg-slate-100 rounded px-0.5 my-0.5 font-medium truncate">
+                  {t2Notes.notes1000Count}×1k · {t2Notes.notes500Count}×500
+                </div>
+              )}
               <div className="text-[10px] font-bold text-slate-800 font-mono mt-0.5">
                 {pt.projectedPct}%
               </div>

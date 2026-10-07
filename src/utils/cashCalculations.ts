@@ -378,19 +378,19 @@ export function calculateCassetteBreakdown(refillAmount: number): CassetteDenomi
   const target = Math.max(0, Math.round(refillAmount / 500) * 500);
   const MAX_NOTES_PER_CASSETTE = 3000;
 
-  // Select realistic denominations based on total load volume
-  let denoms: [100 | 50 | 20 | 10, 100 | 50 | 20 | 10, 100 | 50 | 20 | 10, 100 | 50 | 20 | 10];
+  // Standard Bangladesh Bank ATM denominations: ৳1,000, ৳500, ৳200, ৳100
+  let denoms: [1000 | 500 | 200 | 100, 1000 | 500 | 200 | 100, 1000 | 500 | 200 | 100, 1000 | 500 | 200 | 100];
   let shares: [number, number, number];
 
-  if (target >= 900000) {
-    denoms = [100, 100, 100, 100];
-    shares = [0.30, 0.28, 0.22];
-  } else if (target >= 450000) {
-    denoms = [100, 100, 50, 50];
-    shares = [0.35, 0.30, 0.20];
-  } else {
-    denoms = [100, 50, 20, 10];
+  if (target >= 1200000) {
+    denoms = [1000, 1000, 500, 500];
+    shares = [0.40, 0.35, 0.15];
+  } else if (target >= 600000) {
+    denoms = [1000, 500, 500, 200];
     shares = [0.45, 0.30, 0.15];
+  } else {
+    denoms = [1000, 500, 200, 100];
+    shares = [0.50, 0.30, 0.12];
   }
 
   let remaining = target;
@@ -427,7 +427,7 @@ export function calculateCassetteBreakdown(refillAmount: number): CassetteDenomi
   let straps4 = Math.floor(notes4 / 100);
   remaining -= val4;
 
-  // If there is any remaining dollar balance (e.g. from smaller bill values),
+  // If there is any remaining Taka balance (e.g. from smaller bill values),
   // allocate notes to make the sum EXACTLY match target
   if (remaining > 0) {
     for (let i = result.length - 1; i >= 0; i--) {
@@ -521,5 +521,134 @@ export function runFleetStressTest(
     additionalCashRequired: Math.max(0, totalStressedRefill - totalBaselineRefill),
     potentialLostInterchange: Math.round(potentialLostInterchange),
     stressedAtms: stressedAtms.sort((a, b) => a.stressedDays - b.stressedDays),
+  };
+}
+
+/**
+ * Recommended ৳1,000 and ৳500 note distribution for replenishing demand
+ */
+export interface NoteDenominationRefill {
+  totalAmount: number;
+  notes1000Count: number;
+  notes1000Value: number;
+  notes1000Straps: number; // 100 notes per strap
+  notes500Count: number;
+  notes500Value: number;
+  notes500Straps: number; // 100 notes per strap
+  pct1000: number; // % of total value in 1000 notes
+  pct500: number; // % of total value in 500 notes
+}
+
+/**
+ * Calculates optimal ৳1,000 and ৳500 note distribution for a given demand or refill target.
+ * Standard Bangladesh Bank ATM cash loading allocates ~70% to ৳1,000 notes and ~30% to ৳500 notes,
+ * guaranteeing that: (notes1000Count * 1000) + (notes500Count * 500) === targetAmount exactly.
+ */
+export function calculate1000And500NoteBreakdown(targetAmount: number): NoteDenominationRefill {
+  // Round to nearest 500 BDT
+  const target = Math.max(0, Math.round(targetAmount / 500) * 500);
+  if (target === 0) {
+    return {
+      totalAmount: 0,
+      notes1000Count: 0,
+      notes1000Value: 0,
+      notes1000Straps: 0,
+      notes500Count: 0,
+      notes500Value: 0,
+      notes500Straps: 0,
+      pct1000: 0,
+      pct500: 0,
+    };
+  }
+
+  // Desired 70% share for ৳1,000 notes
+  const desired1000Val = target * 0.70;
+  // Round ৳1,000 notes to multiples of 10 or 50 bills for clean physical handling
+  let notes1000 = Math.round(desired1000Val / 10000) * 10;
+  // Ensure we don't exceed target
+  if (notes1000 * 1000 > target) {
+    notes1000 = Math.floor(target / 1000);
+  }
+
+  const remaining = target - (notes1000 * 1000);
+  const notes500 = Math.floor(remaining / 500);
+
+  const notes1000Value = notes1000 * 1000;
+  const notes500Value = notes500 * 500;
+  const finalTotal = notes1000Value + notes500Value;
+
+  return {
+    totalAmount: finalTotal,
+    notes1000Count: notes1000,
+    notes1000Value,
+    notes1000Straps: Math.round((notes1000 / 100) * 10) / 10,
+    notes500Count: notes500,
+    notes500Value,
+    notes500Straps: Math.round((notes500 / 100) * 10) / 10,
+    pct1000: finalTotal > 0 ? Math.round((notes1000Value / finalTotal) * 100) : 0,
+    pct500: finalTotal > 0 ? Math.round((notes500Value / finalTotal) * 100) : 0,
+  };
+}
+
+/**
+ * Next Day (T+1) and Next 2 Days (T+2) Horizon Demand Predictor with Note Mix
+ */
+export interface HorizonForecast {
+  t1Demand: number;
+  t1ClosingCash: number;
+  t1Pct: number;
+  t1Status: 'Refill Now' | 'Refill Soon' | 'OK';
+  t1Notes: NoteDenominationRefill;
+  t2Demand: number; // 2-day cumulative demand
+  t2Day2OnlyDemand: number; // day 2 standalone demand
+  t2ClosingCash: number;
+  t2Pct: number;
+  t2Status: 'Refill Now' | 'Refill Soon' | 'OK';
+  t2Notes: NoteDenominationRefill;
+}
+
+export function getAtmHorizonForecast(
+  atm: ATMRecord,
+  policy: OperationalPolicy,
+  demandMultiplier: number = 1.0
+): HorizonForecast {
+  const forward = calculateForwardDepletion(atm, policy, demandMultiplier);
+  const day1 = forward.dailyPoints[0] || {
+    projectedDemand: Math.round(atm.Predicted_Demand),
+    projectedClosingCash: Math.max(0, atm.Estimated_Cash_Remaining - atm.Predicted_Demand),
+    projectedPct: Math.round((Math.max(0, atm.Estimated_Cash_Remaining - atm.Predicted_Demand) / (atm.ATM_Capacity || 1)) * 100),
+    status: 'OK' as const,
+  };
+  const day2 = forward.dailyPoints[1] || {
+    projectedDemand: Math.round(atm.Predicted_Demand),
+    projectedClosingCash: Math.max(0, day1.projectedClosingCash - atm.Predicted_Demand),
+    projectedPct: Math.round((Math.max(0, day1.projectedClosingCash - atm.Predicted_Demand) / (atm.ATM_Capacity || 1)) * 100),
+    status: 'OK' as const,
+  };
+
+  const t1Demand = day1.projectedDemand;
+  const t1ClosingCash = day1.projectedClosingCash;
+  const t1Pct = day1.projectedPct;
+  const t1Status = day1.status;
+  const t1Notes = calculate1000And500NoteBreakdown(t1Demand);
+
+  const t2Demand = day1.projectedDemand + day2.projectedDemand;
+  const t2ClosingCash = day2.projectedClosingCash;
+  const t2Pct = day2.projectedPct;
+  const t2Status = day2.status;
+  const t2Notes = calculate1000And500NoteBreakdown(t2Demand);
+
+  return {
+    t1Demand,
+    t1ClosingCash,
+    t1Pct,
+    t1Status,
+    t1Notes,
+    t2Demand,
+    t2Day2OnlyDemand: day2.projectedDemand,
+    t2ClosingCash,
+    t2Pct,
+    t2Status,
+    t2Notes,
   };
 }

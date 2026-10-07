@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { ATMRecord } from '../data/atmData';
-import { getAtmRegion, CORRIDORS } from '../utils/cashCalculations';
+import { getAtmRegion, CORRIDORS, getAtmHorizonForecast, HorizonForecast } from '../utils/cashCalculations';
+import { OperationalPolicy, defaultOperationalPolicy } from '../types/operations';
 import {
   Search,
   Filter,
@@ -18,8 +19,15 @@ import {
   Truck,
   SlidersHorizontal,
   Maximize2,
-  Minimize2
+  Minimize2,
+  Calendar,
+  Zap,
+  Clock,
+  FileSpreadsheet,
+  UploadCloud
 } from 'lucide-react';
+
+export type ForecastHorizon = 'base' | 't1' | 't2';
 
 interface AtmTableProps {
   atms: ATMRecord[];
@@ -41,6 +49,11 @@ interface AtmTableProps {
   onQuickAddToManifest?: (atm: ATMRecord) => void;
   onQuickSimulateRefill?: (atmId: string) => void;
   manifestIds?: string[];
+  policy?: OperationalPolicy;
+  isCustomDataActive?: boolean;
+  customDataName?: string;
+  onOpenImportModal?: () => void;
+  onResetToDefault?: () => void;
 }
 
 export const AtmTable: React.FC<AtmTableProps> = ({
@@ -63,6 +76,11 @@ export const AtmTable: React.FC<AtmTableProps> = ({
   onQuickAddToManifest,
   onQuickSimulateRefill,
   manifestIds = [],
+  policy = defaultOperationalPolicy,
+  isCustomDataActive = false,
+  customDataName,
+  onOpenImportModal,
+  onResetToDefault,
 }) => {
   const [pctFilter, setPctFilter] = useState('all');
   const [sortKey, setSortKey] = useState<keyof ATMRecord>('Days_of_Cash');
@@ -70,6 +88,53 @@ export const AtmTable: React.FC<AtmTableProps> = ({
   const [pageSize, setPageSize] = useState(25);
   const [currentPage, setCurrentPage] = useState(1);
   const [isCompact, setIsCompact] = useState(false);
+  const [forecastHorizon, setForecastHorizon] = useState<ForecastHorizon>('base');
+
+  // Next Day (T+1) & Next 2 Days (T+2) Horizon Map for all ATMs
+  const horizonMap = useMemo(() => {
+    const map: Record<string, HorizonForecast> = {};
+    atms.forEach((a) => {
+      map[a.ATMID] = getAtmHorizonForecast(a, policy);
+    });
+    return map;
+  }, [atms, policy]);
+
+  // Aggregate horizon metrics for fleet
+  const horizonSummary = useMemo(() => {
+    let totalT1Demand = 0;
+    let totalT2Demand = 0;
+    let totalT1Notes1000 = 0;
+    let totalT1Notes500 = 0;
+    let totalT2Notes1000 = 0;
+    let totalT2Notes500 = 0;
+    let countT1Critical = 0;
+    let countT2Critical = 0;
+
+    atms.forEach((a) => {
+      const h = horizonMap[a.ATMID];
+      if (h) {
+        totalT1Demand += h.t1Demand;
+        totalT2Demand += h.t2Demand;
+        totalT1Notes1000 += h.t1Notes.notes1000Count;
+        totalT1Notes500 += h.t1Notes.notes500Count;
+        totalT2Notes1000 += h.t2Notes.notes1000Count;
+        totalT2Notes500 += h.t2Notes.notes500Count;
+        if (h.t1Status === 'Refill Now' || h.t1ClosingCash <= 0) countT1Critical++;
+        if (h.t2Status === 'Refill Now' || h.t2ClosingCash <= 0) countT2Critical++;
+      }
+    });
+
+    return {
+      totalT1Demand,
+      totalT2Demand,
+      totalT1Notes1000,
+      totalT1Notes500,
+      totalT2Notes1000,
+      totalT2Notes500,
+      countT1Critical,
+      countT2Critical,
+    };
+  }, [atms, horizonMap]);
 
   // Available regions list
   const availableRegions = useMemo(() => {
@@ -117,8 +182,18 @@ export const AtmTable: React.FC<AtmTableProps> = ({
   const sortedAtms = useMemo(() => {
     const list = [...filteredAtms];
     list.sort((a, b) => {
-      const vA = a[sortKey];
-      const vB = b[sortKey];
+      let vA = a[sortKey];
+      let vB = b[sortKey];
+
+      if (sortKey === 'Predicted_Demand') {
+        if (forecastHorizon === 't1') {
+          vA = horizonMap[a.ATMID]?.t1Demand ?? a.Predicted_Demand;
+          vB = horizonMap[b.ATMID]?.t1Demand ?? b.Predicted_Demand;
+        } else if (forecastHorizon === 't2') {
+          vA = horizonMap[a.ATMID]?.t2Demand ?? a.Predicted_Demand;
+          vB = horizonMap[b.ATMID]?.t2Demand ?? b.Predicted_Demand;
+        }
+      }
 
       if (typeof vA === 'string' || typeof vB === 'string') {
         const comp = String(vA).localeCompare(String(vB));
@@ -133,7 +208,7 @@ export const AtmTable: React.FC<AtmTableProps> = ({
       return 0;
     });
     return list;
-  }, [filteredAtms, sortKey, sortAsc]);
+  }, [filteredAtms, sortKey, sortAsc, forecastHorizon, horizonMap]);
 
   // Pagination
   const totalPages = Math.max(1, Math.ceil(sortedAtms.length / pageSize));
@@ -160,6 +235,7 @@ export const AtmTable: React.FC<AtmTableProps> = ({
     setSortKey('Days_of_Cash');
     setSortAsc(true);
     setCurrentPage(1);
+    setForecastHorizon('base');
     onClearChecked();
   };
 
@@ -180,8 +256,204 @@ export const AtmTable: React.FC<AtmTableProps> = ({
 
   return (
     <div className="bg-white rounded-xl shadow-xs border border-slate-200 overflow-hidden mb-8">
+      {/* Custom Dataset Active Alert Banner */}
+      {isCustomDataActive && (
+        <div className="px-4 py-2.5 bg-blue-50/90 border-b border-blue-200 flex flex-wrap items-center justify-between gap-2 text-xs">
+          <div className="flex items-center gap-2 text-blue-900 font-medium">
+            <FileSpreadsheet className="w-4 h-4 text-blue-600 shrink-0" />
+            <span>
+              <strong>Custom Feature-Engineered Dataset Active:</strong> {atms.length} ATM records loaded {customDataName ? `("${customDataName}")` : ''}. All cash burn predictions, fill ratios, and CIT logistics are computed from your model data.
+            </span>
+          </div>
+          <div className="flex items-center gap-2">
+            {onOpenImportModal && (
+              <button
+                type="button"
+                onClick={onOpenImportModal}
+                className="px-2.5 py-1 text-xs font-semibold text-blue-700 bg-white hover:bg-blue-50 border border-blue-300 rounded-lg transition-colors cursor-pointer"
+              >
+                Upload Another CSV
+              </button>
+            )}
+            {onResetToDefault && (
+              <button
+                type="button"
+                onClick={onResetToDefault}
+                className="px-2.5 py-1 text-xs font-semibold text-rose-700 bg-rose-50 hover:bg-rose-100 border border-rose-300 rounded-lg flex items-center gap-1 transition-colors cursor-pointer"
+                title="Restore default 256 football legends fleet"
+              >
+                <RotateCcw className="w-3.5 h-3.5 text-rose-600" />
+                <span>Reset to Default</span>
+              </button>
+            )}
+          </div>
+        </div>
+      )}
+
       {/* Top Filter Bar */}
       <div className="p-4 border-b border-slate-200 bg-slate-50/70">
+        {/* Cash Demand Forecasting Horizon Switcher */}
+        <div className="flex flex-wrap items-center justify-between pb-3.5 mb-3.5 border-b border-slate-200/80 gap-3">
+          <div className="flex items-center gap-2.5">
+            <div className="p-1.5 rounded-lg bg-blue-100 text-blue-800 shrink-0">
+              <Calendar className="w-4 h-4" />
+            </div>
+            <div>
+              <div className="flex items-center gap-2">
+                <span className="text-xs font-bold text-slate-800 uppercase tracking-wider">
+                  Cash Demand Forecast Horizon
+                </span>
+                <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-blue-50 text-blue-700 border border-blue-200">
+                  Next-Day & 2-Day Predictive Engine
+                </span>
+              </div>
+              <p className="text-[11px] text-slate-500">
+                Switch forecast horizon to simulate terminal cash burn, closing balances, and stockout probability.
+              </p>
+            </div>
+          </div>
+
+          <div className="flex items-center bg-slate-100 p-1 rounded-xl border border-slate-200/90 gap-1 text-xs">
+            <button
+              type="button"
+              onClick={() => setForecastHorizon('base')}
+              className={`px-3 py-1.5 rounded-lg font-semibold transition-all cursor-pointer flex items-center gap-1.5 ${
+                forecastHorizon === 'base'
+                  ? 'bg-white text-slate-900 shadow-xs'
+                  : 'text-slate-600 hover:text-slate-900'
+              }`}
+            >
+              <span>Today (Base 24h)</span>
+            </button>
+
+            <button
+              type="button"
+              onClick={() => setForecastHorizon('t1')}
+              className={`px-3 py-1.5 rounded-lg font-semibold transition-all cursor-pointer flex items-center gap-1.5 ${
+                forecastHorizon === 't1'
+                  ? 'bg-blue-600 text-white shadow-xs'
+                  : 'text-slate-600 hover:text-slate-900'
+              }`}
+            >
+              <Zap className="w-3.5 h-3.5" />
+              <span>Next Day (T+1)</span>
+              <span
+                className={`text-[10px] px-1.5 py-0.2 rounded-full font-mono ${
+                  forecastHorizon === 't1' ? 'bg-blue-700 text-white' : 'bg-slate-200 text-slate-700'
+                }`}
+              >
+                ৳{(horizonSummary.totalT1Demand / 1000000).toFixed(1)}M
+              </span>
+            </button>
+
+            <button
+              type="button"
+              onClick={() => setForecastHorizon('t2')}
+              className={`px-3 py-1.5 rounded-lg font-semibold transition-all cursor-pointer flex items-center gap-1.5 ${
+                forecastHorizon === 't2'
+                  ? 'bg-slate-900 text-white shadow-xs'
+                  : 'text-slate-600 hover:text-slate-900'
+              }`}
+            >
+              <Clock className="w-3.5 h-3.5" />
+              <span>Next 2 Days (T+2)</span>
+              <span
+                className={`text-[10px] px-1.5 py-0.2 rounded-full font-mono ${
+                  forecastHorizon === 't2' ? 'bg-slate-800 text-white' : 'bg-slate-200 text-slate-700'
+                }`}
+              >
+                ৳{(horizonSummary.totalT2Demand / 1000000).toFixed(1)}M
+              </span>
+            </button>
+          </div>
+        </div>
+
+        {/* Actionable Banner for Active Horizon */}
+        {forecastHorizon === 't1' && (
+          <div className="mb-3.5 p-3 rounded-xl bg-blue-50/70 border border-blue-200/80 text-blue-950 flex flex-wrap items-center justify-between gap-3 text-xs shadow-xs">
+            <div className="space-y-1">
+              <div className="flex items-center gap-2">
+                <Zap className="w-4 h-4 text-blue-600 shrink-0" />
+                <span className="font-bold">Tomorrow's (T+1) Fleet Demand Outlook: </span>
+                <span className="font-mono text-blue-800 font-bold">
+                  ৳{Math.round(horizonSummary.totalT1Demand).toLocaleString()}
+                </span>
+                <span className="text-slate-500">across {atms.length} terminals</span>
+                {horizonSummary.countT1Critical > 0 && (
+                  <span className="ml-1 text-rose-700 font-semibold bg-rose-50 border border-rose-200 px-2 py-0.5 rounded text-[11px]">
+                    {horizonSummary.countT1Critical} terminals hit &le;20% tomorrow
+                  </span>
+                )}
+              </div>
+              {/* Vault 1000 and 500 Note Requirement */}
+              <div className="flex flex-wrap items-center gap-2 text-[11px] pt-1 border-t border-blue-200/60 font-mono">
+                <span className="text-slate-600 font-sans font-semibold">Suggested Fleet Vault Loading:</span>
+                <span className="px-2 py-0.5 rounded-md bg-slate-100 text-slate-800 border border-slate-300 font-medium">
+                  ৳1,000 notes: {horizonSummary.totalT1Notes1000.toLocaleString()} bills (৳{(horizonSummary.totalT1Notes1000 * 1000 / 1000000).toFixed(2)}M)
+                </span>
+                <span className="px-2 py-0.5 rounded-md bg-emerald-50 text-emerald-900 border border-emerald-200 font-medium">
+                  ৳500 notes: {horizonSummary.totalT1Notes500.toLocaleString()} bills (৳{(horizonSummary.totalT1Notes500 * 500 / 1000000).toFixed(2)}M)
+                </span>
+              </div>
+            </div>
+
+            {horizonSummary.countT1Critical > 0 && (
+              <button
+                type="button"
+                onClick={() => {
+                  setDaysFilter('lt1');
+                  setCurrentPage(1);
+                }}
+                className="px-2.5 py-1.5 bg-rose-600 hover:bg-rose-700 text-white rounded-lg font-semibold text-[11px] transition-colors cursor-pointer shrink-0 shadow-xs"
+              >
+                Filter {horizonSummary.countT1Critical} At-Risk Tomorrow (&lt;24h)
+              </button>
+            )}
+          </div>
+        )}
+
+        {forecastHorizon === 't2' && (
+          <div className="mb-3.5 p-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 flex flex-wrap items-center justify-between gap-3 text-xs shadow-xs">
+            <div className="space-y-1">
+              <div className="flex items-center gap-2">
+                <Clock className="w-4 h-4 text-slate-600 shrink-0" />
+                <span className="font-bold">Next 2 Days (T+2) Cumulative Demand Outlook: </span>
+                <span className="font-mono text-slate-900 font-bold">
+                  ৳{Math.round(horizonSummary.totalT2Demand).toLocaleString()}
+                </span>
+                <span className="text-slate-500">across {atms.length} terminals</span>
+                {horizonSummary.countT2Critical > 0 && (
+                  <span className="ml-1 text-amber-800 font-semibold bg-amber-50 border border-amber-200 px-2 py-0.5 rounded text-[11px]">
+                    {horizonSummary.countT2Critical} terminals hit &le;20% in 48h
+                  </span>
+                )}
+              </div>
+              {/* Vault 1000 and 500 Note Requirement */}
+              <div className="flex flex-wrap items-center gap-2 text-[11px] pt-1 border-t border-slate-200 font-mono">
+                <span className="text-slate-600 font-sans font-semibold">Suggested 48h Fleet Vault Loading:</span>
+                <span className="px-2 py-0.5 rounded-md bg-slate-100 text-slate-800 border border-slate-300 font-medium">
+                  ৳1,000 notes: {horizonSummary.totalT2Notes1000.toLocaleString()} bills (৳{(horizonSummary.totalT2Notes1000 * 1000 / 1000000).toFixed(2)}M)
+                </span>
+                <span className="px-2 py-0.5 rounded-md bg-emerald-50 text-emerald-900 border border-emerald-200 font-medium">
+                  ৳500 notes: {horizonSummary.totalT2Notes500.toLocaleString()} bills (৳{(horizonSummary.totalT2Notes500 * 500 / 1000000).toFixed(2)}M)
+                </span>
+              </div>
+            </div>
+
+            {horizonSummary.countT2Critical > 0 && (
+              <button
+                type="button"
+                onClick={() => {
+                  setDaysFilter('lt2');
+                  setCurrentPage(1);
+                }}
+                className="px-2.5 py-1.5 bg-slate-900 hover:bg-slate-800 text-white rounded-lg font-semibold text-[11px] transition-colors cursor-pointer shrink-0 shadow-xs"
+              >
+                Filter {horizonSummary.countT2Critical} At-Risk in 48h (&lt;2 Days)
+              </button>
+            )}
+          </div>
+        )}
         <div className="flex flex-wrap items-end gap-3">
           {/* Search */}
           <div className="flex-1 min-w-[200px]">
@@ -328,7 +600,7 @@ export const AtmTable: React.FC<AtmTableProps> = ({
       {/* Table Element */}
       <div className="overflow-x-auto max-h-[580px] overflow-y-auto">
         <table className="w-full text-left border-collapse text-xs">
-          <thead className="bg-[#121c2c] text-white sticky top-0 z-10 shadow-xs select-none">
+          <thead className="bg-[#0f172a] text-slate-200 sticky top-0 z-10 shadow-xs select-none border-b border-slate-800">
             <tr>
               <th className="py-2.5 px-3 text-center w-10">
                 <input
@@ -341,7 +613,7 @@ export const AtmTable: React.FC<AtmTableProps> = ({
               </th>
               <th
                 onClick={() => handleSort('ATMID')}
-                className="py-2.5 px-3 font-semibold cursor-pointer hover:bg-[#1e2f47] transition-colors"
+                className="py-2.5 px-3 font-semibold cursor-pointer hover:bg-slate-800 transition-colors"
               >
                 <div className="flex items-center gap-1">
                   Terminal ID
@@ -354,7 +626,7 @@ export const AtmTable: React.FC<AtmTableProps> = ({
               </th>
               <th
                 onClick={() => handleSort('Location')}
-                className="py-2.5 px-3 font-semibold cursor-pointer hover:bg-[#1e2f47] transition-colors"
+                className="py-2.5 px-3 font-semibold cursor-pointer hover:bg-slate-800 transition-colors"
               >
                 <div className="flex items-center gap-1">
                   Location & Corridor
@@ -367,7 +639,7 @@ export const AtmTable: React.FC<AtmTableProps> = ({
               </th>
               <th
                 onClick={() => handleSort('ATM_Capacity')}
-                className="py-2.5 px-3 font-semibold text-right cursor-pointer hover:bg-[#1e2f47] transition-colors"
+                className="py-2.5 px-3 font-semibold text-right cursor-pointer hover:bg-slate-800 transition-colors"
               >
                 <div className="flex items-center justify-end gap-1">
                   Capacity
@@ -380,7 +652,7 @@ export const AtmTable: React.FC<AtmTableProps> = ({
               </th>
               <th
                 onClick={() => handleSort('Estimated_Cash_Remaining')}
-                className="py-2.5 px-3 font-semibold text-right cursor-pointer hover:bg-[#1e2f47] transition-colors"
+                className="py-2.5 px-3 font-semibold text-right cursor-pointer hover:bg-slate-800 transition-colors"
               >
                 <div className="flex items-center justify-end gap-1">
                   Cash Remaining
@@ -393,7 +665,7 @@ export const AtmTable: React.FC<AtmTableProps> = ({
               </th>
               <th
                 onClick={() => handleSort('Cash_Remaining_Pct')}
-                className="py-2.5 px-3 font-semibold text-center cursor-pointer hover:bg-[#1e2f47] transition-colors min-w-[110px]"
+                className="py-2.5 px-3 font-semibold text-center cursor-pointer hover:bg-slate-800 transition-colors min-w-[110px]"
               >
                 <div className="flex items-center justify-center gap-1">
                   Fill Reservoir
@@ -406,7 +678,7 @@ export const AtmTable: React.FC<AtmTableProps> = ({
               </th>
               <th
                 onClick={() => handleSort('Days_of_Cash')}
-                className="py-2.5 px-3 font-semibold text-center cursor-pointer hover:bg-[#1e2f47] transition-colors"
+                className="py-2.5 px-3 font-semibold text-center cursor-pointer hover:bg-slate-800 transition-colors"
               >
                 <div className="flex items-center justify-center gap-1">
                   Days Left
@@ -419,10 +691,22 @@ export const AtmTable: React.FC<AtmTableProps> = ({
               </th>
               <th
                 onClick={() => handleSort('Predicted_Demand')}
-                className="py-2.5 px-3 font-semibold text-right cursor-pointer hover:bg-[#1e2f47] transition-colors"
+                className={`py-2.5 px-3 font-semibold text-right cursor-pointer hover:bg-slate-800 transition-colors ${
+                  forecastHorizon === 't1' ? 'bg-blue-900/60 text-blue-200' : forecastHorizon === 't2' ? 'bg-slate-800 text-slate-200' : ''
+                }`}
               >
                 <div className="flex items-center justify-end gap-1">
-                  Pred. Demand
+                  {forecastHorizon === 't1' ? (
+                    <span className="flex items-center gap-1 text-blue-200 font-bold">
+                      <Zap className="w-3 h-3 text-blue-400" /> T+1 Demand
+                    </span>
+                  ) : forecastHorizon === 't2' ? (
+                    <span className="flex items-center gap-1 text-slate-200 font-bold">
+                      <Clock className="w-3 h-3 text-slate-400" /> T+2 Demand (48h)
+                    </span>
+                  ) : (
+                    <span>Pred. Demand</span>
+                  )}
                   {sortKey === 'Predicted_Demand' ? (
                     sortAsc ? <ArrowUp className="w-3.5 h-3.5" /> : <ArrowDown className="w-3.5 h-3.5" />
                   ) : (
@@ -432,7 +716,7 @@ export const AtmTable: React.FC<AtmTableProps> = ({
               </th>
               <th
                 onClick={() => handleSort('Refill_Suggestion_Amount')}
-                className="py-2.5 px-3 font-semibold text-right cursor-pointer hover:bg-[#1e2f47] transition-colors"
+                className="py-2.5 px-3 font-semibold text-right cursor-pointer hover:bg-slate-800 transition-colors"
               >
                 <div className="flex items-center justify-end gap-1">
                   Refill Sugg.
@@ -445,7 +729,7 @@ export const AtmTable: React.FC<AtmTableProps> = ({
               </th>
               <th
                 onClick={() => handleSort('Status')}
-                className="py-2.5 px-3 font-semibold text-center cursor-pointer hover:bg-[#1e2f47] transition-colors"
+                className="py-2.5 px-3 font-semibold text-center cursor-pointer hover:bg-slate-800 transition-colors"
               >
                 <div className="flex items-center justify-center gap-1">
                   Status
@@ -475,38 +759,38 @@ export const AtmTable: React.FC<AtmTableProps> = ({
                 const isInManifest = manifestIds.includes(r.ATMID);
 
                 let statusBadge = (
-                  <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-100 text-emerald-800">
-                    <CheckCircle2 className="w-3 h-3" /> OK
+                  <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200/80">
+                    <CheckCircle2 className="w-3 h-3 text-emerald-600" /> OK
                   </span>
                 );
-                let rowBg = isSelected ? 'bg-blue-50/80 font-medium' : 'hover:bg-slate-50/90';
+                let rowBg = isSelected ? 'bg-blue-50/70 font-medium' : 'hover:bg-slate-50/80';
 
                 if (isChecked) {
-                  rowBg = 'bg-blue-50/60 hover:bg-blue-50/80';
+                  rowBg = 'bg-blue-50/50 hover:bg-blue-50/70';
                 }
 
-                let barColor = 'bg-emerald-500';
+                let barColor = 'bg-emerald-600';
                 if (r.Status === 'Refill Now') {
                   statusBadge = (
-                    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-red-100 text-red-700 animate-pulse">
-                      <AlertOctagon className="w-3 h-3 text-red-600" /> Refill Now
+                    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold bg-rose-50 text-rose-700 border border-rose-200/90">
+                      <AlertOctagon className="w-3 h-3 text-rose-600" /> Refill Now
                     </span>
                   );
-                  barColor = 'bg-red-600';
-                  if (!isSelected && !isChecked) rowBg = 'bg-red-50/40 hover:bg-red-50/70';
+                  barColor = 'bg-rose-500';
+                  if (!isSelected && !isChecked) rowBg = 'bg-rose-50/20 hover:bg-rose-50/40';
                 } else if (r.Status === 'Refill Soon') {
                   statusBadge = (
-                    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold bg-amber-100 text-amber-800">
+                    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold bg-amber-50 text-amber-800 border border-amber-200/90">
                       <AlertTriangle className="w-3 h-3 text-amber-600" /> Refill Soon
                     </span>
                   );
                   barColor = 'bg-amber-500';
-                  if (!isSelected && !isChecked) rowBg = 'bg-amber-50/30 hover:bg-amber-50/60';
+                  if (!isSelected && !isChecked) rowBg = 'bg-amber-50/15 hover:bg-amber-50/35';
                 }
 
                 let daysColor = 'text-emerald-700 font-semibold';
-                if (days < 1) daysColor = 'text-red-600 font-extrabold';
-                else if (days < 2) daysColor = 'text-amber-600 font-bold';
+                if (days < 1) daysColor = 'text-rose-600 font-extrabold';
+                else if (days < 2) daysColor = 'text-amber-700 font-bold';
 
                 const cellPadding = isCompact ? 'py-1.5 px-3' : 'py-2.5 px-3';
 
@@ -514,7 +798,7 @@ export const AtmTable: React.FC<AtmTableProps> = ({
                   <tr
                     key={r.ATMID}
                     className={`transition-colors group ${rowBg} ${
-                      isSelected ? 'ring-1 ring-inset ring-blue-500' : ''
+                      isSelected ? 'ring-1 ring-inset ring-blue-500/50' : ''
                     }`}
                   >
                     <td className={`${cellPadding} text-center`} onClick={(e) => e.stopPropagation()}>
@@ -527,9 +811,9 @@ export const AtmTable: React.FC<AtmTableProps> = ({
                     </td>
                     <td
                       onClick={() => onSelectAtm(r.ATMID)}
-                      className={`${cellPadding} font-mono font-bold text-slate-900 cursor-pointer hover:underline`}
+                      className={`${cellPadding} font-mono font-bold text-slate-900 cursor-pointer`}
                     >
-                      {r.ATMID}
+                      <span className="hover:underline">{r.ATMID}</span>
                     </td>
                     <td
                       onClick={() => onSelectAtm(r.ATMID)}
@@ -548,13 +832,13 @@ export const AtmTable: React.FC<AtmTableProps> = ({
                       onClick={() => onSelectAtm(r.ATMID)}
                       className={`${cellPadding} text-right font-mono text-slate-700 cursor-pointer`}
                     >
-                      ${Math.round(r.ATM_Capacity).toLocaleString()}
+                      ৳{Math.round(r.ATM_Capacity).toLocaleString()}
                     </td>
                     <td
                       onClick={() => onSelectAtm(r.ATMID)}
                       className={`${cellPadding} text-right font-mono font-semibold text-slate-900 cursor-pointer`}
                     >
-                      ${Math.round(r.Estimated_Cash_Remaining).toLocaleString()}
+                      ৳{Math.round(r.Estimated_Cash_Remaining).toLocaleString()}
                     </td>
                     <td
                       onClick={() => onSelectAtm(r.ATMID)}
@@ -580,15 +864,91 @@ export const AtmTable: React.FC<AtmTableProps> = ({
                     </td>
                     <td
                       onClick={() => onSelectAtm(r.ATMID)}
-                      className={`${cellPadding} text-right font-mono text-blue-700 font-medium cursor-pointer`}
+                      className={`${cellPadding} text-right font-mono cursor-pointer`}
                     >
-                      ${Math.round(r.Predicted_Demand).toLocaleString()}
+                      {forecastHorizon === 't1' ? (
+                        <div className="space-y-1">
+                          <div className="flex items-center justify-end gap-1.5">
+                            <span className="font-bold text-blue-700 text-xs">
+                              ৳{Math.round(horizonMap[r.ATMID]?.t1Demand || r.Predicted_Demand).toLocaleString()}
+                            </span>
+                            <span className="text-[10px] text-slate-400 font-sans font-medium">T+1</span>
+                          </div>
+
+                          {/* 1000 and 500 Tk Note Mix */}
+                          {horizonMap[r.ATMID]?.t1Notes && (
+                            <div className="flex items-center justify-end gap-1 font-mono text-[10px]">
+                              <span
+                                className="px-1.5 py-0.5 rounded bg-slate-100 text-slate-800 border border-slate-200/90 font-medium"
+                                title={`৳1,000 Notes: ${horizonMap[r.ATMID].t1Notes.notes1000Count} bills = ৳${horizonMap[r.ATMID].t1Notes.notes1000Value.toLocaleString()} (${horizonMap[r.ATMID].t1Notes.notes1000Straps} straps)`}
+                              >
+                                {horizonMap[r.ATMID].t1Notes.notes1000Count} × ৳1k
+                              </span>
+                              <span
+                                className="px-1.5 py-0.5 rounded bg-emerald-50 text-emerald-950 border border-emerald-200/70 font-medium"
+                                title={`৳500 Notes: ${horizonMap[r.ATMID].t1Notes.notes500Count} bills = ৳${horizonMap[r.ATMID].t1Notes.notes500Value.toLocaleString()} (${horizonMap[r.ATMID].t1Notes.notes500Straps} straps)`}
+                              >
+                                {horizonMap[r.ATMID].t1Notes.notes500Count} × ৳500
+                              </span>
+                            </div>
+                          )}
+
+                          <div className="text-[10px] text-slate-500 font-sans flex items-center justify-end gap-1">
+                            <span>Close: ৳{((horizonMap[r.ATMID]?.t1ClosingCash || 0) / 1000).toFixed(0)}k</span>
+                            {horizonMap[r.ATMID]?.t1Status === 'Refill Now' && (
+                              <span className="text-[9px] font-semibold text-rose-700 bg-rose-50 border border-rose-200 px-1 rounded">
+                                Empty Tomorrow
+                              </span>
+                            )}
+                          </div>
+                        </div>
+                      ) : forecastHorizon === 't2' ? (
+                        <div className="space-y-1">
+                          <div className="flex items-center justify-end gap-1.5">
+                            <span className="font-bold text-slate-900 text-xs">
+                              ৳{Math.round(horizonMap[r.ATMID]?.t2Demand || r.Predicted_Demand * 2).toLocaleString()}
+                            </span>
+                            <span className="text-[10px] text-slate-400 font-sans font-medium">48h</span>
+                          </div>
+
+                          {/* 1000 and 500 Tk Note Mix */}
+                          {horizonMap[r.ATMID]?.t2Notes && (
+                            <div className="flex items-center justify-end gap-1 font-mono text-[10px]">
+                              <span
+                                className="px-1.5 py-0.5 rounded bg-slate-100 text-slate-800 border border-slate-200/90 font-medium"
+                                title={`৳1,000 Notes: ${horizonMap[r.ATMID].t2Notes.notes1000Count} bills = ৳${horizonMap[r.ATMID].t2Notes.notes1000Value.toLocaleString()} (${horizonMap[r.ATMID].t2Notes.notes1000Straps} straps)`}
+                              >
+                                {horizonMap[r.ATMID].t2Notes.notes1000Count} × ৳1k
+                              </span>
+                              <span
+                                className="px-1.5 py-0.5 rounded bg-emerald-50 text-emerald-950 border border-emerald-200/70 font-medium"
+                                title={`৳500 Notes: ${horizonMap[r.ATMID].t2Notes.notes500Count} bills = ৳${horizonMap[r.ATMID].t2Notes.notes500Value.toLocaleString()} (${horizonMap[r.ATMID].t2Notes.notes500Straps} straps)`}
+                              >
+                                {horizonMap[r.ATMID].t2Notes.notes500Count} × ৳500
+                              </span>
+                            </div>
+                          )}
+
+                          <div className="text-[10px] text-slate-500 font-sans flex items-center justify-end gap-1">
+                            <span>Close: ৳{((horizonMap[r.ATMID]?.t2ClosingCash || 0) / 1000).toFixed(0)}k</span>
+                            {horizonMap[r.ATMID]?.t2Status === 'Refill Now' && (
+                              <span className="text-[9px] font-semibold text-amber-800 bg-amber-50 border border-amber-200 px-1 rounded">
+                                &lt;48h Stockout
+                              </span>
+                            )}
+                          </div>
+                        </div>
+                      ) : (
+                        <span className="text-blue-700 font-medium">
+                          ৳{Math.round(r.Predicted_Demand).toLocaleString()}
+                        </span>
+                      )}
                     </td>
                     <td
                       onClick={() => onSelectAtm(r.ATMID)}
                       className={`${cellPadding} text-right font-mono font-bold text-emerald-800 cursor-pointer`}
                     >
-                      ${Math.round(r.Refill_Suggestion_Amount).toLocaleString()}
+                      ৳{Math.round(r.Refill_Suggestion_Amount).toLocaleString()}
                     </td>
                     <td
                       onClick={() => onSelectAtm(r.ATMID)}

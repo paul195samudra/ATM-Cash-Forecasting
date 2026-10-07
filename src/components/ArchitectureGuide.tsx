@@ -61,7 +61,7 @@ export const ArchitectureGuide: React.FC = () => {
       tasks: [
         'Connects core banking switches and transaction journals',
         'Orchestrates daily scheduled inference cron jobs',
-        'Enforces role-based access control and audit logging',
+        'Enforces system access security and audit logging',
         'Maintains uptime and resilience of forecasting services',
       ],
     },
@@ -130,15 +130,15 @@ export const ArchitectureGuide: React.FC = () => {
     {
       category: 'Physical Constraints',
       items: [
-        'Vehicle capacity limit ($10M - $25M per armored truck)',
+        'Vehicle capacity limit (৳15M - ৳25M per armored truck)',
         'Maximum stops per CIT shift (limited by 8-hour workday SLA)',
-        'Cassette physical vault capacity and denomination limits ($20, $50, $100 notes)',
+        'Cassette physical vault capacity and denomination limits (৳100, ৳200, ৳500, ৳1,000 notes)',
       ],
     },
     {
       category: 'Financial Constraints',
       items: [
-        'Fixed CIT delivery stop cost ($350 - $500 per visit)',
+        'Fixed CIT delivery stop cost (৳3,200 - ৳5,000 per visit)',
         'Cost of holding idle cash (cost of capital / interest rate ~5.5% p.a.)',
         'Severe customer dissatisfaction and lost interchange fees upon cash-out',
       ],

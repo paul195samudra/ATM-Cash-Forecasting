@@ -11,7 +11,7 @@ import {
   Building,
   Calendar,
   CheckCircle2,
-  DollarSign
+  Banknote
 } from 'lucide-react';
 
 interface ExecutiveAuditReportModalProps {
@@ -27,7 +27,7 @@ export const ExecutiveAuditReportModal: React.FC<ExecutiveAuditReportModalProps>
   atms,
   policy,
 }) => {
-  const [reportAuditor, setReportAuditor] = useState('Senior Treasury Officer');
+  const [reportAuditor, setReportAuditor] = useState('Zinedine Zidane, Lead Compliance Auditor');
 
   if (!isOpen) return null;
 
@@ -136,7 +136,7 @@ export const ExecutiveAuditReportModal: React.FC<ExecutiveAuditReportModalProps>
               <div className="p-3.5 rounded-xl border border-slate-200 bg-white">
                 <span className="text-xs text-slate-500 block">Total Network Cash Held</span>
                 <span className="text-xl font-black font-mono text-slate-900 mt-1 block">
-                  ${(totalRemaining / 1000000).toFixed(2)}M
+                  ৳{(totalRemaining / 1000000).toFixed(2)}M
                 </span>
                 <span className="text-[11px] text-slate-400 mt-1 block">
                   {((totalRemaining / totalCapacity) * 100).toFixed(1)}% of total capacity
@@ -146,7 +146,7 @@ export const ExecutiveAuditReportModal: React.FC<ExecutiveAuditReportModalProps>
               <div className="p-3.5 rounded-xl border border-slate-200 bg-white">
                 <span className="text-xs text-slate-500 block">Immediate Refill Capital</span>
                 <span className="text-xl font-black font-mono text-emerald-800 mt-1 block">
-                  ${(totalRefillNeeded / 1000000).toFixed(2)}M
+                  ৳{(totalRefillNeeded / 1000000).toFixed(2)}M
                 </span>
                 <span className="text-[11px] text-slate-400 mt-1 block">
                   Recommended order value
@@ -166,7 +166,7 @@ export const ExecutiveAuditReportModal: React.FC<ExecutiveAuditReportModalProps>
               <div className="p-3.5 rounded-xl border border-slate-200 bg-white">
                 <span className="text-xs text-slate-500 block">Daily Demand Burn</span>
                 <span className="text-xl font-black font-mono text-blue-700 mt-1 block">
-                  ${(totalDailyDemand / 1000000).toFixed(2)}M/d
+                  ৳{(totalDailyDemand / 1000000).toFixed(2)}M/d
                 </span>
                 <span className="text-[11px] text-slate-400 mt-1 block">
                   Predicted outflow rate
@@ -202,13 +202,13 @@ export const ExecutiveAuditReportModal: React.FC<ExecutiveAuditReportModalProps>
                           'Central Corridor'}
                       </td>
                       <td className="p-2.5 text-right font-bold text-slate-800">
-                        ${Math.round(atm.Estimated_Cash_Remaining).toLocaleString()}
+                        ৳{Math.round(atm.Estimated_Cash_Remaining).toLocaleString()}
                       </td>
                       <td className="p-2.5 text-center text-red-600 font-bold">
                         {Number(atm.Days_of_Cash).toFixed(1)}d
                       </td>
                       <td className="p-2.5 text-right text-emerald-800 font-bold">
-                        ${Math.round(atm.Refill_Suggestion_Amount).toLocaleString()}
+                        ৳{Math.round(atm.Refill_Suggestion_Amount).toLocaleString()}
                       </td>
                       <td className="p-2.5 text-center">
                         <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-red-100 text-red-700">

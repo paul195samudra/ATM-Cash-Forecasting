@@ -20,6 +20,10 @@ import { ExecutiveAuditReportModal } from './components/ExecutiveAuditReportModa
 import { CapitalOptimizerView } from './components/CapitalOptimizerView';
 import { CsvImportModal } from './components/CsvImportModal';
 import { DailyBriefingModal } from './components/DailyBriefingModal';
+import { LiveTransactionSwitchModal } from './components/LiveTransactionSwitchModal';
+import { ModelBacktestScorecardModal } from './components/ModelBacktestScorecardModal';
+import { FestivalSurgeModal } from './components/FestivalSurgeModal';
+import { FestivalSurgeState } from './types/festival';
 import { ShieldCheck } from 'lucide-react';
 
 export const App: React.FC = () => {
@@ -55,18 +59,75 @@ export const App: React.FC = () => {
   const [isAuditModalOpen, setIsAuditModalOpen] = useState<boolean>(false);
   const [isBriefingModalOpen, setIsBriefingModalOpen] = useState<boolean>(false);
   const [isImportModalOpen, setIsImportModalOpen] = useState<boolean>(false);
+  const [isSwitchModalOpen, setIsSwitchModalOpen] = useState<boolean>(false);
+  const [isScorecardModalOpen, setIsScorecardModalOpen] = useState<boolean>(false);
 
-  // Dynamically evaluated ATMs based on active policy
+  // Custom Feature-Engineered Dataset State
+  const [isCustomDataActive, setIsCustomDataActive] = useState<boolean>(false);
+  const [customDataName, setCustomDataName] = useState<string>('');
+
+  // Eid & Festival Liquidity Surge State
+  const [festivalState, setFestivalState] = useState<FestivalSurgeState>({
+    isActive: false,
+    selectedFestivalId: 'eid_ul_fitr',
+    selectedPhaseId: 'eif_t4',
+    customMultiplier: 2.25,
+    targetCorridors: 'all',
+    prioritize1000Notes: true,
+  });
+  const [isFestivalModalOpen, setIsFestivalModalOpen] = useState<boolean>(false);
+
+  // Dynamically evaluated ATMs based on active policy and festival surge
   const atms = useMemo(() => {
     return baseAtms.map((a) => {
-      const { status, refillSuggestion } = evaluateAtmPolicyStatus(a, policy);
-      return {
+      let multiplier = 1.0;
+      if (festivalState.isActive && festivalState.customMultiplier > 1) {
+        if (festivalState.targetCorridors === 'all') {
+          multiplier = festivalState.customMultiplier;
+        } else if (festivalState.targetCorridors === 'cattle_markets_transit') {
+          const reg = a.ATMID.slice(3, 6);
+          if (['DHA', 'MOT', 'MAL', 'CTG', 'AGR', 'COM', 'MYM'].includes(reg)) {
+            multiplier = festivalState.customMultiplier;
+          } else {
+            multiplier = 1.0 + (festivalState.customMultiplier - 1.0) * 0.4;
+          }
+        } else if (festivalState.targetCorridors === 'commercial_shopping') {
+          const reg = a.ATMID.slice(3, 6);
+          if (['GUL', 'BAN', 'DHA', 'MOT', 'ELP', 'CTG'].includes(reg)) {
+            multiplier = festivalState.customMultiplier;
+          } else {
+            multiplier = 1.0 + (festivalState.customMultiplier - 1.0) * 0.3;
+          }
+        } else if (festivalState.targetCorridors === 'rural_hubs') {
+          const reg = a.ATMID.slice(3, 6);
+          if (['SYL', 'RAJ', 'KHU', 'BOG', 'DIN', 'PAB'].includes(reg)) {
+            multiplier = festivalState.customMultiplier;
+          } else {
+            multiplier = 1.0 + (festivalState.customMultiplier - 1.0) * 0.3;
+          }
+        }
+      }
+
+      const predictedDemand = Math.round(a.Predicted_Demand * multiplier);
+      const daysOfCash =
+        predictedDemand > 0
+          ? Math.round((a.Estimated_Cash_Remaining / predictedDemand) * 10) / 10
+          : a.Days_of_Cash;
+
+      const adjustedAtm: ATMRecord = {
         ...a,
+        Predicted_Demand: predictedDemand,
+        Days_of_Cash: daysOfCash,
+      };
+
+      const { status, refillSuggestion } = evaluateAtmPolicyStatus(adjustedAtm, policy);
+      return {
+        ...adjustedAtm,
         Status: status,
         Refill_Suggestion_Amount: refillSuggestion,
       };
     });
-  }, [baseAtms, policy]);
+  }, [baseAtms, policy, festivalState]);
 
   // Selected ATM object
   const selectedAtm = useMemo(() => {
@@ -171,11 +232,60 @@ export const App: React.FC = () => {
     setActiveTab('operations');
   };
 
-  const handleImportedData = (imported: ATMRecord[]) => {
+  const handleImportedData = (imported: ATMRecord[], datasetName?: string) => {
     if (imported.length > 0) {
       setBaseAtms(imported);
       setSelectedId(imported[0].ATMID);
+      const critical = imported
+        .filter((a) => a.Status === 'Refill Now' || (a.Status === 'Refill Soon' && Number(a.Days_of_Cash) < 1.0))
+        .slice(0, 8)
+        .map((a) => a.ATMID);
+      if (critical.length > 0) {
+        setManifestIds(critical);
+      }
+      setIsCustomDataActive(true);
+      setCustomDataName(datasetName || 'Feature-Engineered CSV');
     }
+  };
+
+  const handleResetToDefaultFleet = () => {
+    setBaseAtms(initialAtmData);
+    setSelectedId(initialAtmData.length > 0 ? initialAtmData[0].ATMID : '');
+    const critical = initialAtmData
+      .filter((a) => a.Status === 'Refill Now' || (a.Status === 'Refill Soon' && Number(a.Days_of_Cash) < 0.8))
+      .slice(0, 8)
+      .map((a) => a.ATMID);
+    setManifestIds(critical);
+    setIsCustomDataActive(false);
+    setCustomDataName('');
+  };
+
+  // Live transaction handler from Switch Simulator
+  const handleApplyLiveTransaction = (atmId: string, amount: number) => {
+    setBaseAtms((prev) =>
+      prev.map((a) => {
+        if (a.ATMID === atmId) {
+          const newRemaining = Math.max(0, a.Estimated_Cash_Remaining - amount);
+          const pct = Math.round((newRemaining / (a.ATM_Capacity || 1)) * 1000) / 10;
+          const days = a.Predicted_Demand > 0 ? newRemaining / a.Predicted_Demand : 0;
+          return {
+            ...a,
+            Estimated_Cash_Remaining: newRemaining,
+            Cash_Remaining_Pct: pct,
+            Days_of_Cash: days,
+          };
+        }
+        return a;
+      })
+    );
+  };
+
+  const handleUpdateFestivalState = (newState: FestivalSurgeState) => {
+    setFestivalState(newState);
+  };
+
+  const handleQueueAtRiskAtms = (atmIds: string[]) => {
+    setManifestIds((prev) => Array.from(new Set([...prev, ...atmIds])));
   };
 
   const urgentCount = atms.filter((a) => a.Status === 'Refill Now').length;
@@ -188,10 +298,18 @@ export const App: React.FC = () => {
         onTabChange={setActiveTab}
         manifestCount={manifestIds.length}
         urgentCount={urgentCount}
+        isFestivalSurgeActive={festivalState.isActive}
+        festivalMultiplier={festivalState.customMultiplier}
+        onOpenFestivalModal={() => setIsFestivalModalOpen(true)}
+        onOpenScorecardModal={() => setIsScorecardModalOpen(true)}
         onOpenPolicyModal={() => setIsPolicyModalOpen(true)}
         onOpenAuditModal={() => setIsAuditModalOpen(true)}
         onOpenBriefingModal={() => setIsBriefingModalOpen(true)}
         onOpenImportModal={() => setIsImportModalOpen(true)}
+        onOpenSwitchModal={() => setIsSwitchModalOpen(true)}
+        isCustomDataActive={isCustomDataActive}
+        onResetToDefault={handleResetToDefaultFleet}
+        customDataCount={baseAtms.length}
       />
 
       {/* Main Content Area */}
@@ -254,6 +372,11 @@ export const App: React.FC = () => {
               onQuickAddToManifest={handleAddToManifest}
               onQuickSimulateRefill={handleSimulateRefill}
               manifestIds={manifestIds}
+              policy={policy}
+              isCustomDataActive={isCustomDataActive}
+              customDataName={customDataName}
+              onOpenImportModal={() => setIsImportModalOpen(true)}
+              onResetToDefault={handleResetToDefaultFleet}
             />
           </div>
         )}
@@ -287,6 +410,9 @@ export const App: React.FC = () => {
             onClearManifest={handleClearManifest}
             onSelectAtm={handleSelectAtm}
             onOpenFormalManifest={() => setIsFormalManifestOpen(true)}
+            onOpenFestivalModal={() => setIsFestivalModalOpen(true)}
+            isFestivalSurgeActive={festivalState.isActive}
+            festivalMultiplier={festivalState.customMultiplier}
           />
         )}
 
@@ -340,6 +466,12 @@ export const App: React.FC = () => {
         />
       )}
 
+      <ModelBacktestScorecardModal
+        isOpen={isScorecardModalOpen}
+        onClose={() => setIsScorecardModalOpen(false)}
+        atms={atms}
+      />
+
       <ExecutiveAuditReportModal
         isOpen={isAuditModalOpen}
         onClose={() => setIsAuditModalOpen(false)}
@@ -359,6 +491,26 @@ export const App: React.FC = () => {
         isOpen={isImportModalOpen}
         onClose={() => setIsImportModalOpen(false)}
         onImportData={handleImportedData}
+        onResetToDefault={handleResetToDefaultFleet}
+        isCustomDataActive={isCustomDataActive}
+        totalAtmsCount={baseAtms.length}
+      />
+
+      <LiveTransactionSwitchModal
+        isOpen={isSwitchModalOpen}
+        onClose={() => setIsSwitchModalOpen(false)}
+        atms={baseAtms}
+        onApplyTransaction={handleApplyLiveTransaction}
+        onSelectAtm={handleSelectAtm}
+      />
+
+      <FestivalSurgeModal
+        isOpen={isFestivalModalOpen}
+        onClose={() => setIsFestivalModalOpen(false)}
+        festivalState={festivalState}
+        onUpdateFestivalState={handleUpdateFestivalState}
+        atms={atms}
+        onQueueAtRiskAtms={handleQueueAtRiskAtms}
       />
 
       {/* Footer */}
@@ -370,7 +522,7 @@ export const App: React.FC = () => {
               ATM Cash Forecasting Decision-Support System
             </span>
             <span className="text-slate-400">|</span>
-            <span>256 Network Terminals • 2024 Full-Year Model Inference</span>
+            <span>256 Network Terminals • Enterprise Banking Edition</span>
           </div>
 
           <div className="flex items-center gap-4 text-slate-500">
@@ -378,7 +530,7 @@ export const App: React.FC = () => {
             <span className="text-slate-300">•</span>
             <span>Safety Buffer: {policy.minDaysBuffer}d</span>
             <span className="text-slate-300">•</span>
-            <span>Asymmetric Loss Minimizer</span>
+            <span>Automated Cash Optimization</span>
           </div>
         </div>
       </footer>
