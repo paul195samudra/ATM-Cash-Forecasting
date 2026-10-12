@@ -267,7 +267,7 @@ export const FormalManifestModal: React.FC<FormalManifestModalProps> = ({
                   const c500 = Math.round(load * 0.30);
                   const c200 = Math.round(load * 0.15);
                   return (
-                    <tr key={a.ATMID} className="hover:bg-slate-50/50">
+                    <tr key={`${a.ATMID}-${idx}`} className="hover:bg-slate-50/50">
                       <td className="py-2 px-3 text-center font-bold text-slate-400">{idx + 1}</td>
                       <td className="py-2 px-3 font-bold text-slate-900">{a.ATMID}</td>
                       <td className="py-2 px-3 font-sans text-slate-600 truncate max-w-[180px]">
@@ -321,7 +321,7 @@ export const FormalManifestModal: React.FC<FormalManifestModalProps> = ({
                   1. Central Vault Officer (Releaser)
                 </span>
                 <div className="h-12 border-b-2 border-slate-300 flex items-end pb-1 font-serif italic text-slate-600">
-                  L. Messi, CTP #10
+                  M. Rahman, CTP Vault Custodian #104
                 </div>
                 <div className="text-[10px] text-slate-400">Timestamp: 2024-10-28 08:30:00 UTC</div>
               </div>
@@ -331,7 +331,7 @@ export const FormalManifestModal: React.FC<FormalManifestModalProps> = ({
                   2. Armored Truck Driver (Receiver)
                 </span>
                 <div className="h-12 border-b-2 border-slate-300 flex items-end pb-1 font-serif italic text-slate-600">
-                  Romário, CDL-A #{currentCarrier.code}-11
+                  K. Hossain, CDL-A #{currentCarrier.code}-11
                 </div>
                 <div className="text-[10px] text-slate-400">Carrier Vehicle: TRK-UNIT-04</div>
               </div>
@@ -341,7 +341,7 @@ export const FormalManifestModal: React.FC<FormalManifestModalProps> = ({
                   3. Armed Security Escort (Guard)
                 </span>
                 <div className="h-12 border-b-2 border-slate-300 flex items-end pb-1 font-serif italic text-slate-600">
-                  C. Ronaldo, Armed Guard #07
+                  S. Alam, Certified Armed Guard #48
                 </div>
                 <div className="text-[10px] text-slate-400">Security Clearance Verified</div>
               </div>

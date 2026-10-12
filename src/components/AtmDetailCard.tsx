@@ -1,7 +1,9 @@
 import React, { useState, useMemo } from 'react';
 import { ATMRecord } from '../data/atmData';
 import { getAtmRegion, getAtmHorizonForecast } from '../utils/cashCalculations';
+import { getAtmGeoCoordinates, formatCoordinates } from '../utils/geoCoordinates';
 import { defaultOperationalPolicy } from '../types/operations';
+import { AtmIndividualGeoMap } from './AtmIndividualGeoMap';
 import {
   AlertTriangle,
   CheckCircle2,
@@ -18,11 +20,17 @@ import {
   Layers,
   ArrowRight,
   Sparkles,
-  Zap
+  Zap,
+  Compass,
+  Navigation,
+  Maximize2,
+  X
 } from 'lucide-react';
 
 interface AtmDetailCardProps {
   atm: ATMRecord | undefined;
+  allAtms?: ATMRecord[];
+  onSelectAtm?: (atmId: string) => void;
   onSimulateRefill?: (atmId: string) => void;
   onAddToManifest?: (atm: ATMRecord) => void;
   onOpenCassetteModal?: (atm: ATMRecord) => void;
@@ -31,12 +39,26 @@ interface AtmDetailCardProps {
 
 export const AtmDetailCard: React.FC<AtmDetailCardProps> = ({
   atm,
+  allAtms = [],
+  onSelectAtm,
   onSimulateRefill,
   onAddToManifest,
   onOpenCassetteModal,
   isInManifest = false,
 }) => {
   const [copied, setCopied] = useState(false);
+  const [activeTab, setActiveTab] = useState<'telemetry' | 'map'>('telemetry');
+  const [isLargeMapOpen, setIsLargeMapOpen] = useState(false);
+
+  const geoInfo = useMemo(() => {
+    if (!atm) return null;
+    return getAtmGeoCoordinates(atm);
+  }, [atm]);
+
+  const horizon = useMemo(() => {
+    if (!atm) return null;
+    return getAtmHorizonForecast(atm, defaultOperationalPolicy);
+  }, [atm]);
 
   if (!atm) {
     return (
@@ -51,10 +73,6 @@ export const AtmDetailCard: React.FC<AtmDetailCardProps> = ({
   const pct = Math.max(0, Math.min(100, atm.Cash_Remaining_Pct));
   const days = Number(atm.Days_of_Cash) || 0;
   const region = getAtmRegion(atm.ATMID);
-
-  const horizon = useMemo(() => {
-    return getAtmHorizonForecast(atm, defaultOperationalPolicy);
-  }, [atm]);
 
   let statusBg = 'bg-emerald-50 text-emerald-800 border border-emerald-200/90';
   let barColor = 'bg-emerald-600';
@@ -80,227 +98,363 @@ export const AtmDetailCard: React.FC<AtmDetailCardProps> = ({
   };
 
   return (
-    <div className="bg-white rounded-xl shadow-xs border border-slate-200/90 p-5 flex flex-col justify-between h-full relative overflow-hidden">
-      <div>
-        {/* Terminal Header */}
-        <div className="flex items-start justify-between gap-2 pb-3 border-b border-slate-100">
-          <div>
-            <div className="flex items-center gap-2">
-              <span className="font-mono text-xl font-black text-slate-900 tracking-tight">
-                {atm.ATMID}
-              </span>
+    <>
+      <div className="bg-white rounded-xl shadow-xs border border-slate-200/90 p-5 flex flex-col justify-between h-full relative overflow-hidden">
+        <div>
+          {/* Terminal Header */}
+          <div className="flex items-start justify-between gap-2 pb-2.5 border-b border-slate-100">
+            <div>
+              <div className="flex items-center gap-2">
+                <span className="font-mono text-xl font-black text-slate-900 tracking-tight">
+                  {atm.ATMID}
+                </span>
+                <button
+                  type="button"
+                  onClick={handleCopyId}
+                  className="p-1 rounded text-slate-400 hover:text-slate-600 hover:bg-slate-100 transition-colors cursor-pointer"
+                  title="Copy Terminal ID"
+                >
+                  {copied ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5" />}
+                </button>
+                <span
+                  className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold ${statusBg}`}
+                >
+                  {badgeIcon}
+                  {atm.Status}
+                </span>
+              </div>
+
+              <div className="flex items-center gap-1.5 text-xs text-slate-600 mt-1">
+                <Building className="w-3.5 h-3.5 text-slate-500 shrink-0" />
+                <span className="font-semibold text-slate-800">{region.name}</span>
+              </div>
+              <div className="flex items-center justify-between gap-1 text-[11px] text-slate-500 mt-0.5">
+                <div className="flex items-center gap-1 truncate max-w-[230px]" title={atm.Location}>
+                  <MapPin className="w-3 h-3 text-slate-400 shrink-0" />
+                  <span className="truncate">
+                    {atm.Location.replace('(location not in dataset)', '').trim() || 'Central Regional Hub'}
+                  </span>
+                </div>
+                {geoInfo && (
+                  <button
+                    type="button"
+                    onClick={() => setActiveTab('map')}
+                    className="text-[10px] text-blue-600 hover:text-blue-800 font-semibold cursor-pointer shrink-0 underline ml-1"
+                  >
+                    GPS Pin
+                  </button>
+                )}
+              </div>
+            </div>
+          </div>
+
+          {/* Dual Inspector Tabs: Telemetry vs Live GPS Map */}
+          <div className="flex items-center gap-1 bg-slate-100 p-0.5 rounded-lg border border-slate-200 my-3">
+            <button
+              type="button"
+              onClick={() => setActiveTab('telemetry')}
+              className={`flex-1 py-1.5 px-2 rounded-md text-xs font-semibold flex items-center justify-center gap-1.5 transition-all cursor-pointer ${
+                activeTab === 'telemetry'
+                  ? 'bg-white text-slate-900 shadow-xs'
+                  : 'text-slate-500 hover:text-slate-800'
+              }`}
+            >
+              <Fuel className="w-3.5 h-3.5 text-blue-600" />
+              <span>Vault & Forecast</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => setActiveTab('map')}
+              className={`flex-1 py-1.5 px-2 rounded-md text-xs font-semibold flex items-center justify-center gap-1.5 transition-all cursor-pointer ${
+                activeTab === 'map'
+                  ? 'bg-blue-600 text-white shadow-xs'
+                  : 'text-slate-500 hover:text-slate-800'
+              }`}
+            >
+              <MapPin className="w-3.5 h-3.5" />
+              <span>Live GPS Map</span>
+            </button>
+          </div>
+
+          {/* TAB 1: Live Interactive GPS Map for Individual ATM */}
+          {activeTab === 'map' && (
+            <div className="space-y-3 mb-3">
+              <AtmIndividualGeoMap
+                atm={atm}
+                nearbyAtms={allAtms}
+                onSelectNearbyAtm={onSelectAtm}
+                heightClass="h-[300px]"
+              />
+
+              {geoInfo && (
+                <div className="bg-slate-50 p-2.5 rounded-xl border border-slate-200/90 text-[11px] space-y-1.5">
+                  <div className="flex items-center justify-between text-slate-600">
+                    <span className="font-medium text-slate-500 flex items-center gap-1">
+                      <Navigation className="w-3 h-3 text-blue-600" /> Corridor Route:
+                    </span>
+                    <span className="font-semibold text-slate-800">{geoInfo.highway}</span>
+                  </div>
+                  <div className="flex items-center justify-between text-slate-600">
+                    <span className="font-medium text-slate-500 flex items-center gap-1">
+                      <Compass className="w-3 h-3 text-slate-400" /> GPS Lat/Lng:
+                    </span>
+                    <span className="font-mono font-bold text-slate-800">
+                      {formatCoordinates(geoInfo.lat, geoInfo.lng)}
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between text-slate-600">
+                    <span className="font-medium text-slate-500">Motijheel Vault Radius:</span>
+                    <span className="font-mono font-semibold text-blue-700">{geoInfo.distanceKm} km</span>
+                  </div>
+
+                  <div className="pt-1.5 border-t border-slate-200 flex justify-between items-center">
+                    <span className="text-[10px] text-slate-400">Zero-API-key OpenStreetMap</span>
+                    <button
+                      type="button"
+                      onClick={() => setIsLargeMapOpen(true)}
+                      className="text-[10px] text-blue-600 hover:text-blue-800 font-bold flex items-center gap-1 cursor-pointer"
+                    >
+                      <Maximize2 className="w-3 h-3" /> Expand Tactical Map
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* TAB 2: Vault Progress Meter & Telemetry */}
+          {activeTab === 'telemetry' && (
+            <>
+              {/* Vault Reservoir Progress Meter */}
+              <div className="my-3 bg-slate-50 p-3 rounded-xl border border-slate-200/80">
+                <div className="flex justify-between items-center text-xs mb-1.5 font-medium">
+                  <span className="text-slate-700 flex items-center gap-1.5 font-semibold">
+                    <Fuel className="w-3.5 h-3.5 text-slate-500" /> Vault Reservoir Level
+                  </span>
+                  <span className="font-mono font-bold text-slate-900 text-sm">{pct.toFixed(1)}%</span>
+                </div>
+
+                <div className="w-full bg-slate-200 rounded-full h-2.5 overflow-hidden">
+                  <div
+                    className={`h-full rounded-full transition-all duration-500 ${barColor}`}
+                    style={{ width: `${pct}%` }}
+                  />
+                </div>
+
+                <div className="flex justify-between text-[10px] text-slate-500 mt-1 font-mono">
+                  <span>Empty (0%)</span>
+                  <span>Refill Floor: 20%</span>
+                  <span>Cap: ৳{(atm.ATM_Capacity / 1000).toFixed(0)}k</span>
+                </div>
+              </div>
+
+              {/* Financial Metrics List */}
+              <div className="divide-y divide-slate-100 text-xs">
+                <div className="py-2 flex justify-between items-center">
+                  <span className="text-slate-500 flex items-center gap-1.5">
+                    <Banknote className="w-3.5 h-3.5 text-slate-400" /> Vault Capacity
+                  </span>
+                  <span className="font-mono font-bold text-slate-800">
+                    ৳{Math.round(atm.ATM_Capacity).toLocaleString()}
+                  </span>
+                </div>
+
+                <div className="py-2 flex justify-between items-center">
+                  <span className="text-slate-500">Available Vault Cash</span>
+                  <span className="font-mono font-bold text-slate-900">
+                    ৳{Math.round(atm.Estimated_Cash_Remaining).toLocaleString()}
+                  </span>
+                </div>
+
+                <div className="py-2 flex justify-between items-center bg-slate-50/70 px-2 rounded-md my-0.5">
+                  <span className="text-slate-700 font-semibold flex items-center gap-1.5">
+                    <Clock className="w-3.5 h-3.5 text-slate-400" /> Cash Runway Horizon
+                  </span>
+                  <span className={`font-mono text-sm ${daysTextColor}`}>
+                    {days.toFixed(1)} {days === 1 ? 'day' : 'days'}
+                  </span>
+                </div>
+
+                <div className="py-2 flex justify-between items-center">
+                  <span className="text-slate-500">Predicted Daily Demand</span>
+                  <span className="font-mono font-semibold text-blue-700">
+                    ৳{Math.round(atm.Predicted_Demand).toLocaleString()}
+                  </span>
+                </div>
+
+                <div className="py-2 flex justify-between items-center bg-emerald-50/50 border border-emerald-100/80 px-2 rounded-md my-0.5">
+                  <span className="text-emerald-950 font-bold">Recommended Load</span>
+                  <span className="font-mono font-bold text-emerald-800 text-sm">
+                    ৳{Math.round(atm.Refill_Suggestion_Amount).toLocaleString()}
+                  </span>
+                </div>
+              </div>
+
+              {/* Next 1 & 2 Day Forward Forecast Mini-Box */}
+              {horizon && (
+                <div className="my-2.5 p-3 rounded-xl bg-slate-50 border border-slate-200/90 text-xs space-y-2">
+                  <div className="flex items-center justify-between pb-1.5 border-b border-slate-200">
+                    <span className="font-bold text-slate-800 flex items-center gap-1.5 text-[11px]">
+                      <Zap className="w-3.5 h-3.5 text-blue-600" />
+                      <span>Next 1 & 2 Day Demand & Note Refill Mix</span>
+                    </span>
+                    <span className="text-[10px] text-slate-500 font-mono">T+1 / T+2 Horizon</span>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[11px]">
+                    {/* Tomorrow T+1 */}
+                    <div
+                      className={`p-2.5 rounded-lg border bg-white ${
+                        horizon.t1Status === 'Refill Now' ? 'border-rose-300' : 'border-slate-200'
+                      }`}
+                    >
+                      <div className="text-[10px] text-slate-500 uppercase font-bold flex items-center justify-between">
+                        <span>Tomorrow (T+1)</span>
+                        {horizon.t1Status === 'Refill Now' && (
+                          <span className="text-[9px] text-rose-700 font-semibold bg-rose-50 border border-rose-200 px-1 rounded">
+                            Stockout Risk
+                          </span>
+                        )}
+                      </div>
+                      <div className="font-mono font-bold text-blue-700 text-sm mt-0.5">
+                        ৳{Math.round(horizon.t1Demand).toLocaleString()}
+                      </div>
+
+                      <div className="mt-2 pt-1.5 border-t border-slate-100 space-y-1 font-mono text-[10px]">
+                        <div className="flex items-center justify-between bg-slate-100/90 text-slate-800 px-1.5 py-0.5 rounded border border-slate-200 font-medium">
+                          <span>৳1,000 Notes:</span>
+                          <span className="font-bold">{horizon.t1Notes.notes1000Count} bills</span>
+                        </div>
+                        <div className="flex items-center justify-between bg-emerald-50/80 text-emerald-950 px-1.5 py-0.5 rounded border border-emerald-200/70 font-medium">
+                          <span>৳500 Notes:</span>
+                          <span className="font-bold">{horizon.t1Notes.notes500Count} bills</span>
+                        </div>
+                      </div>
+
+                      <div className="text-[9px] text-slate-500 mt-1.5 font-mono flex justify-between">
+                        <span>Closing:</span>
+                        <span className="font-bold text-slate-700">
+                          ৳{(horizon.t1ClosingCash / 1000).toFixed(0)}k ({horizon.t1Pct}%)
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Next 2 Days T+2 */}
+                    <div
+                      className={`p-2.5 rounded-lg border bg-white ${
+                        horizon.t2Status === 'Refill Now' ? 'border-amber-300' : 'border-slate-200'
+                      }`}
+                    >
+                      <div className="text-[10px] text-slate-500 uppercase font-bold flex items-center justify-between">
+                        <span>2-Day Total (T+2)</span>
+                        {horizon.t2Status === 'Refill Now' && (
+                          <span className="text-[9px] text-amber-800 font-semibold bg-amber-50 border border-amber-200 px-1 rounded">
+                            &lt;48h Alert
+                          </span>
+                        )}
+                      </div>
+                      <div className="font-mono font-bold text-slate-900 text-sm mt-0.5">
+                        ৳{Math.round(horizon.t2Demand).toLocaleString()}
+                      </div>
+
+                      <div className="mt-2 pt-1.5 border-t border-slate-100 space-y-1 font-mono text-[10px]">
+                        <div className="flex items-center justify-between bg-slate-100/90 text-slate-800 px-1.5 py-0.5 rounded border border-slate-200 font-medium">
+                          <span>৳1,000 Notes:</span>
+                          <span className="font-bold">{horizon.t2Notes.notes1000Count} bills</span>
+                        </div>
+                        <div className="flex items-center justify-between bg-emerald-50/80 text-emerald-950 px-1.5 py-0.5 rounded border border-emerald-200/70 font-medium">
+                          <span>৳500 Notes:</span>
+                          <span className="font-bold">{horizon.t2Notes.notes500Count} bills</span>
+                        </div>
+                      </div>
+
+                      <div className="text-[9px] text-slate-500 mt-1.5 font-mono flex justify-between">
+                        <span>Closing:</span>
+                        <span className="font-bold text-slate-700">
+                          ৳{(horizon.t2ClosingCash / 1000).toFixed(0)}k ({horizon.t2Pct}%)
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </>
+          )}
+        </div>
+
+        {/* Operational Actions (Always available) */}
+        <div className="pt-3 mt-3 border-t border-slate-100 flex flex-col gap-2">
+          {onAddToManifest && (
+            <button
+              type="button"
+              onClick={() => onAddToManifest(atm)}
+              disabled={isInManifest}
+              className={`w-full py-2 px-3 rounded-lg text-xs font-semibold flex items-center justify-center gap-1.5 transition-all cursor-pointer ${
+                isInManifest
+                  ? 'bg-slate-100 text-slate-400 cursor-not-allowed border border-slate-200'
+                  : 'bg-blue-600 text-white hover:bg-blue-700 shadow-xs'
+              }`}
+            >
+              <Truck className="w-3.5 h-3.5" />
+              {isInManifest ? 'Included in CIT Route' : 'Add to CIT Armored Route'}
+            </button>
+          )}
+
+          {onOpenCassetteModal && (
+            <button
+              type="button"
+              onClick={() => onOpenCassetteModal(atm)}
+              className="w-full py-2 px-3 rounded-lg text-xs font-semibold bg-slate-900 hover:bg-slate-800 text-white flex items-center justify-center gap-1.5 transition-all cursor-pointer shadow-xs"
+            >
+              <Banknote className="w-3.5 h-3.5 text-slate-300" />
+              <span>Cassette Denomination Pull Sheet</span>
+            </button>
+          )}
+
+          {onSimulateRefill && (
+            <button
+              type="button"
+              onClick={() => onSimulateRefill(atm.ATMID)}
+              className="w-full py-1.5 px-3 rounded-lg text-xs font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-100 border border-slate-200/80 flex items-center justify-center gap-1.5 transition-all cursor-pointer shadow-2xs"
+            >
+              <RotateCcw className="w-3.5 h-3.5 text-slate-400" />
+              Simulate Same-Day Refill Event
+            </button>
+          )}
+        </div>
+      </div>
+
+      {/* Large Tactical Map Modal */}
+      {isLargeMapOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/80 backdrop-blur-sm p-4 animate-in fade-in">
+          <div className="bg-white rounded-2xl shadow-2xl border border-slate-200 w-full max-w-4xl max-h-[90vh] overflow-hidden flex flex-col">
+            <div className="px-5 py-3.5 bg-slate-900 text-white flex items-center justify-between border-b border-slate-800">
+              <div className="flex items-center gap-2">
+                <MapPin className="w-4 h-4 text-blue-400" />
+                <span className="font-bold text-sm">Tactical GIS Terminal Radar — {atm.ATMID}</span>
+                <span className="text-xs text-slate-400">({region.name})</span>
+              </div>
               <button
-                onClick={handleCopyId}
-                className="p-1 rounded text-slate-400 hover:text-slate-600 hover:bg-slate-100 transition-colors cursor-pointer"
-                title="Copy Terminal ID"
+                type="button"
+                onClick={() => setIsLargeMapOpen(false)}
+                className="p-1 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition-colors cursor-pointer"
               >
-                {copied ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5" />}
+                <X className="w-5 h-5" />
               </button>
-              <span
-                className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold ${statusBg}`}
-              >
-                {badgeIcon}
-                {atm.Status}
-              </span>
             </div>
-
-            <div className="flex items-center gap-1.5 text-xs text-slate-600 mt-1">
-              <Building className="w-3.5 h-3.5 text-slate-500 shrink-0" />
-              <span className="font-semibold text-slate-800">{region.name}</span>
-            </div>
-            <div className="flex items-center gap-1 text-[11px] text-slate-400 mt-0.5">
-              <MapPin className="w-3 h-3 text-slate-400 shrink-0" />
-              <span className="truncate max-w-[240px]" title={atm.Location}>
-                {atm.Location.replace('(location not in dataset)', '').trim() || 'Central Regional Hub'}
-              </span>
+            <div className="p-4 flex-1 overflow-y-auto">
+              <AtmIndividualGeoMap
+                atm={atm}
+                nearbyAtms={allAtms}
+                onSelectNearbyAtm={(id) => {
+                  if (onSelectAtm) onSelectAtm(id);
+                }}
+                heightClass="h-[480px]"
+              />
             </div>
           </div>
         </div>
-
-        {/* Vault Reservoir Progress Meter */}
-        <div className="my-3.5 bg-slate-50 p-3.5 rounded-xl border border-slate-200/80">
-          <div className="flex justify-between items-center text-xs mb-1.5 font-medium">
-            <span className="text-slate-700 flex items-center gap-1.5 font-semibold">
-              <Fuel className="w-3.5 h-3.5 text-slate-500" /> Vault Reservoir Level
-            </span>
-            <span className="font-mono font-bold text-slate-900 text-sm">{pct.toFixed(1)}%</span>
-          </div>
-
-          <div className="w-full bg-slate-200 rounded-full h-2.5 overflow-hidden">
-            <div
-              className={`h-full rounded-full transition-all duration-500 ${barColor}`}
-              style={{ width: `${pct}%` }}
-            />
-          </div>
-
-          <div className="flex justify-between text-[10px] text-slate-500 mt-1 font-mono">
-            <span>Empty (0%)</span>
-            <span>Refill Floor: 20%</span>
-            <span>Cap: ৳{(atm.ATM_Capacity / 1000).toFixed(0)}k</span>
-          </div>
-        </div>
-
-        {/* Financial Metrics List */}
-        <div className="divide-y divide-slate-100 text-xs">
-          <div className="py-2 flex justify-between items-center">
-            <span className="text-slate-500 flex items-center gap-1.5">
-              <Banknote className="w-3.5 h-3.5 text-slate-400" /> Vault Capacity
-            </span>
-            <span className="font-mono font-bold text-slate-800">
-              ৳{Math.round(atm.ATM_Capacity).toLocaleString()}
-            </span>
-          </div>
-
-          <div className="py-2 flex justify-between items-center">
-            <span className="text-slate-500">Available Vault Cash</span>
-            <span className="font-mono font-bold text-slate-900">
-              ৳{Math.round(atm.Estimated_Cash_Remaining).toLocaleString()}
-            </span>
-          </div>
-
-          <div className="py-2 flex justify-between items-center bg-slate-50/70 px-2 rounded-md my-0.5">
-            <span className="text-slate-700 font-semibold flex items-center gap-1.5">
-              <Clock className="w-3.5 h-3.5 text-slate-400" /> Cash Runway Horizon
-            </span>
-            <span className={`font-mono text-sm ${daysTextColor}`}>
-              {days.toFixed(1)} {days === 1 ? 'day' : 'days'}
-            </span>
-          </div>
-
-          <div className="py-2 flex justify-between items-center">
-            <span className="text-slate-500">Predicted Daily Demand</span>
-            <span className="font-mono font-semibold text-blue-700">
-              ৳{Math.round(atm.Predicted_Demand).toLocaleString()}
-            </span>
-          </div>
-
-          <div className="py-2 flex justify-between items-center bg-emerald-50/50 border border-emerald-100/80 px-2 rounded-md my-0.5">
-            <span className="text-emerald-950 font-bold">Recommended Load</span>
-            <span className="font-mono font-bold text-emerald-800 text-sm">
-              ৳{Math.round(atm.Refill_Suggestion_Amount).toLocaleString()}
-            </span>
-          </div>
-        </div>
-
-        {/* Next 1 & 2 Day Forward Forecast Mini-Box */}
-        <div className="my-2.5 p-3 rounded-xl bg-slate-50 border border-slate-200/90 text-xs space-y-2">
-          <div className="flex items-center justify-between pb-1.5 border-b border-slate-200">
-            <span className="font-bold text-slate-800 flex items-center gap-1.5 text-[11px]">
-              <Zap className="w-3.5 h-3.5 text-blue-600" />
-              <span>Next 1 & 2 Day Demand & Note Refill Mix</span>
-            </span>
-            <span className="text-[10px] text-slate-500 font-mono">T+1 / T+2 Horizon</span>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[11px]">
-            {/* Tomorrow T+1 */}
-            <div
-              className={`p-2.5 rounded-lg border bg-white ${
-                horizon.t1Status === 'Refill Now' ? 'border-rose-300' : 'border-slate-200'
-              }`}
-            >
-              <div className="text-[10px] text-slate-500 uppercase font-bold flex items-center justify-between">
-                <span>Tomorrow (T+1)</span>
-                {horizon.t1Status === 'Refill Now' && (
-                  <span className="text-[9px] text-rose-700 font-semibold bg-rose-50 border border-rose-200 px-1 rounded">Stockout Risk</span>
-                )}
-              </div>
-              <div className="font-mono font-bold text-blue-700 text-sm mt-0.5">
-                ৳{Math.round(horizon.t1Demand).toLocaleString()}
-              </div>
-
-              {/* Note denomination suggestion */}
-              <div className="mt-2 pt-1.5 border-t border-slate-100 space-y-1 font-mono text-[10px]">
-                <div className="flex items-center justify-between bg-slate-100/90 text-slate-800 px-1.5 py-0.5 rounded border border-slate-200 font-medium">
-                  <span>৳1,000 Notes:</span>
-                  <span className="font-bold">{horizon.t1Notes.notes1000Count} bills</span>
-                </div>
-                <div className="flex items-center justify-between bg-emerald-50/80 text-emerald-950 px-1.5 py-0.5 rounded border border-emerald-200/70 font-medium">
-                  <span>৳500 Notes:</span>
-                  <span className="font-bold">{horizon.t1Notes.notes500Count} bills</span>
-                </div>
-              </div>
-
-              <div className="text-[9px] text-slate-500 mt-1.5 font-mono flex justify-between">
-                <span>Closing:</span>
-                <span className="font-bold text-slate-700">৳{(horizon.t1ClosingCash / 1000).toFixed(0)}k ({horizon.t1Pct}%)</span>
-              </div>
-            </div>
-
-            {/* Next 2 Days T+2 */}
-            <div
-              className={`p-2.5 rounded-lg border bg-white ${
-                horizon.t2Status === 'Refill Now' ? 'border-amber-300' : 'border-slate-200'
-              }`}
-            >
-              <div className="text-[10px] text-slate-500 uppercase font-bold flex items-center justify-between">
-                <span>2-Day Total (T+2)</span>
-                {horizon.t2Status === 'Refill Now' && (
-                  <span className="text-[9px] text-amber-800 font-semibold bg-amber-50 border border-amber-200 px-1 rounded">&lt;48h Alert</span>
-                )}
-              </div>
-              <div className="font-mono font-bold text-slate-900 text-sm mt-0.5">
-                ৳{Math.round(horizon.t2Demand).toLocaleString()}
-              </div>
-
-              {/* Note denomination suggestion */}
-              <div className="mt-2 pt-1.5 border-t border-slate-100 space-y-1 font-mono text-[10px]">
-                <div className="flex items-center justify-between bg-slate-100/90 text-slate-800 px-1.5 py-0.5 rounded border border-slate-200 font-medium">
-                  <span>৳1,000 Notes:</span>
-                  <span className="font-bold">{horizon.t2Notes.notes1000Count} bills</span>
-                </div>
-                <div className="flex items-center justify-between bg-emerald-50/80 text-emerald-950 px-1.5 py-0.5 rounded border border-emerald-200/70 font-medium">
-                  <span>৳500 Notes:</span>
-                  <span className="font-bold">{horizon.t2Notes.notes500Count} bills</span>
-                </div>
-              </div>
-
-              <div className="text-[9px] text-slate-500 mt-1.5 font-mono flex justify-between">
-                <span>Closing:</span>
-                <span className="font-bold text-slate-700">৳{(horizon.t2ClosingCash / 1000).toFixed(0)}k ({horizon.t2Pct}%)</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Operational Actions */}
-      <div className="pt-3 mt-3 border-t border-slate-100 flex flex-col gap-2">
-        {onAddToManifest && (
-          <button
-            onClick={() => onAddToManifest(atm)}
-            disabled={isInManifest}
-            className={`w-full py-2 px-3 rounded-lg text-xs font-semibold flex items-center justify-center gap-1.5 transition-all cursor-pointer ${
-              isInManifest
-                ? 'bg-slate-100 text-slate-400 cursor-not-allowed border border-slate-200'
-                : 'bg-blue-600 text-white hover:bg-blue-700 shadow-xs'
-            }`}
-          >
-            <Truck className="w-3.5 h-3.5" />
-            {isInManifest ? 'Included in CIT Route' : 'Add to CIT Armored Route'}
-          </button>
-        )}
-
-        {onOpenCassetteModal && (
-          <button
-            onClick={() => onOpenCassetteModal(atm)}
-            className="w-full py-2 px-3 rounded-lg text-xs font-semibold bg-slate-900 hover:bg-slate-800 text-white flex items-center justify-center gap-1.5 transition-all cursor-pointer shadow-xs"
-          >
-            <Banknote className="w-3.5 h-3.5 text-slate-300" />
-            <span>Cassette Denomination Pull Sheet</span>
-          </button>
-        )}
-
-        {onSimulateRefill && (
-          <button
-            onClick={() => onSimulateRefill(atm.ATMID)}
-            className="w-full py-1.5 px-3 rounded-lg text-xs font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-100 border border-slate-200/80 flex items-center justify-center gap-1.5 transition-all cursor-pointer shadow-2xs"
-          >
-            <RotateCcw className="w-3.5 h-3.5 text-slate-400" />
-            Simulate Same-Day Refill Event
-          </button>
-        )}
-      </div>
-    </div>
+      )}
+    </>
   );
 };

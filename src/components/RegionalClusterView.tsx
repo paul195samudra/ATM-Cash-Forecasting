@@ -18,6 +18,7 @@ import {
   Compass,
   Navigation
 } from 'lucide-react';
+import { RegionalGeoMap } from './RegionalGeoMap';
 
 interface RegionalClusterViewProps {
   atms: ATMRecord[];
@@ -62,7 +63,7 @@ export const RegionalClusterView: React.FC<RegionalClusterViewProps> = ({
 }) => {
   const [selectedClusterId, setSelectedClusterId] = useState<string>('DHA_CORE');
   const [regionSearch, setRegionSearch] = useState<string>('');
-  const [mapView, setMapView] = useState<'topology' | 'cards'>('topology');
+  const [mapView, setMapView] = useState<'topology' | 'geomap' | 'cards'>('geomap');
 
   const clusters = useMemo(() => {
     return groupAtmsByRegion(atms, policy);
@@ -99,7 +100,13 @@ export const RegionalClusterView: React.FC<RegionalClusterViewProps> = ({
   }, [clusters, selectedClusterId]);
 
   const clusterAtms = useMemo(() => {
-    return atms.filter((a) => getAtmRegion(a.ATMID).code === activeCluster.codePrefix);
+    const list = atms.filter((a) => getAtmRegion(a.ATMID).code === activeCluster.codePrefix);
+    const seen = new Set<string>();
+    return list.filter((a) => {
+      if (seen.has(a.ATMID)) return false;
+      seen.add(a.ATMID);
+      return true;
+    });
   }, [atms, activeCluster]);
 
   return (
@@ -115,12 +122,12 @@ export const RegionalClusterView: React.FC<RegionalClusterViewProps> = ({
               Inter-District CIT Route Topology & Cash Density Network
             </h2>
             <p className="text-xs sm:text-sm text-slate-300 mt-1 leading-relaxed">
-              256 terminals partitioned across the 12 primary inter-district transit corridors and banking hubs.
+              {atms.length} terminals partitioned across the active inter-district transit corridors and banking hubs.
               Monitor corridor vault reserves, track burn rates, and bundle nearby replenishments into shared armored runs.
             </p>
           </div>
 
-          <div className="flex items-center gap-2 bg-slate-800/80 p-1 rounded-xl border border-slate-700">
+          <div className="flex items-center gap-1.5 bg-slate-800/80 p-1 rounded-xl border border-slate-700">
             <button
               onClick={() => setMapView('topology')}
               className={`px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer ${
@@ -130,7 +137,18 @@ export const RegionalClusterView: React.FC<RegionalClusterViewProps> = ({
               }`}
             >
               <Network className="w-3.5 h-3.5" />
-              <span>Spatial Network Map</span>
+              <span>Spatial Schematic</span>
+            </button>
+            <button
+              onClick={() => setMapView('geomap')}
+              className={`px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer ${
+                mapView === 'geomap'
+                  ? 'bg-blue-600 text-white shadow-xs'
+                  : 'text-slate-300 hover:text-white'
+              }`}
+            >
+              <MapPin className="w-3.5 h-3.5 text-blue-300" />
+              <span>Live GPS Geo Map</span>
             </button>
             <button
               onClick={() => setMapView('cards')}
@@ -246,7 +264,7 @@ export const RegionalClusterView: React.FC<RegionalClusterViewProps> = ({
               </g>
 
               {/* Cluster Nodes */}
-              {clusters.map((c) => {
+              {clusters.map((c, cIdx) => {
                 const pos = TOPOLOGY_COORDS[c.codePrefix] || { x: 470, y: 300, labelYOffset: 46 };
                 const isSelected = c.id === activeCluster.id;
                 const nodeRadius = 28;
@@ -264,32 +282,32 @@ export const RegionalClusterView: React.FC<RegionalClusterViewProps> = ({
 
                 return (
                   <g
-                    key={c.id}
+                    key={`cluster-node-${c.id}-${cIdx}`}
                     onClick={() => setSelectedClusterId(c.id)}
                     className="cursor-pointer transition-all hover:opacity-100 group"
                     style={{ opacity: isSelected ? 1 : 0.9 }}
                   >
-                    {/* Selected pulse halo ring */}
+                    {/* Selected node halo indicator (static, centered on selected node) */}
                     {isSelected && (
                       <>
                         <circle
                           cx={pos.x}
                           cy={pos.y}
-                          r={nodeRadius + 12}
+                          r={nodeRadius + 8}
                           fill="none"
                           stroke="#60a5fa"
                           strokeWidth="2"
-                          strokeDasharray="4 4"
-                          className="animate-spin"
+                          strokeDasharray="4 3"
+                          opacity="0.8"
                         />
                         <circle
                           cx={pos.x}
                           cy={pos.y}
-                          r={nodeRadius + 6}
+                          r={nodeRadius + 4}
                           fill="none"
                           stroke="#3b82f6"
                           strokeWidth="1.5"
-                          opacity="0.6"
+                          opacity="0.5"
                         />
                       </>
                     )}
@@ -387,6 +405,34 @@ export const RegionalClusterView: React.FC<RegionalClusterViewProps> = ({
         </div>
       )}
 
+      {/* Live GPS Geospatial Map */}
+      {mapView === 'geomap' && (
+        <div className="bg-white rounded-xl p-5 border border-slate-200 shadow-xs">
+          <div className="flex flex-wrap items-center justify-between pb-3 border-b border-slate-100 gap-2 mb-4">
+            <div>
+              <h3 className="font-bold text-slate-800 text-sm flex items-center gap-2">
+                <MapPin className="w-4 h-4 text-blue-600" />
+                <span>Geographic GPS Network Map & Inter-District Highway Corridors</span>
+              </h3>
+              <p className="text-xs text-slate-500 mt-0.5">
+                Real GPS-calibrated terminals across Bangladesh. Click corridor hubs to zoom, check highway transit routes, and evaluate live regional liquidity.
+              </p>
+            </div>
+            <div className="text-xs font-mono text-slate-500 bg-slate-50 px-2.5 py-1 rounded-lg border border-slate-200">
+              Active Sector: <strong className="text-blue-600">{activeCluster.name}</strong>
+            </div>
+          </div>
+
+          <RegionalGeoMap
+            clusters={clusters}
+            selectedClusterId={selectedClusterId}
+            onSelectCluster={setSelectedClusterId}
+            atms={atms}
+            onSelectAtm={onSelectAtm}
+          />
+        </div>
+      )}
+
       {/* Top Regional Metrics & Search Bar */}
       <div className="flex flex-wrap items-center justify-between gap-4 bg-white p-4 rounded-xl border border-slate-200 shadow-xs">
         <div className="flex items-center gap-2">
@@ -396,7 +442,7 @@ export const RegionalClusterView: React.FC<RegionalClusterViewProps> = ({
               Operational Corridors ({clusters.length} Active CIT Transit Sectors)
             </h3>
             <span className="text-xs text-slate-500">
-              Aggregated across 256 network terminals · ISO-20022 Regional Partitioning
+              Aggregated across {atms.length} network terminals · ISO-20022 Regional Partitioning
             </span>
           </div>
         </div>
@@ -415,11 +461,11 @@ export const RegionalClusterView: React.FC<RegionalClusterViewProps> = ({
 
       {/* Regional Sector Cards Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 max-h-[380px] overflow-y-auto pr-1">
-        {filteredClusters.map((c) => {
+        {filteredClusters.map((c, idx) => {
           const isSelected = c.id === activeCluster.id;
           return (
             <div
-              key={c.id}
+              key={`${c.id}-${idx}`}
               onClick={() => setSelectedClusterId(c.id)}
               className={`border rounded-xl p-3.5 transition-all cursor-pointer shadow-xs ${
                 isSelected
@@ -510,11 +556,11 @@ export const RegionalClusterView: React.FC<RegionalClusterViewProps> = ({
 
         {/* Machine Cards within Cluster */}
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 mt-4">
-          {clusterAtms.map((atm) => {
+          {clusterAtms.map((atm, idx) => {
             const days = Number(atm.Days_of_Cash) || 0;
             return (
               <div
-                key={atm.ATMID}
+                key={`${atm.ATMID}-${idx}`}
                 onClick={() => onSelectAtm(atm.ATMID)}
                 className="p-3.5 rounded-xl border border-slate-200 bg-slate-50/50 hover:bg-white hover:border-blue-400 cursor-pointer transition-all flex flex-col justify-between shadow-2xs hover:shadow-xs"
               >

@@ -154,7 +154,7 @@ export const ModelBacktestScorecardModal: React.FC<ModelBacktestScorecardModalPr
           <div className="border border-slate-200 rounded-xl overflow-hidden">
             <div className="p-3 bg-slate-100 border-b border-slate-200 font-bold text-slate-800 text-xs flex justify-between items-center">
               <span>Day-by-Day Historical Outflow: Actual Dispensed vs ML Model Prediction</span>
-              <span className="text-[11px] text-slate-500 font-normal">All 256 Aggregated Terminals</span>
+              <span className="text-[11px] text-slate-500 font-normal">All {atms.length} Aggregated Terminals</span>
             </div>
             <table className="w-full text-left text-xs border-collapse">
               <thead className="bg-slate-50 text-slate-600 font-semibold border-b border-slate-200 text-[11px]">

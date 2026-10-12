@@ -25,23 +25,23 @@ interface CsvImportModalProps {
   totalAtmsCount: number;
 }
 
-// Sample feature-engineered dataset featuring world-class football legends
+// Sample feature-engineered dataset featuring real commercial banking branch terminals in Bangladesh
 const SAMPLE_FEATURE_ENGINEERED_CSV = `ATMID,Location,ATM_Capacity,Estimated_Cash_Remaining,Predicted_Demand,Day_of_Week,Is_Weekend,Is_Payday,Lag_1_Demand,Rolling_Mean_7d,Status
-ABBMES01,Lionel Messi Hub (Camp Nou),1500000,285000,380000,Friday,0,1,340000,360000,Refill Soon
-ABBROM02,Romário Center (Maracanã),1200000,195000,310000,Friday,0,1,290000,295000,Refill Now
-ABBPEL03,Pelé Grand Terminal (Vila Belmiro),1800000,1250000,250000,Friday,0,1,240000,235000,OK
-ABBMAR04,Diego Maradona Station (San Paolo),1000000,165000,280000,Friday,0,1,260000,250000,Refill Now
-ABBCRI05,Cristiano Ronaldo Vault (Bernabéu),2000000,1650000,320000,Friday,0,1,310000,305000,OK
-ABBZID06,Zinedine Zidane Wing (Stade de France),1400000,390000,290000,Friday,0,1,270000,280000,Refill Soon
-ABBRON07,Ronaldinho Gaúcho Express (San Siro North),1100000,180000,260000,Friday,0,1,245000,250000,Refill Now
-ABBCRU08,Johan Cruyff Arena (Amsterdam Center),1300000,750000,210000,Friday,0,1,200000,205000,OK
-ABBBEC09,David Beckham Corridor (Old Trafford),1250000,240000,330000,Friday,0,1,315000,310000,Refill Soon
-ABBHA010,Erling Haaland Tower (Etihad Terminal),1600000,1180000,290000,Friday,0,1,280000,275000,OK
-ABBMOD11,Luka Modrić Branch (Zagreb Center),1150000,210000,260000,Friday,0,1,250000,245000,Refill Soon
-ABBKA012,Kaká Golden Point (San Siro South),1450000,890000,240000,Friday,0,1,230000,225000,OK
-ABBBUF13,Gianluigi Buffon Depot (Turin Stadium),1350000,230000,295000,Friday,0,1,280000,285000,Refill Soon
-ABBMAL14,Paolo Maldini Lounge (Milan Central),1500000,1120000,220000,Friday,0,1,210000,215000,OK
-ABBHEN15,Thierry Henry Hub (Highbury Corner),1200000,190000,300000,Friday,0,1,285000,290000,Refill Now`;
+ABBGUL01,Gulshan Avenue Circle-2 Branch (Terminal 01),1500000,285000,380000,Friday,0,1,340000,360000,Refill Soon
+ABBMOT02,Motijheel C/A Principal Branch (Terminal 02),1200000,195000,310000,Friday,0,1,290000,295000,Refill Now
+ABBDHA01,Dhanmondi Satmasjid Road Branch (Terminal 01),1800000,1250000,250000,Friday,0,1,240000,235000,OK
+ABBAGR01,Agrabad Commercial Area Branch (Terminal 01),1000000,165000,280000,Friday,0,1,260000,250000,Refill Now
+ABBBAN01,Banani Road 11 Executive Branch (Terminal 01),2000000,1650000,320000,Friday,0,1,310000,305000,OK
+ABBUTR01,Uttara Sector 3 Commercial Hub (Terminal 01),1400000,390000,290000,Friday,0,1,270000,280000,Refill Soon
+ABBMIR01,Mirpur-10 Commercial Circle (Terminal 01),1100000,180000,260000,Friday,0,1,245000,250000,Refill Now
+ABBSYL01,Zindabazar Shopping Complex (Terminal 01),1300000,750000,210000,Friday,0,1,200000,205000,OK
+ABBCOX01,Hotel Seagull Point Branch (Terminal 01),1250000,240000,330000,Friday,0,1,315000,310000,Refill Soon
+ABBKHU01,KDA Avenue Commercial Zone (Terminal 01),1600000,1180000,290000,Friday,0,1,280000,275000,OK
+ABBRAJ01,Shaheb Bazar Zero Point (Terminal 01),1150000,210000,260000,Friday,0,1,250000,245000,Refill Soon
+ABBBAR01,Band Road River Port Branch (Terminal 01),1450000,890000,240000,Friday,0,1,230000,225000,OK
+ABBCOM01,Kandirpar Badurtala Branch (Terminal 01),1350000,230000,295000,Friday,0,1,280000,285000,Refill Soon
+ABBMYM01,Station Road Town Hall (Terminal 01),1500000,1120000,220000,Friday,0,1,210000,215000,OK
+ABBBOG01,Satmatha Rangpur Road (Terminal 01),1200000,190000,300000,Friday,0,1,285000,290000,Refill Now`;
 
 export const CsvImportModal: React.FC<CsvImportModalProps> = ({
   isOpen,
@@ -69,16 +69,32 @@ export const CsvImportModal: React.FC<CsvImportModalProps> = ({
 
   if (!isOpen) return null;
 
-  // Robust CSV parser supporting quotes, commas inside quotes, CRLF/LF
+  // Robust CSV parser supporting quotes, commas/semicolons/tabs, CRLF/LF, and UTF-8 BOM
   const parseCSVLines = (text: string): string[][] => {
+    // Strip UTF-8 BOM if present
+    const cleanText = text.replace(/^\uFEFF/, '').trim();
+    if (!cleanText) return [];
+
+    // Auto-detect delimiter from first line (default to comma, support semicolon and tab)
+    const firstLine = cleanText.split(/[\r\n]+/)[0] || '';
+    let delimiter = ',';
+    const commaCount = (firstLine.match(/,/g) || []).length;
+    const semicolonCount = (firstLine.match(/;/g) || []).length;
+    const tabCount = (firstLine.match(/\t/g) || []).length;
+    if (semicolonCount > commaCount && semicolonCount > tabCount) {
+      delimiter = ';';
+    } else if (tabCount > commaCount && tabCount > semicolonCount) {
+      delimiter = '\t';
+    }
+
     const lines: string[][] = [];
     let currentRow: string[] = [];
     let currentCell = '';
     let inQuotes = false;
 
-    for (let i = 0; i < text.length; i++) {
-      const char = text[i];
-      const nextChar = text[i + 1];
+    for (let i = 0; i < cleanText.length; i++) {
+      const char = cleanText[i];
+      const nextChar = cleanText[i + 1];
 
       if (char === '"') {
         if (inQuotes && nextChar === '"') {
@@ -87,7 +103,7 @@ export const CsvImportModal: React.FC<CsvImportModalProps> = ({
         } else {
           inQuotes = !inQuotes;
         }
-      } else if (char === ',' && !inQuotes) {
+      } else if (char === delimiter && !inQuotes) {
         currentRow.push(currentCell.trim());
         currentCell = '';
       } else if ((char === '\r' || char === '\n') && !inQuotes) {
@@ -150,20 +166,20 @@ export const CsvImportModal: React.FC<CsvImportModalProps> = ({
       // Helper to match column variations
       const findColIdx = (keywords: string[]): number => {
         return headers.findIndex((h) => {
-          const lower = h.toLowerCase().replace(/[\s_-]+/g, '');
-          return keywords.some((k) => lower.includes(k.replace(/[\s_-]+/g, '')));
+          const lower = h.toLowerCase().replace(/[\s_.-]+/g, '');
+          return keywords.some((k) => lower.includes(k.replace(/[\s_.-]+/g, '')));
         });
       };
 
-      const idIdx = findColIdx(['atmid', 'terminalid', 'machineid', 'id', 'terminal', 'code']);
-      const locIdx = findColIdx(['location', 'name', 'atmname', 'branch', 'hub', 'station', 'site']);
-      const capIdx = findColIdx(['capacity', 'atmcapacity', 'maxcapacity', 'vaultcapacity', 'cap']);
-      const remIdx = findColIdx(['estimatedcashremaining', 'cashremaining', 'remainingcash', 'balance', 'cashleft', 'currentcash']);
-      const demandIdx = findColIdx(['predicteddemand', 'predictedcashdemand', 'demandforecast', 'dailydemand', 'demand', 'forecast', 'preddemand']);
-      const pctIdx = findColIdx(['cashremainingpct', 'remainingpct', 'pctremaining', 'fillpct', 'pct']);
-      const daysIdx = findColIdx(['daysofcash', 'daysleft', 'runway', 'daysremaining', 'days']);
-      const refillIdx = findColIdx(['refillsuggestionamount', 'refillamount', 'refillsuggestion', 'refill', 'replenishment']);
-      const statusIdx = findColIdx(['status', 'operationalstatus', 'healthstatus']);
+      const idIdx = findColIdx(['atmid', 'terminalid', 'machineid', 'id', 'terminal', 'code', 'atm', 'atm_id', 'terminal_id']);
+      const locIdx = findColIdx(['location', 'branchname', 'branch', 'atmname', 'name', 'hub', 'station', 'site', 'address', 'area', 'city']);
+      const capIdx = findColIdx(['capacity', 'atmcapacity', 'maxcapacity', 'vaultcapacity', 'cap', 'max_cash', 'atm_capacity']);
+      const remIdx = findColIdx(['estimatedcashremaining', 'cashremaining', 'remainingcash', 'balance', 'cashleft', 'currentcash', 'cash', 'estimated_cash_remaining', 'cash_remaining']);
+      const demandIdx = findColIdx(['predicteddemand', 'predictedcashdemand', 'demandforecast', 'dailydemand', 'demand', 'forecast', 'preddemand', 'predicted_demand', 'daily_demand', 'prediction']);
+      const pctIdx = findColIdx(['cashremainingpct', 'remainingpct', 'pctremaining', 'fillpct', 'pct', 'percent', 'percentage', 'cash_remaining_pct']);
+      const daysIdx = findColIdx(['daysofcash', 'daysleft', 'runway', 'daysremaining', 'days', 'days_of_cash']);
+      const refillIdx = findColIdx(['refillsuggestionamount', 'refillamount', 'refillsuggestion', 'refill', 'replenishment', 'refill_suggestion_amount', 'refill_suggestion', 'replenish']);
+      const statusIdx = findColIdx(['status', 'operationalstatus', 'healthstatus', 'state', 'condition']);
 
       // Identify feature-engineered columns
       const recognizedIdxs = new Set([idIdx, locIdx, capIdx, remIdx, demandIdx, pctIdx, daysIdx, refillIdx, statusIdx]);
@@ -185,10 +201,10 @@ export const CsvImportModal: React.FC<CsvImportModalProps> = ({
 
       for (let i = 1; i < rows.length; i++) {
         const row = rows[i];
-        if (row.length === 0 || (row.length === 1 && row[0] === '')) continue;
+        if (row.length === 0 || (row.length === 1 && row[0] === '') || row.every((c) => !c || c.trim() === '')) continue;
 
-        const atmId = (idIdx >= 0 ? row[idIdx] : row[0]) || `ATM-EXP-${String(i).padStart(3, '0')}`;
-        const loc = (locIdx >= 0 && row[locIdx]) ? row[locIdx] : `ATM Hub #${i}`;
+        const atmId = (idIdx >= 0 && row[idIdx]?.trim()) ? row[idIdx].trim() : (row[0]?.trim() || `ATM-${String(i).padStart(3, '0')}`);
+        const loc = (locIdx >= 0 && row[locIdx]?.trim()) ? row[locIdx].trim() : `Terminal ${atmId} - Commercial Banking Point`;
 
         // Capacities and Remaining
         const cap = capIdx >= 0 ? parseFloat(row[capIdx].replace(/[^0-9.-]/g, '')) || 1200000 : 1200000;
@@ -276,8 +292,15 @@ export const CsvImportModal: React.FC<CsvImportModalProps> = ({
         return;
       }
 
-      setParsedCount(parsedRecords.length);
-      setPreviewRows(parsedRecords.slice(0, 6));
+      // Deduplicate parsed records by ATMID to ensure uniqueness across the fleet
+      const uniqueRecordsMap = new Map<string, ATMRecord>();
+      for (const rec of parsedRecords) {
+        uniqueRecordsMap.set(rec.ATMID, rec);
+      }
+      const uniqueParsedRecords = Array.from(uniqueRecordsMap.values());
+
+      setParsedCount(uniqueParsedRecords.length);
+      setPreviewRows(uniqueParsedRecords.slice(0, 6));
       setSummaryStats({
         totalCap,
         totalCash,
@@ -321,29 +344,29 @@ export const CsvImportModal: React.FC<CsvImportModalProps> = ({
       const headers = rows[0].map((h) => h.replace(/^["']|["']$/g, '').trim());
       const findColIdx = (keywords: string[]): number => {
         return headers.findIndex((h) => {
-          const lower = h.toLowerCase().replace(/[\s_-]+/g, '');
-          return keywords.some((k) => lower.includes(k.replace(/[\s_-]+/g, '')));
+          const lower = h.toLowerCase().replace(/[\s_.-]+/g, '');
+          return keywords.some((k) => lower.includes(k.replace(/[\s_.-]+/g, '')));
         });
       };
 
-      const idIdx = findColIdx(['atmid', 'terminalid', 'machineid', 'id', 'terminal', 'code']);
-      const locIdx = findColIdx(['location', 'name', 'atmname', 'branch', 'hub', 'station', 'site']);
-      const capIdx = findColIdx(['capacity', 'atmcapacity', 'maxcapacity', 'vaultcapacity', 'cap']);
-      const remIdx = findColIdx(['estimatedcashremaining', 'cashremaining', 'remainingcash', 'balance', 'cashleft', 'currentcash']);
-      const demandIdx = findColIdx(['predicteddemand', 'predictedcashdemand', 'demandforecast', 'dailydemand', 'demand', 'forecast', 'preddemand']);
-      const pctIdx = findColIdx(['cashremainingpct', 'remainingpct', 'pctremaining', 'fillpct', 'pct']);
-      const daysIdx = findColIdx(['daysofcash', 'daysleft', 'runway', 'daysremaining', 'days']);
-      const refillIdx = findColIdx(['refillsuggestionamount', 'refillamount', 'refillsuggestion', 'refill', 'replenishment']);
-      const statusIdx = findColIdx(['status', 'operationalstatus', 'healthstatus']);
+      const idIdx = findColIdx(['atmid', 'terminalid', 'machineid', 'id', 'terminal', 'code', 'atm', 'atm_id', 'terminal_id']);
+      const locIdx = findColIdx(['location', 'branchname', 'branch', 'atmname', 'name', 'hub', 'station', 'site', 'address', 'area', 'city']);
+      const capIdx = findColIdx(['capacity', 'atmcapacity', 'maxcapacity', 'vaultcapacity', 'cap', 'max_cash', 'atm_capacity']);
+      const remIdx = findColIdx(['estimatedcashremaining', 'cashremaining', 'remainingcash', 'balance', 'cashleft', 'currentcash', 'cash', 'estimated_cash_remaining', 'cash_remaining']);
+      const demandIdx = findColIdx(['predicteddemand', 'predictedcashdemand', 'demandforecast', 'dailydemand', 'demand', 'forecast', 'preddemand', 'predicted_demand', 'daily_demand', 'prediction']);
+      const pctIdx = findColIdx(['cashremainingpct', 'remainingpct', 'pctremaining', 'fillpct', 'pct', 'percent', 'percentage', 'cash_remaining_pct']);
+      const daysIdx = findColIdx(['daysofcash', 'daysleft', 'runway', 'daysremaining', 'days', 'days_of_cash']);
+      const refillIdx = findColIdx(['refillsuggestionamount', 'refillamount', 'refillsuggestion', 'refill', 'replenishment', 'refill_suggestion_amount', 'refill_suggestion', 'replenish']);
+      const statusIdx = findColIdx(['status', 'operationalstatus', 'healthstatus', 'state', 'condition']);
 
       const fullList: ATMRecord[] = [];
 
       for (let i = 1; i < rows.length; i++) {
         const row = rows[i];
-        if (row.length === 0 || (row.length === 1 && row[0] === '')) continue;
+        if (row.length === 0 || (row.length === 1 && row[0] === '') || row.every((c) => !c || c.trim() === '')) continue;
 
-        const atmId = (idIdx >= 0 ? row[idIdx] : row[0]) || `ATM-EXP-${String(i).padStart(3, '0')}`;
-        const loc = (locIdx >= 0 && row[locIdx]) ? row[locIdx] : `ATM Hub #${i}`;
+        const atmId = (idIdx >= 0 && row[idIdx]?.trim()) ? row[idIdx].trim() : (row[0]?.trim() || `ATM-${String(i).padStart(3, '0')}`);
+        const loc = (locIdx >= 0 && row[locIdx]?.trim()) ? row[locIdx].trim() : `Terminal ${atmId} - Commercial Banking Point`;
         const cap = capIdx >= 0 ? parseFloat(row[capIdx].replace(/[^0-9.-]/g, '')) || 1200000 : 1200000;
         const rem = remIdx >= 0 ? parseFloat(row[remIdx].replace(/[^0-9.-]/g, '')) || 350000 : 350000;
 
@@ -402,7 +425,14 @@ export const CsvImportModal: React.FC<CsvImportModalProps> = ({
         });
       }
 
-      onImportData(fullList, datasetName);
+      // Ensure fullList is strictly unique by ATMID before importing
+      const uniqueFullListMap = new Map<string, ATMRecord>();
+      for (const rec of fullList) {
+        uniqueFullListMap.set(rec.ATMID, rec);
+      }
+      const uniqueFullList = Array.from(uniqueFullListMap.values());
+
+      onImportData(uniqueFullList, datasetName);
       onClose();
     } catch (err: any) {
       setParseError(err.message || 'Failed to apply data to system.');
@@ -458,7 +488,7 @@ export const CsvImportModal: React.FC<CsvImportModalProps> = ({
             <span>
               Active Database:{' '}
               <strong className="text-slate-900">
-                {isCustomDataActive ? 'Custom Feature-Engineered Fleet' : 'Default Production Fleet (256 Football Stars)'}
+                {isCustomDataActive ? 'Custom Feature-Engineered Fleet' : 'Default Production Fleet (256 Machines)'}
               </strong>
             </span>
             <span className="px-2 py-0.5 rounded-full bg-slate-200/80 font-mono text-[11px] font-bold text-slate-700">
@@ -487,17 +517,15 @@ export const CsvImportModal: React.FC<CsvImportModalProps> = ({
               <span>Template</span>
             </button>
 
-            {isCustomDataActive && (
-              <button
-                type="button"
-                onClick={handleReset}
-                className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-semibold text-rose-700 bg-rose-50 hover:bg-rose-100 border border-rose-200 transition-colors cursor-pointer"
-                title="Reset back to default dataset"
-              >
-                <RotateCcw className="w-3.5 h-3.5 text-rose-600" />
-                <span>Reset Default</span>
-              </button>
-            )}
+            <button
+              type="button"
+              onClick={handleReset}
+              className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-xs font-bold text-rose-700 bg-rose-50 hover:bg-rose-100 border border-rose-300 transition-colors cursor-pointer"
+              title="Reset back to default 256 dataset"
+            >
+              <RotateCcw className="w-3.5 h-3.5 text-rose-600" />
+              <span>Reset to Default</span>
+            </button>
           </div>
         </div>
 
@@ -543,7 +571,7 @@ export const CsvImportModal: React.FC<CsvImportModalProps> = ({
                 setCsvText(e.target.value);
                 processCsv(e.target.value);
               }}
-              placeholder="ATMID,Location,ATM_Capacity,Estimated_Cash_Remaining,Predicted_Demand,Lag_1,Rolling_7d&#10;ABBMES01,Lionel Messi Hub (Camp Nou),1500000,285000,380000,340000,360000&#10;ABBROM02,Romário Center (Maracanã),1200000,195000,310000,290000,295000"
+              placeholder="ATMID,Location,ATM_Capacity,Estimated_Cash_Remaining,Predicted_Demand,Lag_1,Rolling_7d&#10;ABBGUL01,Gulshan Avenue Circle-2 Branch (Terminal 01),1500000,285000,380000,340000,360000&#10;ABBMOT02,Motijheel C/A Principal Branch (Terminal 02),1200000,195000,310000,290000,295000"
               className="w-full p-3 font-mono text-[11px] border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600 bg-slate-50 text-slate-800"
             />
           </div>
@@ -640,8 +668,8 @@ export const CsvImportModal: React.FC<CsvImportModalProps> = ({
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-slate-100">
-                    {previewRows.map((r) => (
-                      <tr key={r.ATMID} className="hover:bg-slate-50/60">
+                    {previewRows.map((r, idx) => (
+                      <tr key={`${r.ATMID}-${idx}`} className="hover:bg-slate-50/60">
                         <td className="p-2 font-bold text-slate-900">{r.ATMID}</td>
                         <td className="p-2 font-sans truncate max-w-[170px] text-slate-700 font-medium">
                           {r.Location}
@@ -689,25 +717,24 @@ export const CsvImportModal: React.FC<CsvImportModalProps> = ({
               Cancel
             </button>
 
-            {isCustomDataActive && (
-              <button
-                type="button"
-                onClick={handleReset}
-                className="px-3.5 py-2 rounded-lg bg-rose-50 border border-rose-300 text-rose-700 text-xs font-semibold hover:bg-rose-100 cursor-pointer flex items-center gap-1.5 transition-colors"
-              >
-                <RotateCcw className="w-3.5 h-3.5" />
-                <span>Reset to Default (256 Fleet)</span>
-              </button>
-            )}
+            <button
+              type="button"
+              onClick={handleReset}
+              className="px-3.5 py-2 rounded-lg bg-rose-50 border border-rose-300 text-rose-700 text-xs font-bold hover:bg-rose-100 cursor-pointer flex items-center gap-1.5 transition-colors"
+              title="Reset fleet back to default 256 dataset"
+            >
+              <RotateCcw className="w-3.5 h-3.5" />
+              <span>Reset to Default (256 Fleet)</span>
+            </button>
           </div>
 
           <button
             type="button"
             disabled={!parsedCount}
             onClick={handleApply}
-            className="px-5 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 disabled:opacity-40 disabled:cursor-not-allowed text-white text-xs font-semibold flex items-center gap-1.5 cursor-pointer shadow-xs transition-colors"
+            className="px-5 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 disabled:opacity-40 disabled:cursor-not-allowed text-white text-xs font-bold flex items-center gap-1.5 cursor-pointer shadow-xs transition-colors"
           >
-            <span>Update Entire System Fleet ({parsedCount || 0} ATMs)</span>
+            <span>Apply & Exclusively Run On This CSV ({parsedCount || 0} ATMs)</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </button>
         </div>

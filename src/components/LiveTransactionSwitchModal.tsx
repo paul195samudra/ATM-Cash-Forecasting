@@ -115,7 +115,7 @@ export const LiveTransactionSwitchModal: React.FC<LiveTransactionSwitchModalProp
                 </span>
               </div>
               <p className="text-xs text-slate-400">
-                Simulating continuous withdrawal transactions across 256 network terminals
+                Simulating continuous withdrawal transactions across {atms.length} network terminals
               </p>
             </div>
           </div>

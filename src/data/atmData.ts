@@ -13,7 +13,7 @@ export interface ATMRecord {
 export const atmData: ATMRecord[] = [
   {
     "ATMID": "ABBGAR02",
-    "Location": "Lionel Messi Hub (Camp Nou)",
+    "Location": "Garib-e-Newaz Avenue Branch, Uttara, Dhaka (Terminal 02)",
     "ATM_Capacity": 939750.0,
     "Estimated_Cash_Remaining": 188128.0,
     "Cash_Remaining_Pct": 20.0,
@@ -24,7 +24,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBSHY06",
-    "Location": "Romário Center (Maracanã)",
+    "Location": "Shyamoli Ring Road Branch, Dhaka (Terminal 06)",
     "ATM_Capacity": 1086750.0,
     "Estimated_Cash_Remaining": 236355.0,
     "Cash_Remaining_Pct": 21.7,
@@ -35,7 +35,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBSAI01",
-    "Location": "Pelé Grand Terminal (Vila Belmiro)",
+    "Location": "Science Laboratory New Market Branch, Dhaka (Terminal 01)",
     "ATM_Capacity": 1506750.0,
     "Estimated_Cash_Remaining": 315282.0,
     "Cash_Remaining_Pct": 20.9,
@@ -46,7 +46,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBPRA05",
-    "Location": "Diego Maradona Station (San Paolo)",
+    "Location": "Pragati Sarani Kuril Branch, Dhaka (Terminal 05)",
     "ATM_Capacity": 733500.0,
     "Estimated_Cash_Remaining": 175022.0,
     "Cash_Remaining_Pct": 23.9,
@@ -57,7 +57,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBPRI06",
-    "Location": "Cristiano Ronaldo Vault (Bernabéu)",
+    "Location": "Panthapath Green Road Branch, Dhaka (Terminal 06)",
     "ATM_Capacity": 797250.0,
     "Estimated_Cash_Remaining": 197982.0,
     "Cash_Remaining_Pct": 24.8,
@@ -68,7 +68,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBWAR02",
-    "Location": "Zinedine Zidane Wing (Stade de France)",
+    "Location": "Wari Rankin Street Branch, Dhaka (Terminal 02)",
     "ATM_Capacity": 792750.0,
     "Estimated_Cash_Remaining": 202427.0,
     "Cash_Remaining_Pct": 25.5,
@@ -79,7 +79,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBPRL01",
-    "Location": "Ronaldinho Gaúcho Express (San Siro North)",
+    "Location": "Purana Paltan Lane Branch, Dhaka (Terminal 01)",
     "ATM_Capacity": 1158750.0,
     "Estimated_Cash_Remaining": 239652.0,
     "Cash_Remaining_Pct": 20.7,
@@ -90,7 +90,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBNAY01",
-    "Location": "Johan Cruyff Arena (Amsterdam Center)",
+    "Location": "Naya Paltan VIP Road Branch, Dhaka (Terminal 01)",
     "ATM_Capacity": 1049250.0,
     "Estimated_Cash_Remaining": 217834.0,
     "Cash_Remaining_Pct": 20.8,
@@ -101,7 +101,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBCOX03",
-    "Location": "David Beckham Corridor (Old Trafford)",
+    "Location": "Hotel Seagull Point Branch, Cox's Bazar (Terminal 03)",
     "ATM_Capacity": 230250.0,
     "Estimated_Cash_Remaining": 55030.0,
     "Cash_Remaining_Pct": 23.9,
@@ -112,7 +112,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBATI01",
-    "Location": "Kylian Mbappé Point (Parc des Princes)",
+    "Location": "Ati Bazar Keraniganj Branch, Dhaka (Terminal 01)",
     "ATM_Capacity": 497250.0,
     "Estimated_Cash_Remaining": 128998.0,
     "Cash_Remaining_Pct": 25.9,
@@ -123,7 +123,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBJTR01",
-    "Location": "Neymar Jr Gateway (Santos Hub)",
+    "Location": "Jatrabari Intersection Branch, Dhaka (Terminal 01)",
     "ATM_Capacity": 1023750.0,
     "Estimated_Cash_Remaining": 275349.0,
     "Cash_Remaining_Pct": 26.9,
@@ -134,7 +134,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBPAB01",
-    "Location": "Erling Haaland Tower (Etihad Terminal)",
+    "Location": "Abdul Hamid Road Branch, Pabna (Terminal 01)",
     "ATM_Capacity": 1974750.0,
     "Estimated_Cash_Remaining": 421784.0,
     "Cash_Remaining_Pct": 21.4,
@@ -145,7 +145,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBLOH02",
-    "Location": "Luka Modrić Branch (Zagreb Center)",
+    "Location": "Lohagara Station Road Branch, Chittagong (Terminal 02)",
     "ATM_Capacity": 1544250.0,
     "Estimated_Cash_Remaining": 343332.0,
     "Cash_Remaining_Pct": 22.2,
@@ -156,7 +156,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBSAH01",
-    "Location": "Andrés Iniesta Station (Fuentealbilla)",
+    "Location": "Shahbagh Medical Corridor Branch, Dhaka (Terminal 01)",
     "ATM_Capacity": 1032750.0,
     "Estimated_Cash_Remaining": 230592.0,
     "Cash_Remaining_Pct": 22.3,
@@ -167,7 +167,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBRON05",
-    "Location": "Xavi Hernández Terminal (Camp Nou Metro)",
+    "Location": "Rampura DIT Road Branch, Dhaka (Terminal 05)",
     "ATM_Capacity": 756750.0,
     "Estimated_Cash_Remaining": 183451.0,
     "Cash_Remaining_Pct": 24.2,
@@ -178,7 +178,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBKUS01",
-    "Location": "Thierry Henry Hub (Highbury Corner)",
+    "Location": "N.S. Road Commercial Zone Branch, Kushtia (Terminal 01)",
     "ATM_Capacity": 750000.0,
     "Estimated_Cash_Remaining": 215061.0,
     "Cash_Remaining_Pct": 28.7,
@@ -189,7 +189,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBBRD06",
-    "Location": "Kaká Golden Point (San Siro South)",
+    "Location": "Baridhara Diplomatic Enclave Branch, Dhaka (Terminal 06)",
     "ATM_Capacity": 1886250.0,
     "Estimated_Cash_Remaining": 415742.0,
     "Cash_Remaining_Pct": 22.0,
@@ -200,7 +200,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBJUB01",
-    "Location": "Gianluigi Buffon Depot (Turin Stadium)",
+    "Location": "Jubilee Road Commercial Hub Branch, Chittagong (Terminal 01)",
     "ATM_Capacity": 1875000.0,
     "Estimated_Cash_Remaining": 423028.0,
     "Cash_Remaining_Pct": 22.6,
@@ -211,7 +211,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBKUL01",
-    "Location": "Paolo Maldini Lounge (Milan Central)",
+    "Location": "Kulaura Station Road Branch, Moulvibazar (Terminal 01)",
     "ATM_Capacity": 1985250.0,
     "Estimated_Cash_Remaining": 477742.0,
     "Cash_Remaining_Pct": 24.1,
@@ -222,7 +222,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBUTR04",
-    "Location": "Roberto Baggio Wing (Brescia Branch)",
+    "Location": "Uttara Sector 3 Commercial Hub Branch, Dhaka (Terminal 04)",
     "ATM_Capacity": 1686750.0,
     "Estimated_Cash_Remaining": 415397.0,
     "Cash_Remaining_Pct": 24.6,
@@ -233,7 +233,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBBOK01",
-    "Location": "Ronaldo Nazário Fenômeno Hub",
+    "Location": "Bokshibazar Crossing Branch, Dhaka (Terminal 01)",
     "ATM_Capacity": 510000.0,
     "Estimated_Cash_Remaining": 128185.0,
     "Cash_Remaining_Pct": 25.1,
@@ -244,7 +244,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBCOM01",
-    "Location": "Luís Figo Terminal (Lisbon Center)",
+    "Location": "Kandirpar Badurtala Branch, Comilla (Terminal 01)",
     "ATM_Capacity": 2250000.0,
     "Estimated_Cash_Remaining": 570855.0,
     "Cash_Remaining_Pct": 25.4,
@@ -255,7 +255,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBKHI01",
-    "Location": "Wayne Rooney Branch (Old Trafford West)",
+    "Location": "Khilgaon Taltola Market Branch, Dhaka (Terminal 01)",
     "ATM_Capacity": 1272000.0,
     "Estimated_Cash_Remaining": 332759.0,
     "Cash_Remaining_Pct": 26.2,
@@ -266,7 +266,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBBAR04",
-    "Location": "Steven Gerrard Station (Anfield Road)",
+    "Location": "Band Road River Port Branch, Barisal (Terminal 04)",
     "ATM_Capacity": 539250.0,
     "Estimated_Cash_Remaining": 166146.0,
     "Cash_Remaining_Pct": 30.8,
@@ -277,7 +277,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBKUL02",
-    "Location": "Frank Lampard Hub (Stamford Bridge)",
+    "Location": "Kulaura Station Road Branch, Moulvibazar (Terminal 02)",
     "ATM_Capacity": 558000.0,
     "Estimated_Cash_Remaining": 178776.0,
     "Cash_Remaining_Pct": 32.0,
@@ -288,7 +288,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBDOH01",
-    "Location": "Dennis Bergkamp Terminal (Highbury North)",
+    "Location": "DOHS Mirpur Shopping Complex Branch, Dhaka (Terminal 01)",
     "ATM_Capacity": 1455000.0,
     "Estimated_Cash_Remaining": 311338.0,
     "Cash_Remaining_Pct": 21.4,
@@ -299,7 +299,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBTEK01",
-    "Location": "Andrea Pirlo Lounge (San Siro Maestro)",
+    "Location": "Teknaf Land Port Gateway Branch, Cox's Bazar (Terminal 01)",
     "ATM_Capacity": 2165250.0,
     "Estimated_Cash_Remaining": 483639.0,
     "Cash_Remaining_Pct": 22.3,
@@ -310,7 +310,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBELP01",
-    "Location": "Francesco Totti Station (Stadio Olimpico)",
+    "Location": "Elephant Road Bata Signal Branch, Dhaka (Terminal 01)",
     "ATM_Capacity": 1935750.0,
     "Estimated_Cash_Remaining": 484596.0,
     "Cash_Remaining_Pct": 25.0,
@@ -321,7 +321,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBRAJ01",
-    "Location": "Alessandro Del Piero Hub (Turin Delle Alpi)",
+    "Location": "Shaheb Bazar Zero Point Branch, Rajshahi (Terminal 01)",
     "ATM_Capacity": 2250000.0,
     "Estimated_Cash_Remaining": 634215.0,
     "Cash_Remaining_Pct": 28.2,
@@ -332,7 +332,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBRON07",
-    "Location": "Rivaldo Prestige Vault (Camp Nou East)",
+    "Location": "Rampura DIT Road Branch, Dhaka (Terminal 07)",
     "ATM_Capacity": 1143000.0,
     "Estimated_Cash_Remaining": 380111.0,
     "Cash_Remaining_Pct": 33.3,
@@ -343,7 +343,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBKMR01",
-    "Location": "George Best Lounge (Windsor Park)",
+    "Location": "Kamarpara Bus Stand Branch, Uttara, Dhaka (Terminal 01)",
     "ATM_Capacity": 2250000.0,
     "Estimated_Cash_Remaining": 500488.0,
     "Cash_Remaining_Pct": 22.2,
@@ -354,7 +354,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBBRD03",
-    "Location": "Michel Platini Station (Parc des Princes)",
+    "Location": "Baridhara Diplomatic Enclave Branch, Dhaka (Terminal 03)",
     "ATM_Capacity": 999750.0,
     "Estimated_Cash_Remaining": 308858.0,
     "Cash_Remaining_Pct": 30.9,
@@ -365,7 +365,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBGUL05",
-    "Location": "Franz Beckenbauer Arena (Olympiastadion)",
+    "Location": "Gulshan Avenue Circle-2 Branch, Dhaka (Terminal 05)",
     "ATM_Capacity": 913500.0,
     "Estimated_Cash_Remaining": 289255.0,
     "Cash_Remaining_Pct": 31.7,
@@ -376,7 +376,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBDEW01",
-    "Location": "Gerd Müller Terminal (Munich Central)",
+    "Location": "Dewanhat Commercial Area Branch, Chittagong (Terminal 01)",
     "ATM_Capacity": 1173000.0,
     "Estimated_Cash_Remaining": 425358.0,
     "Cash_Remaining_Pct": 36.3,
@@ -387,7 +387,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBTAN01",
-    "Location": "Bobby Charlton Hub (Old Trafford South)",
+    "Location": "Victoria Road Commercial Area Branch, Tangail (Terminal 01)",
     "ATM_Capacity": 1845000.0,
     "Estimated_Cash_Remaining": 676963.0,
     "Cash_Remaining_Pct": 36.7,
@@ -398,7 +398,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBMIR07",
-    "Location": "Marco van Basten Wing (San Siro West)",
+    "Location": "Mirpur-10 Commercial Circle Branch, Dhaka (Terminal 07)",
     "ATM_Capacity": 962250.0,
     "Estimated_Cash_Remaining": 353034.0,
     "Cash_Remaining_Pct": 36.7,
@@ -409,7 +409,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBGOL01",
-    "Location": "Ruud Gullit Station (Milanello Hub)",
+    "Location": "Golapganj Town Center Branch, Sylhet (Terminal 01)",
     "ATM_Capacity": 982500.0,
     "Estimated_Cash_Remaining": 364664.0,
     "Cash_Remaining_Pct": 37.1,
@@ -420,7 +420,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBPRA01",
-    "Location": "Frank Rijkaard Terminal (Amsterdam South)",
+    "Location": "Pragati Sarani Kuril Branch, Dhaka (Terminal 01)",
     "ATM_Capacity": 1966500.0,
     "Estimated_Cash_Remaining": 597031.0,
     "Cash_Remaining_Pct": 30.4,
@@ -431,7 +431,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBLUC01",
-    "Location": "Clarence Seedorf Hub (San Siro VIP)",
+    "Location": "Laldighi East Commercial Hub Branch, Chittagong (Terminal 01)",
     "ATM_Capacity": 1551000.0,
     "Estimated_Cash_Remaining": 472685.0,
     "Cash_Remaining_Pct": 30.5,
@@ -442,7 +442,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBSHY08",
-    "Location": "Eric Cantona King Lounge (Old Trafford)",
+    "Location": "Shyamoli Ring Road Branch, Dhaka (Terminal 08)",
     "ATM_Capacity": 2061000.0,
     "Estimated_Cash_Remaining": 636538.0,
     "Cash_Remaining_Pct": 30.9,
@@ -453,7 +453,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBMAD01",
-    "Location": "Paul Scholes Station (Old Trafford Mid)",
+    "Location": "Madaripur Sadar Main Road Branch (Terminal 01)",
     "ATM_Capacity": 1129500.0,
     "Estimated_Cash_Remaining": 354885.0,
     "Cash_Remaining_Pct": 31.4,
@@ -464,7 +464,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBBNN01",
-    "Location": "Ryan Giggs Corridor (Carrington Hub)",
+    "Location": "Banani DOHS Lake Road Branch, Dhaka (Terminal 01)",
     "ATM_Capacity": 1143750.0,
     "Estimated_Cash_Remaining": 418040.0,
     "Cash_Remaining_Pct": 36.5,
@@ -475,7 +475,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBMOM02",
-    "Location": "Roy Keane Terminal (Old Trafford North)",
+    "Location": "Mohammadpur Town Hall Market Branch, Dhaka (Terminal 02)",
     "ATM_Capacity": 1402500.0,
     "Estimated_Cash_Remaining": 529279.0,
     "Cash_Remaining_Pct": 37.7,
@@ -486,7 +486,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBMON02",
-    "Location": "Patrick Vieira Station (Highbury Central)",
+    "Location": "Mongla Port Commercial Area Branch, Bagerhat (Terminal 02)",
     "ATM_Capacity": 959250.0,
     "Estimated_Cash_Remaining": 366312.0,
     "Cash_Remaining_Pct": 38.2,
@@ -497,7 +497,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBDHA01",
-    "Location": "Robert Pires Wing (Arsenal Emirates)",
+    "Location": "Dhanmondi Satmasjid Road Branch, Dhaka (Terminal 01)",
     "ATM_Capacity": 1810500.0,
     "Estimated_Cash_Remaining": 706749.0,
     "Cash_Remaining_Pct": 39.0,
@@ -508,7 +508,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBJES03",
-    "Location": "Didier Drogba Tower (Stamford Bridge East)",
+    "Location": "M.K. Road Commercial Hub Branch, Jessore (Terminal 03)",
     "ATM_Capacity": 990000.0,
     "Estimated_Cash_Remaining": 314520.0,
     "Cash_Remaining_Pct": 31.8,
@@ -519,7 +519,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBNAZ02",
-    "Location": "Eden Hazard Hub (Stamford Bridge West)",
+    "Location": "Nazirhat Rail Station Road Branch, Chittagong (Terminal 02)",
     "ATM_Capacity": 1776000.0,
     "Estimated_Cash_Remaining": 580970.0,
     "Cash_Remaining_Pct": 32.7,
@@ -530,7 +530,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBELP04",
-    "Location": "Sergio Agüero Terminal (Etihad 93:20)",
+    "Location": "Elephant Road Bata Signal Branch, Dhaka (Terminal 04)",
     "ATM_Capacity": 915000.0,
     "Estimated_Cash_Remaining": 317137.0,
     "Cash_Remaining_Pct": 34.7,
@@ -541,7 +541,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBBAR07",
-    "Location": "Kevin De Bruyne Master Hub (Etihad)",
+    "Location": "Band Road River Port Branch, Barisal (Terminal 07)",
     "ATM_Capacity": 279750.0,
     "Estimated_Cash_Remaining": 98156.0,
     "Cash_Remaining_Pct": 35.1,
@@ -552,7 +552,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBKHU05",
-    "Location": "Mohamed Salah Express (Anfield Kop)",
+    "Location": "KDA Avenue Commercial Zone Branch, Khulna (Terminal 05)",
     "ATM_Capacity": 696750.0,
     "Estimated_Cash_Remaining": 271436.0,
     "Cash_Remaining_Pct": 39.0,
@@ -563,7 +563,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBMOH03",
-    "Location": "Sadio Mané Hub (Dakar & Anfield)",
+    "Location": "Mohakhali C/A Wireless Gate Branch, Dhaka (Terminal 03)",
     "ATM_Capacity": 2250000.0,
     "Estimated_Cash_Remaining": 884860.0,
     "Cash_Remaining_Pct": 39.3,
@@ -574,7 +574,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBCOM02",
-    "Location": "Virgil van Dijk Station (Anfield Fortress)",
+    "Location": "Kandirpar Badurtala Branch, Comilla (Terminal 02)",
     "ATM_Capacity": 1977000.0,
     "Estimated_Cash_Remaining": 703431.0,
     "Cash_Remaining_Pct": 35.6,
@@ -585,7 +585,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBBOL01",
-    "Location": "Alisson Becker Vault (Anfield Safe)",
+    "Location": "Bolpur Sonargaon Road Branch, Dhaka (Terminal 01)",
     "ATM_Capacity": 1862250.0,
     "Estimated_Cash_Remaining": 742807.0,
     "Cash_Remaining_Pct": 39.9,
@@ -596,7 +596,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBMON01",
-    "Location": "Manuel Neuer Citadel (Allianz Safe)",
+    "Location": "Mongla Port Commercial Area Branch, Bagerhat (Terminal 01)",
     "ATM_Capacity": 1168500.0,
     "Estimated_Cash_Remaining": 432202.0,
     "Cash_Remaining_Pct": 37.0,
@@ -607,7 +607,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBMOT03",
-    "Location": "Robert Lewandowski Hub (Allianz Arena)",
+    "Location": "Motijheel C/A Principal Branch, Dhaka (Terminal 03)",
     "ATM_Capacity": 1498500.0,
     "Estimated_Cash_Remaining": 485424.0,
     "Cash_Remaining_Pct": 32.4,
@@ -618,7 +618,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBSHY02",
-    "Location": "Thomas Müller Lounge (Bavaria Hub)",
+    "Location": "Shyamoli Ring Road Branch, Dhaka (Terminal 02)",
     "ATM_Capacity": 2031000.0,
     "Estimated_Cash_Remaining": 764199.0,
     "Cash_Remaining_Pct": 37.6,
@@ -629,7 +629,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBBOG02",
-    "Location": "Arjen Robben Wing (Allianz Right)",
+    "Location": "Satmatha Rangpur Road Branch, Bogra (Terminal 02)",
     "ATM_Capacity": 1875000.0,
     "Estimated_Cash_Remaining": 711554.0,
     "Cash_Remaining_Pct": 37.9,
@@ -640,7 +640,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBAST01",
-    "Location": "Franck Ribéry Terminal (Allianz Left)",
+    "Location": "Asad Gate Mohammadpur Branch, Dhaka (Terminal 01)",
     "ATM_Capacity": 1746750.0,
     "Estimated_Cash_Remaining": 596809.0,
     "Cash_Remaining_Pct": 34.2,
@@ -651,7 +651,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBTON02",
-    "Location": "Bastian Schweinsteiger Hub (Munich South)",
+    "Location": "Tongi Station Road Industrial Branch, Gazipur (Terminal 02)",
     "ATM_Capacity": 225750.0,
     "Estimated_Cash_Remaining": 87348.0,
     "Cash_Remaining_Pct": 38.7,
@@ -662,7 +662,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBMAD04",
-    "Location": "Philipp Lahm Station (Munich Central)",
+    "Location": "Madaripur Sadar Main Road Branch (Terminal 04)",
     "ATM_Capacity": 892500.0,
     "Estimated_Cash_Remaining": 257705.0,
     "Cash_Remaining_Pct": 28.9,
@@ -673,7 +673,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBCOM05",
-    "Location": "Toni Kroos Gateway (Bernabéu Metronome)",
+    "Location": "Kandirpar Badurtala Branch, Comilla (Terminal 05)",
     "ATM_Capacity": 891750.0,
     "Estimated_Cash_Remaining": 352427.0,
     "Cash_Remaining_Pct": 39.5,
@@ -684,7 +684,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBBRD05",
-    "Location": "Sergio Ramos Tower (Bernabéu 92:48)",
+    "Location": "Baridhara Diplomatic Enclave Branch, Dhaka (Terminal 05)",
     "ATM_Capacity": 2058000.0,
     "Estimated_Cash_Remaining": 630940.0,
     "Cash_Remaining_Pct": 30.7,
@@ -695,7 +695,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBFEN02",
-    "Location": "Iker Casillas Fortress (Bernabéu Saint)",
+    "Location": "Trunk Road SSK Sarak Branch, Feni (Terminal 02)",
     "ATM_Capacity": 566250.0,
     "Estimated_Cash_Remaining": 118921.0,
     "Cash_Remaining_Pct": 21.0,
@@ -706,7 +706,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBGUL04",
-    "Location": "Raúl González Station (Bernabéu Legend)",
+    "Location": "Gulshan Avenue Circle-2 Branch, Dhaka (Terminal 04)",
     "ATM_Capacity": 1874250.0,
     "Estimated_Cash_Remaining": 379120.0,
     "Cash_Remaining_Pct": 20.2,
@@ -717,7 +717,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBMAD05",
-    "Location": "Roberto Carlos Express (Bernabéu Rocket)",
+    "Location": "Madaripur Sadar Main Road Branch (Terminal 05)",
     "ATM_Capacity": 94500.0,
     "Estimated_Cash_Remaining": 41958.0,
     "Cash_Remaining_Pct": 44.4,
@@ -728,7 +728,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBJES01",
-    "Location": "Fernando Hierro Hub (Bernabéu Defense)",
+    "Location": "M.K. Road Commercial Hub Branch, Jessore (Terminal 01)",
     "ATM_Capacity": 2019000.0,
     "Estimated_Cash_Remaining": 858282.0,
     "Cash_Remaining_Pct": 42.5,
@@ -739,7 +739,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBSHY07",
-    "Location": "Marcelo Vieira Wing (Bernabéu Flair)",
+    "Location": "Shyamoli Ring Road Branch, Dhaka (Terminal 07)",
     "ATM_Capacity": 897750.0,
     "Estimated_Cash_Remaining": 500507.0,
     "Cash_Remaining_Pct": 55.8,
@@ -750,7 +750,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBBAN02",
-    "Location": "Karim Benzema Lounge (Bernabéu Ballon)",
+    "Location": "Banani Road 11 Executive Branch, Dhaka (Terminal 02)",
     "ATM_Capacity": 1014750.0,
     "Estimated_Cash_Remaining": 433585.0,
     "Cash_Remaining_Pct": 42.7,
@@ -761,7 +761,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBKAZ01",
-    "Location": "Vinícius Júnior Terminal (Bernabéu Samba)",
+    "Location": "Kazir Dewri Commercial Zone Branch, Chittagong (Terminal 01)",
     "ATM_Capacity": 2221500.0,
     "Estimated_Cash_Remaining": 952817.0,
     "Cash_Remaining_Pct": 42.9,
@@ -772,7 +772,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBBAR03",
-    "Location": "Jude Bellingham Station (Bernabéu Belligol)",
+    "Location": "Band Road River Port Branch, Barisal (Terminal 03)",
     "ATM_Capacity": 858000.0,
     "Estimated_Cash_Remaining": 371683.0,
     "Cash_Remaining_Pct": 43.3,
@@ -783,7 +783,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBMYM02",
-    "Location": "Rodrygo Goes Hub (Bernabéu Clutch)",
+    "Location": "Station Road Town Hall Branch, Mymensingh (Terminal 02)",
     "ATM_Capacity": 1742250.0,
     "Estimated_Cash_Remaining": 756944.0,
     "Cash_Remaining_Pct": 43.4,
@@ -794,7 +794,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBBAN03",
-    "Location": "Carles Puyol Citadel (Camp Nou Captain)",
+    "Location": "Banani Road 11 Executive Branch, Dhaka (Terminal 03)",
     "ATM_Capacity": 812250.0,
     "Estimated_Cash_Remaining": 469153.0,
     "Cash_Remaining_Pct": 57.8,
@@ -805,7 +805,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBSGN01",
-    "Location": "Gerard Piqué Terminal (Camp Nou North)",
+    "Location": "Sirajganj Sadar Bazar Branch (Terminal 01)",
     "ATM_Capacity": 1582500.0,
     "Estimated_Cash_Remaining": 658784.0,
     "Cash_Remaining_Pct": 41.6,
@@ -816,7 +816,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBPRI05",
-    "Location": "Sergio Busquets Hub (Camp Nou Anchor)",
+    "Location": "Panthapath Green Road Branch, Dhaka (Terminal 05)",
     "ATM_Capacity": 626250.0,
     "Estimated_Cash_Remaining": 267766.0,
     "Cash_Remaining_Pct": 42.8,
@@ -827,7 +827,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBPOL01",
-    "Location": "Dani Alves Express (Camp Nou Flank)",
+    "Location": "Palashi BUET Gate Branch, Dhaka (Terminal 01)",
     "ATM_Capacity": 1567500.0,
     "Estimated_Cash_Remaining": 680504.0,
     "Cash_Remaining_Pct": 43.4,
@@ -838,7 +838,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBJOY02",
-    "Location": "Luis Suárez Station (Camp Nou Pistolero)",
+    "Location": "Joydebpur Chowrasta Branch, Gazipur (Terminal 02)",
     "ATM_Capacity": 2250000.0,
     "Estimated_Cash_Remaining": 978487.0,
     "Cash_Remaining_Pct": 43.5,
@@ -849,7 +849,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBTAN03",
-    "Location": "Javier Mascherano Hub (Camp Nou Jefecito)",
+    "Location": "Victoria Road Commercial Area Branch, Tangail (Terminal 03)",
     "ATM_Capacity": 2250000.0,
     "Estimated_Cash_Remaining": 1008649.0,
     "Cash_Remaining_Pct": 44.8,
@@ -860,7 +860,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBMIR04",
-    "Location": "Samuel Eto'o Wing (Camp Nou Lion)",
+    "Location": "Mirpur-10 Commercial Circle Branch, Dhaka (Terminal 04)",
     "ATM_Capacity": 887250.0,
     "Estimated_Cash_Remaining": 535573.0,
     "Cash_Remaining_Pct": 60.4,
@@ -871,7 +871,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBSRE01",
-    "Location": "Deco de Souza Terminal (Camp Nou Magician)",
+    "Location": "Sreemangal Tea Resort Road Branch, Moulvibazar (Terminal 01)",
     "ATM_Capacity": 963000.0,
     "Estimated_Cash_Remaining": 401955.0,
     "Cash_Remaining_Pct": 41.7,
@@ -882,7 +882,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBELP03",
-    "Location": "Victor Valdés Vault (Camp Nou Keeper)",
+    "Location": "Elephant Road Bata Signal Branch, Dhaka (Terminal 03)",
     "ATM_Capacity": 568500.0,
     "Estimated_Cash_Remaining": 241786.0,
     "Cash_Remaining_Pct": 42.5,
@@ -893,7 +893,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBUTR09",
-    "Location": "Gary Lineker Lounge (Leicester & Barça)",
+    "Location": "Uttara Sector 3 Commercial Hub Branch, Dhaka (Terminal 09)",
     "ATM_Capacity": 1435500.0,
     "Estimated_Cash_Remaining": 643940.0,
     "Cash_Remaining_Pct": 44.9,
@@ -904,7 +904,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBNAO02",
-    "Location": "Hristo Stoichkov Hub (Sofia & Camp Nou)",
+    "Location": "Naogaon Sadar Commercial Zone Branch (Terminal 02)",
     "ATM_Capacity": 1145250.0,
     "Estimated_Cash_Remaining": 521680.0,
     "Cash_Remaining_Pct": 45.6,
@@ -915,7 +915,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBSVR02",
-    "Location": "Michael Laudrup Station (Copenhagen Maestro)",
+    "Location": "Savar Bazar Bus Stand Branch, Dhaka (Terminal 02)",
     "ATM_Capacity": 999750.0,
     "Estimated_Cash_Remaining": 461087.0,
     "Cash_Remaining_Pct": 46.1,
@@ -926,7 +926,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBROK01",
-    "Location": "Ronald Koeman Cannon (Camp Nou 1992)",
+    "Location": "Begum Rokeya Sarani Kazipara Branch, Dhaka (Terminal 01)",
     "ATM_Capacity": 2250000.0,
     "Estimated_Cash_Remaining": 1388072.0,
     "Cash_Remaining_Pct": 61.7,
@@ -937,7 +937,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBJIN01",
-    "Location": "Romelu Lukaku Terminal (Brussels Hub)",
+    "Location": "Zinzira Madbar Bazar Branch, Dhaka (Terminal 01)",
     "ATM_Capacity": 2250000.0,
     "Estimated_Cash_Remaining": 946488.0,
     "Cash_Remaining_Pct": 42.1,
@@ -948,7 +948,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBMOT02",
-    "Location": "Harry Kane Express (Tottenham & Allianz)",
+    "Location": "Motijheel C/A Principal Branch, Dhaka (Terminal 02)",
     "ATM_Capacity": 703500.0,
     "Estimated_Cash_Remaining": 300725.0,
     "Cash_Remaining_Pct": 42.7,
@@ -959,7 +959,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBMDH01",
-    "Location": "Son Heung-min Hub (Seoul & Tottenham)",
+    "Location": "Madhabdi Textile Market Branch, Narsingdi (Terminal 01)",
     "ATM_Capacity": 2250000.0,
     "Estimated_Cash_Remaining": 1046153.0,
     "Cash_Remaining_Pct": 46.5,
@@ -970,7 +970,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBSHY03",
-    "Location": "Gareth Bale Rocket (Cardiff & Madrid)",
+    "Location": "Shyamoli Ring Road Branch, Dhaka (Terminal 03)",
     "ATM_Capacity": 1368750.0,
     "Estimated_Cash_Remaining": 640424.0,
     "Cash_Remaining_Pct": 46.8,
@@ -981,7 +981,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBDHA06",
-    "Location": "Davor Šuker Terminal (Zagreb Golden)",
+    "Location": "Dhanmondi Satmasjid Road Branch, Dhaka (Terminal 06)",
     "ATM_Capacity": 933750.0,
     "Estimated_Cash_Remaining": 450587.0,
     "Cash_Remaining_Pct": 48.3,
@@ -992,7 +992,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBGUL06",
-    "Location": "Nemanja Vidić Fortress (Old Trafford Wall)",
+    "Location": "Gulshan Avenue Circle-2 Branch, Dhaka (Terminal 06)",
     "ATM_Capacity": 1103250.0,
     "Estimated_Cash_Remaining": 689272.0,
     "Cash_Remaining_Pct": 62.5,
@@ -1003,7 +1003,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBFRD01",
-    "Location": "Rio Ferdinand Tower (Old Trafford Vault)",
+    "Location": "Goalanda Ghat Road Branch, Faridpur (Terminal 01)",
     "ATM_Capacity": 1169250.0,
     "Estimated_Cash_Remaining": 733183.0,
     "Cash_Remaining_Pct": 62.7,
@@ -1014,7 +1014,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBGAN01",
-    "Location": "Edwin van der Sar Safe (Amsterdam & Old Trafford)",
+    "Location": "Gangni Bus Stand Branch, Meherpur (Terminal 01)",
     "ATM_Capacity": 1036500.0,
     "Estimated_Cash_Remaining": 429593.0,
     "Cash_Remaining_Pct": 41.4,
@@ -1025,7 +1025,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBCHT01",
-    "Location": "Peter Schmeichel Great Dane (Old Trafford Treble)",
+    "Location": "Chhatak Cement Town Branch, Sunamganj (Terminal 01)",
     "ATM_Capacity": 2250000.0,
     "Estimated_Cash_Remaining": 1086550.0,
     "Cash_Remaining_Pct": 48.3,
@@ -1036,7 +1036,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBFEN03",
-    "Location": "David de Gea Lounge (Madrid & Old Trafford)",
+    "Location": "Trunk Road SSK Sarak Branch, Feni (Terminal 03)",
     "ATM_Capacity": 1479750.0,
     "Estimated_Cash_Remaining": 718871.0,
     "Cash_Remaining_Pct": 48.6,
@@ -1047,7 +1047,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBASH01",
-    "Location": "Thibaut Courtois Wall (Bernabéu Guardian)",
+    "Location": "Ashulia EPZ Bypass Branch, Dhaka (Terminal 01)",
     "ATM_Capacity": 825750.0,
     "Estimated_Cash_Remaining": 527217.0,
     "Cash_Remaining_Pct": 63.8,
@@ -1058,7 +1058,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBPRA03",
-    "Location": "Keylor Navas Safe (San José & Bernabéu)",
+    "Location": "Pragati Sarani Kuril Branch, Dhaka (Terminal 03)",
     "ATM_Capacity": 840750.0,
     "Estimated_Cash_Remaining": 536548.0,
     "Cash_Remaining_Pct": 63.8,
@@ -1069,7 +1069,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBMOH01",
-    "Location": "Jan Oblak Citadel (Metropolitano Wall)",
+    "Location": "Mohakhali C/A Wireless Gate Branch, Dhaka (Terminal 01)",
     "ATM_Capacity": 1012500.0,
     "Estimated_Cash_Remaining": 653917.0,
     "Cash_Remaining_Pct": 64.6,
@@ -1080,7 +1080,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBPRI01",
-    "Location": "Antoine Griezmann Station (Metropolitano Maestro)",
+    "Location": "Panthapath Green Road Branch, Dhaka (Terminal 01)",
     "ATM_Capacity": 2250000.0,
     "Estimated_Cash_Remaining": 1457881.0,
     "Cash_Remaining_Pct": 64.8,
@@ -1091,7 +1091,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBMIR06",
-    "Location": "Fernando Torres Express (El Niño Calderón)",
+    "Location": "Mirpur-10 Commercial Circle Branch, Dhaka (Terminal 06)",
     "ATM_Capacity": 840000.0,
     "Estimated_Cash_Remaining": 409696.0,
     "Cash_Remaining_Pct": 48.8,
@@ -1102,7 +1102,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBUTR01",
-    "Location": "Diego Godín Fortress (Montevideo & Madrid)",
+    "Location": "Uttara Sector 3 Commercial Hub Branch, Dhaka (Terminal 01)",
     "ATM_Capacity": 1996500.0,
     "Estimated_Cash_Remaining": 1014280.0,
     "Cash_Remaining_Pct": 50.8,
@@ -1113,7 +1113,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBCEP03",
-    "Location": "Radamel Falcao Tiger (Calderón & Monaco)",
+    "Location": "Chittagong EPZ Terminal Branch (Terminal 03)",
     "ATM_Capacity": 2250000.0,
     "Estimated_Cash_Remaining": 911856.0,
     "Cash_Remaining_Pct": 40.5,
@@ -1124,7 +1124,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBCCB01",
-    "Location": "David Villa Station (El Guaje Valencia)",
+    "Location": "Chawkbazar Main Circle Branch, Chittagong (Terminal 01)",
     "ATM_Capacity": 712500.0,
     "Estimated_Cash_Remaining": 471841.0,
     "Cash_Remaining_Pct": 66.2,
@@ -1135,7 +1135,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBMIR05",
-    "Location": "Juan Román Riquelme Lounge (La Bombonera Master)",
+    "Location": "Mirpur-10 Commercial Circle Branch, Dhaka (Terminal 05)",
     "ATM_Capacity": 1087500.0,
     "Estimated_Cash_Remaining": 723342.0,
     "Cash_Remaining_Pct": 66.5,
@@ -1146,7 +1146,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBLMH01",
-    "Location": "Carlos Tevez Apache (La Boca & Manchester)",
+    "Location": "Lalmatia Block B Branch, Dhaka (Terminal 01)",
     "ATM_Capacity": 1196250.0,
     "Estimated_Cash_Remaining": 801253.0,
     "Cash_Remaining_Pct": 67.0,
@@ -1157,7 +1157,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBBON02",
-    "Location": "Gabriel Batistuta Batigol (Artemio Franchi)",
+    "Location": "Bonani Block E Lakeview Branch, Dhaka (Terminal 02)",
     "ATM_Capacity": 1097250.0,
     "Estimated_Cash_Remaining": 742940.0,
     "Cash_Remaining_Pct": 67.7,
@@ -1168,7 +1168,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBMYM01",
-    "Location": "Hernán Crespo Hub (San Siro & Parma)",
+    "Location": "Station Road Town Hall Branch, Mymensingh (Terminal 01)",
     "ATM_Capacity": 967500.0,
     "Estimated_Cash_Remaining": 655612.0,
     "Cash_Remaining_Pct": 67.8,
@@ -1179,7 +1179,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBCAN01",
-    "Location": "Javier Zanetti Capitano (San Siro Tractor)",
+    "Location": "Dhaka Cantonment Sena Malancha Branch (Terminal 01)",
     "ATM_Capacity": 1692750.0,
     "Estimated_Cash_Remaining": 1156526.0,
     "Cash_Remaining_Pct": 68.3,
@@ -1190,7 +1190,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBDHA04",
-    "Location": "Esteban Cambiasso Cuchu (San Siro Brain)",
+    "Location": "Dhanmondi Satmasjid Road Branch, Dhaka (Terminal 04)",
     "ATM_Capacity": 1353000.0,
     "Estimated_Cash_Remaining": 927470.0,
     "Cash_Remaining_Pct": 68.5,
@@ -1201,7 +1201,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBMOT04",
-    "Location": "Diego Milito Principe (San Siro Treble)",
+    "Location": "Motijheel C/A Principal Branch, Dhaka (Terminal 04)",
     "ATM_Capacity": 781500.0,
     "Estimated_Cash_Remaining": 536244.0,
     "Cash_Remaining_Pct": 68.6,
@@ -1212,7 +1212,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBMAL01",
-    "Location": "Walter Samuel Il Muro (San Siro Wall)",
+    "Location": "Malibagh Chowdhury Para Branch, Dhaka (Terminal 01)",
     "ATM_Capacity": 604500.0,
     "Estimated_Cash_Remaining": 417374.0,
     "Cash_Remaining_Pct": 69.0,
@@ -1223,7 +1223,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBKLM01",
-    "Location": "Julio César Safe (San Siro Dream)",
+    "Location": "Kalabagan Mirpur Road Branch, Dhaka (Terminal 01)",
     "ATM_Capacity": 1944750.0,
     "Estimated_Cash_Remaining": 928239.0,
     "Cash_Remaining_Pct": 47.7,
@@ -1234,7 +1234,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBKLT01",
-    "Location": "Adriano L'Imperatore (San Siro Cannon)",
+    "Location": "Kalitola Commercial Sarak Branch, Dinajpur (Terminal 01)",
     "ATM_Capacity": 1300500.0,
     "Estimated_Cash_Remaining": 694810.0,
     "Cash_Remaining_Pct": 53.4,
@@ -1245,7 +1245,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBSRE02",
-    "Location": "Cafu Pendolino (San Siro & Roma)",
+    "Location": "Sreemangal Tea Resort Road Branch, Moulvibazar (Terminal 02)",
     "ATM_Capacity": 1826250.0,
     "Estimated_Cash_Remaining": 1277286.0,
     "Cash_Remaining_Pct": 69.9,
@@ -1256,7 +1256,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBIMM02",
-    "Location": "Dida Nelson Vault (San Siro Brazilian)",
+    "Location": "Imamganj Mitford Commercial Branch, Dhaka (Terminal 02)",
     "ATM_Capacity": 1535250.0,
     "Estimated_Cash_Remaining": 751904.0,
     "Cash_Remaining_Pct": 49.0,
@@ -1267,7 +1267,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBGUL03",
-    "Location": "Gennaro Gattuso Ring (San Siro Warrior)",
+    "Location": "Gulshan Avenue Circle-2 Branch, Dhaka (Terminal 03)",
     "ATM_Capacity": 2250000.0,
     "Estimated_Cash_Remaining": 1171437.0,
     "Cash_Remaining_Pct": 52.1,
@@ -1278,7 +1278,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBPRA04",
-    "Location": "Filippo Inzaghi Superpippo (San Siro Poacher)",
+    "Location": "Pragati Sarani Kuril Branch, Dhaka (Terminal 04)",
     "ATM_Capacity": 749250.0,
     "Estimated_Cash_Remaining": 526775.0,
     "Cash_Remaining_Pct": 70.3,
@@ -1289,7 +1289,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBAGR02",
-    "Location": "Andriy Shevchenko Ballon (Kyiv & San Siro)",
+    "Location": "Agrabad Commercial Area Branch, Chittagong (Terminal 02)",
     "ATM_Capacity": 1281750.0,
     "Estimated_Cash_Remaining": 905049.0,
     "Cash_Remaining_Pct": 70.6,
@@ -1300,7 +1300,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBBHA01",
-    "Location": "Alessandro Nesta Elegant (San Siro Wall)",
+    "Location": "Bhairab Bazar Station Branch, Kishoreganj (Terminal 01)",
     "ATM_Capacity": 1979250.0,
     "Estimated_Cash_Remaining": 1397301.0,
     "Cash_Remaining_Pct": 70.6,
@@ -1311,7 +1311,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBDHA07",
-    "Location": "Fabio Cannavaro Capitano (Berlin 2006 Ballon)",
+    "Location": "Dhanmondi Satmasjid Road Branch, Dhaka (Terminal 07)",
     "ATM_Capacity": 648750.0,
     "Estimated_Cash_Remaining": 648750.0,
     "Cash_Remaining_Pct": 100.0,
@@ -1322,7 +1322,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBKHU02",
-    "Location": "Gianluca Zambrotta Wing (Juventus & Barça)",
+    "Location": "KDA Avenue Commercial Zone Branch, Khulna (Terminal 02)",
     "ATM_Capacity": 573000.0,
     "Estimated_Cash_Remaining": 573000.0,
     "Cash_Remaining_Pct": 100.0,
@@ -1333,7 +1333,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBTAJ01",
-    "Location": "David Trezeguet Trezegol (Delle Alpi Finisher)",
+    "Location": "Tajmahal Road Mohammadpur Branch, Dhaka (Terminal 01)",
     "ATM_Capacity": 1060500.0,
     "Estimated_Cash_Remaining": 1060500.0,
     "Cash_Remaining_Pct": 100.0,
@@ -1344,7 +1344,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBBAR05",
-    "Location": "Pavel Nedvěd Czech Cannon (Delle Alpi Ballon)",
+    "Location": "Band Road River Port Branch, Barisal (Terminal 05)",
     "ATM_Capacity": 696750.0,
     "Estimated_Cash_Remaining": 320074.0,
     "Cash_Remaining_Pct": 45.9,
@@ -1355,7 +1355,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBKAR01",
-    "Location": "Giorgio Chiellini King Kong (Allianz Turin)",
+    "Location": "Karwan Bazar Wholesale Hub Branch, Dhaka (Terminal 01)",
     "ATM_Capacity": 2250000.0,
     "Estimated_Cash_Remaining": 1189888.0,
     "Cash_Remaining_Pct": 52.9,
@@ -1366,7 +1366,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBZIN01",
-    "Location": "Leonardo Bonucci Station (Turin Passer)",
+    "Location": "Zinzira Ferry Ghat Branch, Dhaka (Terminal 01)",
     "ATM_Capacity": 1473750.0,
     "Estimated_Cash_Remaining": 1054944.0,
     "Cash_Remaining_Pct": 71.6,
@@ -1377,7 +1377,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBSHY01",
-    "Location": "Andrea Barzagli Wall (Turin BBC)",
+    "Location": "Shyamoli Ring Road Branch, Dhaka (Terminal 01)",
     "ATM_Capacity": 1830750.0,
     "Estimated_Cash_Remaining": 1310108.0,
     "Cash_Remaining_Pct": 71.6,
@@ -1388,7 +1388,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBBAD01",
-    "Location": "Claudio Marchisio Il Principino (Turin Native)",
+    "Location": "Badda Pragati Sarani Branch, Dhaka (Terminal 01)",
     "ATM_Capacity": 1263750.0,
     "Estimated_Cash_Remaining": 905954.0,
     "Cash_Remaining_Pct": 71.7,
@@ -1399,7 +1399,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBGUL02",
-    "Location": "Arturo Vidal Warrior (Santiago & Munich)",
+    "Location": "Gulshan Avenue Circle-2 Branch, Dhaka (Terminal 02)",
     "ATM_Capacity": 1701750.0,
     "Estimated_Cash_Remaining": 1222210.0,
     "Cash_Remaining_Pct": 71.8,
@@ -1410,7 +1410,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBAGR01",
-    "Location": "Alexis Sánchez Niño Maravilla (Emirates Hub)",
+    "Location": "Agrabad Commercial Area Branch, Chittagong (Terminal 01)",
     "ATM_Capacity": 1844250.0,
     "Estimated_Cash_Remaining": 1324689.0,
     "Cash_Remaining_Pct": 71.8,
@@ -1421,7 +1421,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBMAL04",
-    "Location": "Edinson Cavani Matador (Napoli & Parc)",
+    "Location": "Malibagh Chowdhury Para Branch, Dhaka (Terminal 04)",
     "ATM_Capacity": 1233750.0,
     "Estimated_Cash_Remaining": 1233750.0,
     "Cash_Remaining_Pct": 100.0,
@@ -1432,7 +1432,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBRON01",
-    "Location": "Ezequiel Lavezzi Pocho (Napoli & Paris)",
+    "Location": "Rampura DIT Road Branch, Dhaka (Terminal 01)",
     "ATM_Capacity": 1236000.0,
     "Estimated_Cash_Remaining": 1236000.0,
     "Cash_Remaining_Pct": 100.0,
@@ -1443,7 +1443,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBSYL02",
-    "Location": "Marek Hamšík Mohican (San Paolo Record)",
+    "Location": "Zindabazar Shopping Complex Branch, Sylhet (Terminal 02)",
     "ATM_Capacity": 600750.0,
     "Estimated_Cash_Remaining": 600750.0,
     "Cash_Remaining_Pct": 100.0,
@@ -1454,7 +1454,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBCHO02",
-    "Location": "Dries Mertens Ciro (Maradona Stadium)",
+    "Location": "Chiringa Chakaria Highway Branch, Cox's Bazar (Terminal 02)",
     "ATM_Capacity": 1497000.0,
     "Estimated_Cash_Remaining": 858059.0,
     "Cash_Remaining_Pct": 57.3,
@@ -1465,7 +1465,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBFAR03",
-    "Location": "Victor Osimhen Mask (Napoli Scudetto)",
+    "Location": "Mujib Sarak Sadar Branch, Faridpur (Terminal 03)",
     "ATM_Capacity": 1993500.0,
     "Estimated_Cash_Remaining": 1447313.0,
     "Cash_Remaining_Pct": 72.6,
@@ -1476,7 +1476,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBBDT01",
-    "Location": "Khvicha Kvaratskhelia Kvaradona (Tbilisi & Napoli)",
+    "Location": "Baitul Mukarram National Stadium Branch, Dhaka (Terminal 01)",
     "ATM_Capacity": 1077750.0,
     "Estimated_Cash_Remaining": 1077750.0,
     "Cash_Remaining_Pct": 100.0,
@@ -1487,7 +1487,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBNSR03",
-    "Location": "Rafael Leão Wave (San Siro Surfer)",
+    "Location": "Nasirabad Industrial Area Branch, Chittagong (Terminal 03)",
     "ATM_Capacity": 756000.0,
     "Estimated_Cash_Remaining": 756000.0,
     "Cash_Remaining_Pct": 100.0,
@@ -1498,7 +1498,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBMIR01",
-    "Location": "Theo Hernández Turbo (San Siro Jet)",
+    "Location": "Mirpur-10 Commercial Circle Branch, Dhaka (Terminal 01)",
     "ATM_Capacity": 1301250.0,
     "Estimated_Cash_Remaining": 1301250.0,
     "Cash_Remaining_Pct": 100.0,
@@ -1509,7 +1509,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBSHI01",
-    "Location": "Mike Maignan Magic (San Siro Eagle)",
+    "Location": "Shariatpur Sadar Bus Stand Branch (Terminal 01)",
     "ATM_Capacity": 1659750.0,
     "Estimated_Cash_Remaining": 813559.0,
     "Cash_Remaining_Pct": 49.0,
@@ -1520,7 +1520,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBMOT01",
-    "Location": "Lautaro Martínez Toro (San Siro Inter Captain)",
+    "Location": "Motijheel C/A Principal Branch, Dhaka (Terminal 01)",
     "ATM_Capacity": 1758000.0,
     "Estimated_Cash_Remaining": 974395.0,
     "Cash_Remaining_Pct": 55.4,
@@ -1531,7 +1531,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBDIN01",
-    "Location": "Nicolò Barella Engine (San Siro Dynamo)",
+    "Location": "Station Road Commercial Area Branch, Dinajpur (Terminal 01)",
     "ATM_Capacity": 1404750.0,
     "Estimated_Cash_Remaining": 1404750.0,
     "Cash_Remaining_Pct": 100.0,
@@ -1542,7 +1542,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBDHA02",
-    "Location": "Alessandro Bastoni Tower (San Siro Left)",
+    "Location": "Dhanmondi Satmasjid Road Branch, Dhaka (Terminal 02)",
     "ATM_Capacity": 664500.0,
     "Estimated_Cash_Remaining": 664500.0,
     "Cash_Remaining_Pct": 100.0,
@@ -1553,7 +1553,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBJHE01",
-    "Location": "Federico Dimarco Curva (San Siro Heart)",
+    "Location": "Jhenaidah Court Road Branch (Terminal 01)",
     "ATM_Capacity": 2250000.0,
     "Estimated_Cash_Remaining": 2250000.0,
     "Cash_Remaining_Pct": 100.0,
@@ -1564,7 +1564,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBIMM01",
-    "Location": "Hakan Çalhanoğlu Maestro (San Siro Sniper)",
+    "Location": "Imamganj Mitford Commercial Branch, Dhaka (Terminal 01)",
     "ATM_Capacity": 2250000.0,
     "Estimated_Cash_Remaining": 1062395.0,
     "Cash_Remaining_Pct": 47.2,
@@ -1575,7 +1575,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBKHU04",
-    "Location": "Marcus Rashford MBE (Old Trafford)",
+    "Location": "KDA Avenue Commercial Zone Branch, Khulna (Terminal 04)",
     "ATM_Capacity": 703500.0,
     "Estimated_Cash_Remaining": 518474.0,
     "Cash_Remaining_Pct": 73.7,
@@ -1586,7 +1586,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBFAR01",
-    "Location": "Bukayo Saka Starboy (Emirates Wing)",
+    "Location": "Mujib Sarak Sadar Branch, Faridpur (Terminal 01)",
     "ATM_Capacity": 593250.0,
     "Estimated_Cash_Remaining": 437410.0,
     "Cash_Remaining_Pct": 73.7,
@@ -1597,7 +1597,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBCHM01",
-    "Location": "Martin Ødegaard Maestro (Emirates Hub)",
+    "Location": "Chawkbazar Sirajuddowla Road Branch, Chittagong (Terminal 01)",
     "ATM_Capacity": 2018250.0,
     "Estimated_Cash_Remaining": 1490436.0,
     "Cash_Remaining_Pct": 73.8,
@@ -1608,7 +1608,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBPLZ01",
-    "Location": "Declan Rice Anchor (Emirates Station)",
+    "Location": "Farmgate Green Super Market Branch, Dhaka (Terminal 01)",
     "ATM_Capacity": 753000.0,
     "Estimated_Cash_Remaining": 556503.0,
     "Cash_Remaining_Pct": 73.9,
@@ -1619,7 +1619,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBBEN01",
-    "Location": "William Saliba Rolls Royce (Emirates Wall)",
+    "Location": "Benapole Land Port Branch, Jessore (Terminal 01)",
     "ATM_Capacity": 1317000.0,
     "Estimated_Cash_Remaining": 1317000.0,
     "Cash_Remaining_Pct": 100.0,
@@ -1630,7 +1630,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBGUL09",
-    "Location": "Gabriel Martinelli Samba (Emirates Flank)",
+    "Location": "Gulshan Avenue Circle-2 Branch, Dhaka (Terminal 09)",
     "ATM_Capacity": 945750.0,
     "Estimated_Cash_Remaining": 945750.0,
     "Cash_Remaining_Pct": 100.0,
@@ -1641,7 +1641,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBKAR03",
-    "Location": "Bruno Fernandes Magnifico (Old Trafford)",
+    "Location": "Karwan Bazar Wholesale Hub Branch, Dhaka (Terminal 03)",
     "ATM_Capacity": 295500.0,
     "Estimated_Cash_Remaining": 295500.0,
     "Cash_Remaining_Pct": 100.0,
@@ -1652,7 +1652,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBKHA01",
-    "Location": "Bernardo Silva Magician (Etihad Point)",
+    "Location": "Khatunganj Wholesale Market Branch, Chittagong (Terminal 01)",
     "ATM_Capacity": 837000.0,
     "Estimated_Cash_Remaining": 837000.0,
     "Cash_Remaining_Pct": 100.0,
@@ -1663,7 +1663,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBKHU01",
-    "Location": "Phil Foden Sniper (Etihad Hub)",
+    "Location": "KDA Avenue Commercial Zone Branch, Khulna (Terminal 01)",
     "ATM_Capacity": 1166250.0,
     "Estimated_Cash_Remaining": 1166250.0,
     "Cash_Remaining_Pct": 100.0,
@@ -1674,7 +1674,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBPAG01",
-    "Location": "Rodri Hernández Balance (Etihad Anchor)",
+    "Location": "Pagla Bazar Fatullah Branch, Narayanganj (Terminal 01)",
     "ATM_Capacity": 1867500.0,
     "Estimated_Cash_Remaining": 917601.0,
     "Cash_Remaining_Pct": 49.1,
@@ -1685,7 +1685,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBAND01",
-    "Location": "Rúben Dias Leader (Etihad Fortress)",
+    "Location": "Anderkilla Historical Square Branch, Chittagong (Terminal 01)",
     "ATM_Capacity": 1017000.0,
     "Estimated_Cash_Remaining": 1017000.0,
     "Cash_Remaining_Pct": 100.0,
@@ -1696,7 +1696,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBELP05",
-    "Location": "Kyle Walker Speed (Etihad Station)",
+    "Location": "Elephant Road Bata Signal Branch, Dhaka (Terminal 05)",
     "ATM_Capacity": 1110000.0,
     "Estimated_Cash_Remaining": 1110000.0,
     "Cash_Remaining_Pct": 100.0,
@@ -1707,7 +1707,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBPAN01",
-    "Location": "John Stones Barnsley Beckenbauer (Etihad)",
+    "Location": "Panthapath Sonargaon Road Branch, Dhaka (Terminal 01)",
     "ATM_Capacity": 907500.0,
     "Estimated_Cash_Remaining": 907500.0,
     "Cash_Remaining_Pct": 100.0,
@@ -1718,7 +1718,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBBSN01",
-    "Location": "Cole Palmer Cold (Stamford Bridge Hub)",
+    "Location": "Bashundhara City Mall Branch, Dhaka (Terminal 01)",
     "ATM_Capacity": 1629750.0,
     "Estimated_Cash_Remaining": 1629750.0,
     "Cash_Remaining_Pct": 100.0,
@@ -1729,7 +1729,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBHOB01",
-    "Location": "Enzo Fernández Maestro (Stamford Bridge)",
+    "Location": "Habiganj Sadar Main Road Branch (Terminal 01)",
     "ATM_Capacity": 1454250.0,
     "Estimated_Cash_Remaining": 1454250.0,
     "Cash_Remaining_Pct": 100.0,
@@ -1740,7 +1740,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBBRA01",
-    "Location": "Moisés Caicedo Dynamo (Stamford Bridge)",
+    "Location": "Brahmanbaria Court Road Branch (Terminal 01)",
     "ATM_Capacity": 2250000.0,
     "Estimated_Cash_Remaining": 2250000.0,
     "Cash_Remaining_Pct": 100.0,
@@ -1751,7 +1751,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBBAR02",
-    "Location": "Alexis Mac Allister World Cup Hub (Anfield)",
+    "Location": "Band Road River Port Branch, Barisal (Terminal 02)",
     "ATM_Capacity": 823500.0,
     "Estimated_Cash_Remaining": 823500.0,
     "Cash_Remaining_Pct": 100.0,
@@ -1762,7 +1762,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBBRD08",
-    "Location": "Dominik Szoboszlai Rocket (Anfield Station)",
+    "Location": "Baridhara Diplomatic Enclave Branch, Dhaka (Terminal 08)",
     "ATM_Capacity": 1203750.0,
     "Estimated_Cash_Remaining": 902965.0,
     "Cash_Remaining_Pct": 75.0,
@@ -1773,7 +1773,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBPAT01",
-    "Location": "Luis Díaz Guajiro (Anfield Wing)",
+    "Location": "Patuakhali Sadar Band Road Branch (Terminal 01)",
     "ATM_Capacity": 735000.0,
     "Estimated_Cash_Remaining": 551695.0,
     "Cash_Remaining_Pct": 75.1,
@@ -1784,7 +1784,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBKUS04",
-    "Location": "Darwin Núñez Pantera (Anfield Hub)",
+    "Location": "N.S. Road Commercial Zone Branch, Kushtia (Terminal 04)",
     "ATM_Capacity": 804000.0,
     "Estimated_Cash_Remaining": 605358.0,
     "Cash_Remaining_Pct": 75.3,
@@ -1795,7 +1795,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBMIR08",
-    "Location": "Trent Alexander-Arnold Corner Quick (Anfield)",
+    "Location": "Mirpur-10 Commercial Circle Branch, Dhaka (Terminal 08)",
     "ATM_Capacity": 1487250.0,
     "Estimated_Cash_Remaining": 1487250.0,
     "Cash_Remaining_Pct": 100.0,
@@ -1806,7 +1806,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBJES06",
-    "Location": "Andrew Robertson Working Class (Anfield Flank)",
+    "Location": "M.K. Road Commercial Hub Branch, Jessore (Terminal 06)",
     "ATM_Capacity": 834000.0,
     "Estimated_Cash_Remaining": 834000.0,
     "Cash_Remaining_Pct": 100.0,
@@ -1817,7 +1817,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBBAD02",
-    "Location": "Federico Chiesa Speed (Anfield & Turin)",
+    "Location": "Badda Pragati Sarani Branch, Dhaka (Terminal 02)",
     "ATM_Capacity": 356250.0,
     "Estimated_Cash_Remaining": 159417.0,
     "Cash_Remaining_Pct": 44.7,
@@ -1828,7 +1828,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBKAR02",
-    "Location": "Jamal Musiala Bambi Dribbler (Allianz)",
+    "Location": "Karwan Bazar Wholesale Hub Branch, Dhaka (Terminal 02)",
     "ATM_Capacity": 364500.0,
     "Estimated_Cash_Remaining": 199618.0,
     "Cash_Remaining_Pct": 54.8,
@@ -1839,7 +1839,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBDOH02",
-    "Location": "Florian Wirtz Wonderkid (BayArena Hub)",
+    "Location": "DOHS Mirpur Shopping Complex Branch, Dhaka (Terminal 02)",
     "ATM_Capacity": 1638000.0,
     "Estimated_Cash_Remaining": 1012956.0,
     "Cash_Remaining_Pct": 61.8,
@@ -1850,7 +1850,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBBRD04",
-    "Location": "Xabi Alonso Master (BayArena & Anfield)",
+    "Location": "Baridhara Diplomatic Enclave Branch, Dhaka (Terminal 04)",
     "ATM_Capacity": 865500.0,
     "Estimated_Cash_Remaining": 653751.0,
     "Cash_Remaining_Pct": 75.5,
@@ -1861,7 +1861,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBCOM03",
-    "Location": "Granit Xhaka General (BayArena Station)",
+    "Location": "Kandirpar Badurtala Branch, Comilla (Terminal 03)",
     "ATM_Capacity": 1413000.0,
     "Estimated_Cash_Remaining": 1413000.0,
     "Cash_Remaining_Pct": 100.0,
@@ -1872,7 +1872,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBPRI04",
-    "Location": "Jeremie Frimpong Jet (BayArena Wing)",
+    "Location": "Panthapath Green Road Branch, Dhaka (Terminal 04)",
     "ATM_Capacity": 696000.0,
     "Estimated_Cash_Remaining": 696000.0,
     "Cash_Remaining_Pct": 100.0,
@@ -1883,7 +1883,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBGAZ01",
-    "Location": "Alejandro Grimaldo Free Kick (BayArena Hub)",
+    "Location": "Gazipur Chowrasta Commercial Hub Branch (Terminal 01)",
     "ATM_Capacity": 2067750.0,
     "Estimated_Cash_Remaining": 2067750.0,
     "Cash_Remaining_Pct": 100.0,
@@ -1894,7 +1894,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBBSN04",
-    "Location": "Victor Boniface Power Striker (BayArena)",
+    "Location": "Bashundhara City Mall Branch, Dhaka (Terminal 04)",
     "ATM_Capacity": 1428000.0,
     "Estimated_Cash_Remaining": 1428000.0,
     "Cash_Remaining_Pct": 100.0,
@@ -1905,7 +1905,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBBAR06",
-    "Location": "Leroy Sané Turbo (Allianz Wing)",
+    "Location": "Band Road River Port Branch, Barisal (Terminal 06)",
     "ATM_Capacity": 338250.0,
     "Estimated_Cash_Remaining": 338250.0,
     "Cash_Remaining_Pct": 100.0,
@@ -1916,7 +1916,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBJES04",
-    "Location": "Serge Gnabry Chef (Allianz Station)",
+    "Location": "M.K. Road Commercial Hub Branch, Jessore (Terminal 04)",
     "ATM_Capacity": 2250000.0,
     "Estimated_Cash_Remaining": 1710520.0,
     "Cash_Remaining_Pct": 76.0,
@@ -1927,7 +1927,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBMIR09",
-    "Location": "Kingsley Coman Decisive Final (Allianz)",
+    "Location": "Mirpur-10 Commercial Circle Branch, Dhaka (Terminal 09)",
     "ATM_Capacity": 1533750.0,
     "Estimated_Cash_Remaining": 1533750.0,
     "Cash_Remaining_Pct": 100.0,
@@ -1938,7 +1938,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBDAR01",
-    "Location": "Alphonso Davies Roadrunner (Allianz Flank)",
+    "Location": "Darussalam Technical Mor Branch, Dhaka (Terminal 01)",
     "ATM_Capacity": 1371000.0,
     "Estimated_Cash_Remaining": 1371000.0,
     "Cash_Remaining_Pct": 100.0,
@@ -1949,7 +1949,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBNAZ01",
-    "Location": "Dayot Upamecano Fortress (Allianz Hub)",
+    "Location": "Nazirhat Rail Station Road Branch, Chittagong (Terminal 01)",
     "ATM_Capacity": 1524000.0,
     "Estimated_Cash_Remaining": 1524000.0,
     "Cash_Remaining_Pct": 100.0,
@@ -1960,7 +1960,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBCHA01",
-    "Location": "Kim Min-jae Monster (Allianz Defense)",
+    "Location": "Chandgaon R/A Bus Terminal Branch, Chittagong (Terminal 01)",
     "ATM_Capacity": 1408500.0,
     "Estimated_Cash_Remaining": 1408500.0,
     "Cash_Remaining_Pct": 100.0,
@@ -1971,7 +1971,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBCEP01",
-    "Location": "Joshua Kimmich Leader (Allianz Hub)",
+    "Location": "Chittagong EPZ Terminal Branch (Terminal 01)",
     "ATM_Capacity": 2250000.0,
     "Estimated_Cash_Remaining": 1724034.0,
     "Cash_Remaining_Pct": 76.6,
@@ -1982,7 +1982,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBNAO01",
-    "Location": "Leon Goretzka Power (Allianz Midfield)",
+    "Location": "Naogaon Sadar Commercial Zone Branch (Terminal 01)",
     "ATM_Capacity": 1950000.0,
     "Estimated_Cash_Remaining": 1950000.0,
     "Cash_Remaining_Pct": 100.0,
@@ -1993,7 +1993,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBMAL02",
-    "Location": "Marco Reus Loyalty (Signal Iduna Park)",
+    "Location": "Malibagh Chowdhury Para Branch, Dhaka (Terminal 02)",
     "ATM_Capacity": 1903500.0,
     "Estimated_Cash_Remaining": 1903500.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2004,7 +2004,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBGAR01",
-    "Location": "Mats Hummels Wall (Signal Iduna Park)",
+    "Location": "Garib-e-Newaz Avenue Branch, Uttara, Dhaka (Terminal 01)",
     "ATM_Capacity": 1074000.0,
     "Estimated_Cash_Remaining": 1074000.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2015,7 +2015,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBSHY04",
-    "Location": "Jadon Sancho Wing (Signal Iduna Park)",
+    "Location": "Shyamoli Ring Road Branch, Dhaka (Terminal 04)",
     "ATM_Capacity": 1176000.0,
     "Estimated_Cash_Remaining": 1176000.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2026,7 +2026,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBSIR02",
-    "Location": "Gregor Kobel Safe (Signal Iduna Park)",
+    "Location": "Sirajganj SS Road Bazar Branch (Terminal 02)",
     "ATM_Capacity": 836250.0,
     "Estimated_Cash_Remaining": 836250.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2037,7 +2037,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBSED01",
-    "Location": "Julian Brandt Flow (Signal Iduna Park)",
+    "Location": "Station Road Reazuddin Bazar Branch, Chittagong (Terminal 01)",
     "ATM_Capacity": 1668000.0,
     "Estimated_Cash_Remaining": 1291355.0,
     "Cash_Remaining_Pct": 77.4,
@@ -2048,7 +2048,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBBRA03",
-    "Location": "Ousmane Dembélé Flare (Parc des Princes)",
+    "Location": "Brahmanbaria Court Road Branch (Terminal 03)",
     "ATM_Capacity": 846000.0,
     "Estimated_Cash_Remaining": 655138.0,
     "Cash_Remaining_Pct": 77.4,
@@ -2059,7 +2059,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBKAD01",
-    "Location": "Bradley Barcola Speed (Parc des Princes)",
+    "Location": "Kadamtoli Bus Terminal Branch, Chittagong (Terminal 01)",
     "ATM_Capacity": 1968750.0,
     "Estimated_Cash_Remaining": 1523286.0,
     "Cash_Remaining_Pct": 77.4,
@@ -2070,7 +2070,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBUTR07",
-    "Location": "Warren Zaïre-Emery Prodigy (Parc des Princes)",
+    "Location": "Uttara Sector 3 Commercial Hub Branch, Dhaka (Terminal 07)",
     "ATM_Capacity": 2250000.0,
     "Estimated_Cash_Remaining": 2250000.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2081,7 +2081,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBMOH04",
-    "Location": "Vitinha Metronome (Parc des Princes)",
+    "Location": "Mohakhali C/A Wireless Gate Branch, Dhaka (Terminal 04)",
     "ATM_Capacity": 516750.0,
     "Estimated_Cash_Remaining": 516750.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2092,7 +2092,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBDHA05",
-    "Location": "Marquinhos Captain (Parc des Princes Wall)",
+    "Location": "Dhanmondi Satmasjid Road Branch, Dhaka (Terminal 05)",
     "ATM_Capacity": 850500.0,
     "Estimated_Cash_Remaining": 850500.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2103,7 +2103,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBDHA03",
-    "Location": "Achraf Hakimi Moroccan Jet (Parc des Princes)",
+    "Location": "Dhanmondi Satmasjid Road Branch, Dhaka (Terminal 03)",
     "ATM_Capacity": 913500.0,
     "Estimated_Cash_Remaining": 913500.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2114,7 +2114,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBMIR02",
-    "Location": "Gianluigi Donnarumma Giant Safe (Parc des Princes)",
+    "Location": "Mirpur-10 Commercial Circle Branch, Dhaka (Terminal 02)",
     "ATM_Capacity": 2250000.0,
     "Estimated_Cash_Remaining": 2250000.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2125,7 +2125,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBHAT01",
-    "Location": "Lamine Yamal La Masia Jewel (Camp Nou)",
+    "Location": "Hathazari College Road Branch, Chittagong (Terminal 01)",
     "ATM_Capacity": 1352250.0,
     "Estimated_Cash_Remaining": 1352250.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2136,7 +2136,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBSAT01",
-    "Location": "Gavi Golden Heart (Camp Nou)",
+    "Location": "Satkhira Sadar Court Road Branch (Terminal 01)",
     "ATM_Capacity": 1815750.0,
     "Estimated_Cash_Remaining": 1815750.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2147,7 +2147,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBBRD02",
-    "Location": "Pedri González Magician (Camp Nou)",
+    "Location": "Baridhara Diplomatic Enclave Branch, Dhaka (Terminal 02)",
     "ATM_Capacity": 1782750.0,
     "Estimated_Cash_Remaining": 1782750.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2158,7 +2158,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBSIT01",
-    "Location": "Fermín López Energy (Camp Nou)",
+    "Location": "Sitakunda Highway Bypass Branch, Chittagong (Terminal 01)",
     "ATM_Capacity": 2250000.0,
     "Estimated_Cash_Remaining": 2250000.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2169,7 +2169,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBSIT02",
-    "Location": "Pau Cubarsí Future Defense (Camp Nou)",
+    "Location": "Sitakunda Highway Bypass Branch, Chittagong (Terminal 02)",
     "ATM_Capacity": 321000.0,
     "Estimated_Cash_Remaining": 321000.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2180,7 +2180,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBKAK01",
-    "Location": "Alejandro Balde Turbo (Camp Nou Flank)",
+    "Location": "Kakrail VIP Road Intersection Branch, Dhaka (Terminal 01)",
     "ATM_Capacity": 1347000.0,
     "Estimated_Cash_Remaining": 1347000.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2191,7 +2191,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBUTR12",
-    "Location": "Marc-André ter Stegen Wall (Camp Nou)",
+    "Location": "Uttara Sector 3 Commercial Hub Branch, Dhaka (Terminal 12)",
     "ATM_Capacity": 927000.0,
     "Estimated_Cash_Remaining": 927000.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2202,7 +2202,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBUTR02",
-    "Location": "Raphinha Samba Hustle (Camp Nou)",
+    "Location": "Uttara Sector 3 Commercial Hub Branch, Dhaka (Terminal 02)",
     "ATM_Capacity": 1974750.0,
     "Estimated_Cash_Remaining": 1974750.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2213,7 +2213,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBUTR13",
-    "Location": "Dani Olmo Euro Champion (Camp Nou Hub)",
+    "Location": "Uttara Sector 3 Commercial Hub Branch, Dhaka (Terminal 13)",
     "ATM_Capacity": 2250000.0,
     "Estimated_Cash_Remaining": 2250000.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2224,7 +2224,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBPCR01",
-    "Location": "Nico Williams Lightning (San Mamés Wing)",
+    "Location": "Panchlaish Medical College Gate Branch, Chittagong (Terminal 01)",
     "ATM_Capacity": 1692000.0,
     "Estimated_Cash_Remaining": 1692000.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2235,7 +2235,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBSYL03",
-    "Location": "Iñaki Williams Iron Panther (San Mamés)",
+    "Location": "Zindabazar Shopping Complex Branch, Sylhet (Terminal 03)",
     "ATM_Capacity": 1602750.0,
     "Estimated_Cash_Remaining": 1602750.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2246,7 +2246,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBCHT02",
-    "Location": "Unai Simón Safe Keeper (San Mamés)",
+    "Location": "Chhatak Cement Town Branch, Sunamganj (Terminal 02)",
     "ATM_Capacity": 2250000.0,
     "Estimated_Cash_Remaining": 1759765.0,
     "Cash_Remaining_Pct": 78.2,
@@ -2257,7 +2257,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBVIP02",
-    "Location": "Mikel Oyarzabal Euro Winner (Anoeta Hub)",
+    "Location": "VIP Road Segunbagicha Branch, Dhaka (Terminal 02)",
     "ATM_Capacity": 1103250.0,
     "Estimated_Cash_Remaining": 1103250.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2268,7 +2268,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBCHW01",
-    "Location": "Martin Zubimendi Anchor (Anoeta Hub)",
+    "Location": "Chowk Bazar Shahi Mosque Square Branch, Dhaka (Terminal 01)",
     "ATM_Capacity": 1607250.0,
     "Estimated_Cash_Remaining": 1607250.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2279,7 +2279,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBMAL08",
-    "Location": "Takefusa Kubo Japanese Maestro (Anoeta)",
+    "Location": "Malibagh Chowdhury Para Branch, Dhaka (Terminal 08)",
     "ATM_Capacity": 901500.0,
     "Estimated_Cash_Remaining": 901500.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2290,7 +2290,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBGUL01",
-    "Location": "Antoine Semenyo Dynamo (Vitality Hub)",
+    "Location": "Gulshan Avenue Circle-2 Branch, Dhaka (Terminal 01)",
     "ATM_Capacity": 1427250.0,
     "Estimated_Cash_Remaining": 1427250.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2301,7 +2301,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBCDA01",
-    "Location": "Alexander Isak Falcon (St James Park)",
+    "Location": "CDA Avenue Nasirabad Branch, Chittagong (Terminal 01)",
     "ATM_Capacity": 1770750.0,
     "Estimated_Cash_Remaining": 1770750.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2312,7 +2312,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBISL01",
-    "Location": "Bruno Guimarães Samba (St James Park)",
+    "Location": "Islampur Cloth Market Branch, Dhaka (Terminal 01)",
     "ATM_Capacity": 737250.0,
     "Estimated_Cash_Remaining": 737250.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2323,7 +2323,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBBOR01",
-    "Location": "Anthony Gordon Flash (St James Park)",
+    "Location": "Borobazar Commercial Area Branch, Khulna (Terminal 01)",
     "ATM_Capacity": 2179500.0,
     "Estimated_Cash_Remaining": 1713876.0,
     "Cash_Remaining_Pct": 78.6,
@@ -2334,7 +2334,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBSIR01",
-    "Location": "Sandro Tonali Engine (St James Park)",
+    "Location": "Sirajganj SS Road Bazar Branch (Terminal 01)",
     "ATM_Capacity": 1037250.0,
     "Estimated_Cash_Remaining": 816910.0,
     "Cash_Remaining_Pct": 78.8,
@@ -2345,7 +2345,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBGAZ03",
-    "Location": "Kieran Trippier Cross (St James Park)",
+    "Location": "Gazipur Chowrasta Commercial Hub Branch (Terminal 03)",
     "ATM_Capacity": 1289250.0,
     "Estimated_Cash_Remaining": 1289250.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2356,7 +2356,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBCDA02",
-    "Location": "Nick Pope Tower (St James Park)",
+    "Location": "CDA Avenue Nasirabad Branch, Chittagong (Terminal 02)",
     "ATM_Capacity": 1617750.0,
     "Estimated_Cash_Remaining": 1617750.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2367,7 +2367,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBCDA03",
-    "Location": "Ollie Watkins Sharpshooter (Villa Park)",
+    "Location": "CDA Avenue Nasirabad Branch, Chittagong (Terminal 03)",
     "ATM_Capacity": 697500.0,
     "Estimated_Cash_Remaining": 697500.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2378,7 +2378,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBSAI02",
-    "Location": "Emiliano Dibu Martínez World Champion Vault (Villa Park)",
+    "Location": "Science Laboratory New Market Branch, Dhaka (Terminal 02)",
     "ATM_Capacity": 1236000.0,
     "Estimated_Cash_Remaining": 692284.0,
     "Cash_Remaining_Pct": 56.0,
@@ -2389,7 +2389,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBLOH01",
-    "Location": "Douglas Luiz Hub (Villa Park & Turin)",
+    "Location": "Lohagara Station Road Branch, Chittagong (Terminal 01)",
     "ATM_Capacity": 936000.0,
     "Estimated_Cash_Remaining": 742870.0,
     "Cash_Remaining_Pct": 79.4,
@@ -2400,7 +2400,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBMIR03",
-    "Location": "John McGinn Meatball Dynamo (Villa Park)",
+    "Location": "Mirpur-10 Commercial Circle Branch, Dhaka (Terminal 03)",
     "ATM_Capacity": 1474500.0,
     "Estimated_Cash_Remaining": 1474500.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2411,7 +2411,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBEST01",
-    "Location": "Leon Bailey Kingston Express (Villa Park)",
+    "Location": "Eastern Plaza Hatirpool Branch, Dhaka (Terminal 01)",
     "ATM_Capacity": 1758750.0,
     "Estimated_Cash_Remaining": 1758750.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2422,7 +2422,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBRDS01",
-    "Location": "Youri Tielemans Long Range (Villa Park)",
+    "Location": "Radisson Blu Circle SS Sarak Branch, Chittagong (Terminal 01)",
     "ATM_Capacity": 1260750.0,
     "Estimated_Cash_Remaining": 1260750.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2433,7 +2433,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBISL02",
-    "Location": "Lucas Paquetá Samba (London Stadium)",
+    "Location": "Islampur Cloth Market Branch, Dhaka (Terminal 02)",
     "ATM_Capacity": 1267500.0,
     "Estimated_Cash_Remaining": 1267500.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2444,7 +2444,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBPAH02",
-    "Location": "Jarrod Bowen Clutch (London Stadium)",
+    "Location": "Pahartali Railway Gate Branch, Chittagong (Terminal 02)",
     "ATM_Capacity": 1674000.0,
     "Estimated_Cash_Remaining": 1331118.0,
     "Cash_Remaining_Pct": 79.5,
@@ -2455,7 +2455,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBBAR01",
-    "Location": "Mohammed Kudus Ghana Star (London Stadium)",
+    "Location": "Band Road River Port Branch, Barisal (Terminal 01)",
     "ATM_Capacity": 1590750.0,
     "Estimated_Cash_Remaining": 1266137.0,
     "Cash_Remaining_Pct": 79.6,
@@ -2466,7 +2466,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBRON06",
-    "Location": "Edson Álvarez El Machín (London Stadium)",
+    "Location": "Rampura DIT Road Branch, Dhaka (Terminal 06)",
     "ATM_Capacity": 558750.0,
     "Estimated_Cash_Remaining": 558750.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2477,7 +2477,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBBSK01",
-    "Location": "Pedro Neto Jet (Molineux & Bridge)",
+    "Location": "Bashundhara R/A Main Gate Branch, Dhaka (Terminal 01)",
     "ATM_Capacity": 2169750.0,
     "Estimated_Cash_Remaining": 1735888.0,
     "Cash_Remaining_Pct": 80.0,
@@ -2488,7 +2488,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBMOU01",
-    "Location": "Matheus Cunha Samba (Molineux Flair)",
+    "Location": "Moulvibazar Court Road Branch (Terminal 01)",
     "ATM_Capacity": 2250000.0,
     "Estimated_Cash_Remaining": 2250000.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2499,7 +2499,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBNAR01",
-    "Location": "Hwang Hee-chan Korean Bull (Molineux)",
+    "Location": "Narayanganj Chasara BB Road Branch (Terminal 01)",
     "ATM_Capacity": 1949250.0,
     "Estimated_Cash_Remaining": 1949250.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2510,7 +2510,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBNSA01",
-    "Location": "Evan Ferguson Irish Prodigy (Amex)",
+    "Location": "Narsingdi Station Road Bazar Branch (Terminal 01)",
     "ATM_Capacity": 1104750.0,
     "Estimated_Cash_Remaining": 1104750.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2521,7 +2521,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBSTR01",
-    "Location": "Kaoru Mitoma Professor (Amex Dribble)",
+    "Location": "Strand Road Sadarghat Jetty Branch, Chittagong (Terminal 01)",
     "ATM_Capacity": 1788000.0,
     "Estimated_Cash_Remaining": 1788000.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2532,7 +2532,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBPAH01",
-    "Location": "Simon Adingra AFCON Star (Amex Wing)",
+    "Location": "Pahartali Railway Gate Branch, Chittagong (Terminal 01)",
     "ATM_Capacity": 1944750.0,
     "Estimated_Cash_Remaining": 1944750.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2543,7 +2543,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBCEP02",
-    "Location": "João Pedro Brazilian Flash (Amex)",
+    "Location": "Chittagong EPZ Terminal Branch (Terminal 02)",
     "ATM_Capacity": 2238750.0,
     "Estimated_Cash_Remaining": 2238750.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2554,7 +2554,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBVIP01",
-    "Location": "Lewis Dunk Seagull Captain (Amex)",
+    "Location": "VIP Road Segunbagicha Branch, Dhaka (Terminal 01)",
     "ATM_Capacity": 2027250.0,
     "Estimated_Cash_Remaining": 2027250.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2565,7 +2565,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBSHY05",
-    "Location": "Bart Verbruggen Dutch Keeper (Amex)",
+    "Location": "Shyamoli Ring Road Branch, Dhaka (Terminal 05)",
     "ATM_Capacity": 2250000.0,
     "Estimated_Cash_Remaining": 2250000.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2576,7 +2576,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBMOG02",
-    "Location": "Morgan Gibbs-White Creator (City Ground)",
+    "Location": "Moghbazar Wireless Intersection Branch, Dhaka (Terminal 02)",
     "ATM_Capacity": 1101000.0,
     "Estimated_Cash_Remaining": 1101000.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2587,7 +2587,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBUTR06",
-    "Location": "Taiwo Awoniyi Power Bull (City Ground)",
+    "Location": "Uttara Sector 3 Commercial Hub Branch, Dhaka (Terminal 06)",
     "ATM_Capacity": 813750.0,
     "Estimated_Cash_Remaining": 813750.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2598,7 +2598,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBUTR10",
-    "Location": "Callum Hudson-Odoi Flash (City Ground)",
+    "Location": "Uttara Sector 3 Commercial Hub Branch, Dhaka (Terminal 10)",
     "ATM_Capacity": 1979250.0,
     "Estimated_Cash_Remaining": 1979250.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2609,7 +2609,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBBHL01",
-    "Location": "Murillo Brazilian Rock (City Ground)",
+    "Location": "Bhola Sadar Bangla Bazar Branch (Terminal 01)",
     "ATM_Capacity": 2224500.0,
     "Estimated_Cash_Remaining": 2224500.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2620,7 +2620,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBCHP01",
-    "Location": "Eberechi Eze Magic Dribble (Selhurst Park)",
+    "Location": "Chandpur Shahid Muktijoddha Sarak Branch (Terminal 01)",
     "ATM_Capacity": 1232250.0,
     "Estimated_Cash_Remaining": 1232250.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2631,7 +2631,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBDHA08",
-    "Location": "Michael Olise Star (Selhurst Park & Allianz)",
+    "Location": "Dhanmondi Satmasjid Road Branch, Dhaka (Terminal 08)",
     "ATM_Capacity": 740250.0,
     "Estimated_Cash_Remaining": 523588.0,
     "Cash_Remaining_Pct": 70.7,
@@ -2642,7 +2642,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBBEN02",
-    "Location": "Jean-Philippe Mateta Corner Flag (Selhurst Park)",
+    "Location": "Benapole Land Port Branch, Jessore (Terminal 02)",
     "ATM_Capacity": 1720500.0,
     "Estimated_Cash_Remaining": 1720500.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2653,7 +2653,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBCOX02",
-    "Location": "Marc Guéhi Rock Defense (Selhurst Park)",
+    "Location": "Hotel Seagull Point Branch, Cox's Bazar (Terminal 02)",
     "ATM_Capacity": 1750500.0,
     "Estimated_Cash_Remaining": 1750500.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2664,7 +2664,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBSAN01",
-    "Location": "Joachim Andersen Long Ball (Selhurst Park)",
+    "Location": "Shantinagar Twin Towers Branch, Dhaka (Terminal 01)",
     "ATM_Capacity": 837000.0,
     "Estimated_Cash_Remaining": 494279.0,
     "Cash_Remaining_Pct": 59.1,
@@ -2675,7 +2675,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBBAD03",
-    "Location": "Jordan Pickford England Safe (Goodison Park)",
+    "Location": "Badda Pragati Sarani Branch, Dhaka (Terminal 03)",
     "ATM_Capacity": 507000.0,
     "Estimated_Cash_Remaining": 507000.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2686,7 +2686,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBPCR03",
-    "Location": "Jarrad Branthwaite Giant (Goodison Park)",
+    "Location": "Panchlaish Medical College Gate Branch, Chittagong (Terminal 03)",
     "ATM_Capacity": 745500.0,
     "Estimated_Cash_Remaining": 745500.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2697,7 +2697,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBBAN01",
-    "Location": "Dominic Calvert-Lewin Aerial (Goodison Park)",
+    "Location": "Banani Road 11 Executive Branch, Dhaka (Terminal 01)",
     "ATM_Capacity": 1839000.0,
     "Estimated_Cash_Remaining": 1839000.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2708,7 +2708,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBPTL01",
-    "Location": "Dwight McNeil Cross (Goodison Park)",
+    "Location": "Purana Paltan VIP Tower Branch, Dhaka (Terminal 01)",
     "ATM_Capacity": 1169250.0,
     "Estimated_Cash_Remaining": 1169250.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2719,7 +2719,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBMAD02",
-    "Location": "Amadou Onana Tower (Goodison Park & Villa)",
+    "Location": "Madaripur Sadar Main Road Branch (Terminal 02)",
     "ATM_Capacity": 941250.0,
     "Estimated_Cash_Remaining": 799709.0,
     "Cash_Remaining_Pct": 85.0,
@@ -2730,7 +2730,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBPCR02",
-    "Location": "Vitaliy Mykolenko Ukrainian Wall (Goodison Park)",
+    "Location": "Panchlaish Medical College Gate Branch, Chittagong (Terminal 02)",
     "ATM_Capacity": 542250.0,
     "Estimated_Cash_Remaining": 542250.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2741,7 +2741,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBBOG06",
-    "Location": "Seamus Coleman Loyal Captain (Goodison Park)",
+    "Location": "Satmatha Rangpur Road Branch, Bogra (Terminal 06)",
     "ATM_Capacity": 554250.0,
     "Estimated_Cash_Remaining": 554250.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2752,7 +2752,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBMAD03",
-    "Location": "James Tarkowski Iron Block (Goodison Park)",
+    "Location": "Madaripur Sadar Main Road Branch (Terminal 03)",
     "ATM_Capacity": 1308000.0,
     "Estimated_Cash_Remaining": 916287.0,
     "Cash_Remaining_Pct": 70.1,
@@ -2763,7 +2763,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBGUL08",
-    "Location": "Idrissa Gueye Ball Winner (Goodison Park)",
+    "Location": "Gulshan Avenue Circle-2 Branch, Dhaka (Terminal 08)",
     "ATM_Capacity": 1686750.0,
     "Estimated_Cash_Remaining": 1501873.0,
     "Cash_Remaining_Pct": 89.0,
@@ -2774,7 +2774,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBBOG05",
-    "Location": "Alex Iwobi Playmaker (Craven Cottage)",
+    "Location": "Satmatha Rangpur Road Branch, Bogra (Terminal 05)",
     "ATM_Capacity": 675000.0,
     "Estimated_Cash_Remaining": 675000.0,
     "Cash_Remaining_Pct": 100.0,
@@ -2785,7 +2785,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBBRD07",
-    "Location": "Rodrigo Muniz Samba Finisher (Craven Cottage)",
+    "Location": "Baridhara Diplomatic Enclave Branch, Dhaka (Terminal 07)",
     "ATM_Capacity": 2208000.0,
     "Estimated_Cash_Remaining": 1986509.0,
     "Cash_Remaining_Pct": 90.0,
@@ -2796,7 +2796,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBBIJ01",
-    "Location": "Andreas Pereira Set Piece (Craven Cottage)",
+    "Location": "Bijoynagar Water Tank Road Branch, Dhaka (Terminal 01)",
     "ATM_Capacity": 440250.0,
     "Estimated_Cash_Remaining": 290993.0,
     "Cash_Remaining_Pct": 66.1,
@@ -2807,7 +2807,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBUTR08",
-    "Location": "Antonee Robinson Jedi Flank (Craven Cottage)",
+    "Location": "Uttara Sector 3 Commercial Hub Branch, Dhaka (Terminal 08)",
     "ATM_Capacity": 1486500.0,
     "Estimated_Cash_Remaining": 802238.0,
     "Cash_Remaining_Pct": 54.0,
@@ -2818,7 +2818,7 @@ export const atmData: ATMRecord[] = [
   },
   {
     "ATMID": "ABBFEN01",
-    "Location": "Bernd Leno German Safe (Craven Cottage)",
+    "Location": "Trunk Road SSK Sarak Branch, Feni (Terminal 01)",
     "ATM_Capacity": 1844250.0,
     "Estimated_Cash_Remaining": 1154955.0,
     "Cash_Remaining_Pct": 62.6,

@@ -23,10 +23,17 @@ import { DailyBriefingModal } from './components/DailyBriefingModal';
 import { LiveTransactionSwitchModal } from './components/LiveTransactionSwitchModal';
 import { ModelBacktestScorecardModal } from './components/ModelBacktestScorecardModal';
 import { FestivalSurgeModal } from './components/FestivalSurgeModal';
+import { SmartReportingModal } from './components/SmartReportingModal';
+import { AuthPage } from './components/AuthPage';
+import { User } from './types/auth';
+import { getActiveSessionUser, logoutUser } from './utils/auth';
 import { FestivalSurgeState } from './types/festival';
 import { ShieldCheck } from 'lucide-react';
 
 export const App: React.FC = () => {
+  // Authentication & Authorized User State
+  const [currentUser, setCurrentUser] = useState<User | null>(() => getActiveSessionUser());
+
   const [policy, setPolicy] = useState<OperationalPolicy>(defaultOperationalPolicy);
   const [baseAtms, setBaseAtms] = useState<ATMRecord[]>(initialAtmData);
   const [selectedId, setSelectedId] = useState<string>(
@@ -61,6 +68,7 @@ export const App: React.FC = () => {
   const [isImportModalOpen, setIsImportModalOpen] = useState<boolean>(false);
   const [isSwitchModalOpen, setIsSwitchModalOpen] = useState<boolean>(false);
   const [isScorecardModalOpen, setIsScorecardModalOpen] = useState<boolean>(false);
+  const [isReportsModalOpen, setIsReportsModalOpen] = useState<boolean>(false);
 
   // Custom Feature-Engineered Dataset State
   const [isCustomDataActive, setIsCustomDataActive] = useState<boolean>(false);
@@ -79,7 +87,14 @@ export const App: React.FC = () => {
 
   // Dynamically evaluated ATMs based on active policy and festival surge
   const atms = useMemo(() => {
-    return baseAtms.map((a) => {
+    // Guarantee fleet-wide uniqueness of ATMID
+    const uniqueMap = new Map<string, ATMRecord>();
+    for (const a of baseAtms) {
+      if (a && a.ATMID) uniqueMap.set(a.ATMID, a);
+    }
+    const uniqueFleet = Array.from(uniqueMap.values());
+
+    return uniqueFleet.map((a) => {
       let multiplier = 1.0;
       if (festivalState.isActive && festivalState.customMultiplier > 1) {
         if (festivalState.targetCorridors === 'all') {
@@ -147,9 +162,7 @@ export const App: React.FC = () => {
   };
 
   const handleAddToManifest = (atm: ATMRecord) => {
-    if (!manifestIds.includes(atm.ATMID)) {
-      setManifestIds((prev) => [...prev, atm.ATMID]);
-    }
+    setManifestIds((prev) => (prev.includes(atm.ATMID) ? prev : [...prev, atm.ATMID]));
   };
 
   const handleClearManifest = () => {
@@ -234,28 +247,48 @@ export const App: React.FC = () => {
 
   const handleImportedData = (imported: ATMRecord[], datasetName?: string) => {
     if (imported.length > 0) {
-      setBaseAtms(imported);
-      setSelectedId(imported[0].ATMID);
-      const critical = imported
+      // Exclusively work on only the uploaded CSV data - do not append or merge
+      const uniqueMap = new Map<string, ATMRecord>();
+      for (const a of imported) {
+        if (a && a.ATMID) uniqueMap.set(a.ATMID, a);
+      }
+      const uniqueImported = Array.from(uniqueMap.values());
+      setBaseAtms(uniqueImported);
+      setSelectedId(uniqueImported[0].ATMID);
+
+      // Populate manifest strictly from this imported dataset
+      const critical = uniqueImported
         .filter((a) => a.Status === 'Refill Now' || (a.Status === 'Refill Soon' && Number(a.Days_of_Cash) < 1.0))
         .slice(0, 8)
         .map((a) => a.ATMID);
-      if (critical.length > 0) {
-        setManifestIds(critical);
-      }
+      setManifestIds(critical.length > 0 ? Array.from(new Set(critical)) : [uniqueImported[0].ATMID]);
+
+      // Reset checked items and search filters
+      setCheckedIds([]);
+      setStatusFilter('all');
+      setDaysFilter('all');
+      setRegionFilter('all');
+      setSearchQuery('');
+
       setIsCustomDataActive(true);
-      setCustomDataName(datasetName || 'Feature-Engineered CSV');
+      setCustomDataName(datasetName || 'Custom CSV Fleet');
     }
   };
 
   const handleResetToDefaultFleet = () => {
+    // Revert fleet back to standard 256 default dataset
     setBaseAtms(initialAtmData);
     setSelectedId(initialAtmData.length > 0 ? initialAtmData[0].ATMID : '');
     const critical = initialAtmData
       .filter((a) => a.Status === 'Refill Now' || (a.Status === 'Refill Soon' && Number(a.Days_of_Cash) < 0.8))
       .slice(0, 8)
       .map((a) => a.ATMID);
-    setManifestIds(critical);
+    setManifestIds(Array.from(new Set(critical)));
+    setCheckedIds([]);
+    setStatusFilter('all');
+    setDaysFilter('all');
+    setRegionFilter('all');
+    setSearchQuery('');
     setIsCustomDataActive(false);
     setCustomDataName('');
   };
@@ -288,6 +321,20 @@ export const App: React.FC = () => {
     setManifestIds((prev) => Array.from(new Set([...prev, ...atmIds])));
   };
 
+  const handleLoginSuccess = (user: User) => {
+    setCurrentUser(user);
+  };
+
+  const handleLogout = () => {
+    logoutUser();
+    setCurrentUser(null);
+  };
+
+  // If user is not authenticated, render the dedicated Registration and Login Portal
+  if (!currentUser) {
+    return <AuthPage onLoginSuccess={handleLoginSuccess} />;
+  }
+
   const urgentCount = atms.filter((a) => a.Status === 'Refill Now').length;
 
   return (
@@ -298,6 +345,8 @@ export const App: React.FC = () => {
         onTabChange={setActiveTab}
         manifestCount={manifestIds.length}
         urgentCount={urgentCount}
+        currentUser={currentUser}
+        onLogout={handleLogout}
         isFestivalSurgeActive={festivalState.isActive}
         festivalMultiplier={festivalState.customMultiplier}
         onOpenFestivalModal={() => setIsFestivalModalOpen(true)}
@@ -307,6 +356,7 @@ export const App: React.FC = () => {
         onOpenBriefingModal={() => setIsBriefingModalOpen(true)}
         onOpenImportModal={() => setIsImportModalOpen(true)}
         onOpenSwitchModal={() => setIsSwitchModalOpen(true)}
+        onOpenReportsModal={() => setIsReportsModalOpen(true)}
         isCustomDataActive={isCustomDataActive}
         onResetToDefault={handleResetToDefaultFleet}
         customDataCount={baseAtms.length}
@@ -337,6 +387,8 @@ export const App: React.FC = () => {
                 <div className="w-full">
                   <AtmDetailCard
                     atm={selectedAtm}
+                    allAtms={atms}
+                    onSelectAtm={setSelectedId}
                     onSimulateRefill={handleSimulateRefill}
                     onAddToManifest={handleAddToManifest}
                     onOpenCassetteModal={(atm) => setCassetteAtm(atm)}
@@ -377,6 +429,7 @@ export const App: React.FC = () => {
               customDataName={customDataName}
               onOpenImportModal={() => setIsImportModalOpen(true)}
               onResetToDefault={handleResetToDefaultFleet}
+              onOpenReportsModal={() => setIsReportsModalOpen(true)}
             />
           </div>
         )}
@@ -513,11 +566,25 @@ export const App: React.FC = () => {
         onQueueAtRiskAtms={handleQueueAtRiskAtms}
       />
 
+      <SmartReportingModal
+        isOpen={isReportsModalOpen}
+        onClose={() => setIsReportsModalOpen(false)}
+        atms={atms}
+        manifestIds={manifestIds}
+        policy={policy}
+        filteredAtms={atms}
+      />
+
       {/* Footer */}
       <footer className="bg-white border-t border-slate-200 py-6 text-xs text-slate-500 mt-auto">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-wrap items-center justify-between gap-4">
-          <div className="flex items-center gap-2">
-            <ShieldCheck className="w-4 h-4 text-blue-600" />
+          <div className="flex items-center gap-2.5">
+            <img
+              src="/src/assets/images/atm_app_logo_1791799184731.jpg"
+              alt="Logo"
+              className="w-5 h-5 rounded-md object-cover border border-slate-200 shadow-2xs"
+              referrerPolicy="no-referrer"
+            />
             <span className="font-semibold text-slate-700">
               ATM Cash Forecasting Decision-Support System
             </span>
@@ -526,6 +593,10 @@ export const App: React.FC = () => {
           </div>
 
           <div className="flex items-center gap-4 text-slate-500">
+            <span className="font-medium text-slate-600">
+              Operator: {currentUser.name} ({currentUser.badgeId})
+            </span>
+            <span className="text-slate-300">•</span>
             <span>Policy: &le;{policy.refillNowPctThreshold}% Critical Floor</span>
             <span className="text-slate-300">•</span>
             <span>Safety Buffer: {policy.minDaysBuffer}d</span>

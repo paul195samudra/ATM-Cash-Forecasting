@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import {
   Layers,
   Truck,
@@ -20,8 +20,14 @@ import {
   AlertTriangle,
   Sparkles,
   Scale,
-  RotateCcw
+  RotateCcw,
+  FileSpreadsheet,
+  LogOut,
+  User as UserIcon,
+  Building2,
+  BadgeCheck
 } from 'lucide-react';
+import { User } from '../types/auth';
 
 export type NavTab =
   | 'operations'
@@ -37,6 +43,8 @@ interface NavbarProps {
   onTabChange: (tab: NavTab) => void;
   manifestCount: number;
   urgentCount: number;
+  currentUser?: User | null;
+  onLogout?: () => void;
   isFestivalSurgeActive?: boolean;
   festivalMultiplier?: number;
   onOpenFestivalModal?: () => void;
@@ -46,6 +54,7 @@ interface NavbarProps {
   onOpenBriefingModal?: () => void;
   onOpenImportModal?: () => void;
   onOpenSwitchModal?: () => void;
+  onOpenReportsModal?: () => void;
   isCustomDataActive?: boolean;
   onResetToDefault?: () => void;
   customDataCount?: number;
@@ -56,6 +65,8 @@ export const Navbar: React.FC<NavbarProps> = ({
   onTabChange,
   manifestCount,
   urgentCount,
+  currentUser,
+  onLogout,
   isFestivalSurgeActive = false,
   festivalMultiplier = 1.0,
   onOpenFestivalModal,
@@ -65,18 +76,36 @@ export const Navbar: React.FC<NavbarProps> = ({
   onOpenBriefingModal,
   onOpenImportModal,
   onOpenSwitchModal,
+  onOpenReportsModal,
   isCustomDataActive = false,
   onResetToDefault,
   customDataCount = 0,
 }) => {
+  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
+  const userMenuRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (userMenuRef.current && !userMenuRef.current.contains(e.target as Node)) {
+        setIsUserMenuOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
   return (
     <header className="bg-[#0f172a] text-white border-b border-slate-800 sticky top-0 z-30 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-wrap items-center justify-between py-3 gap-3">
           {/* Logo & Branding */}
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-xl bg-blue-600 flex items-center justify-center shadow-xs">
-              <ShieldCheck className="w-5 h-5 text-white" />
+            <div className="relative w-10 h-10 sm:w-11 sm:h-11 rounded-xl overflow-hidden bg-slate-900 border border-slate-700/80 shadow-md shrink-0 flex items-center justify-center ring-1 ring-blue-500/30">
+              <img
+                src="/src/assets/images/atm_app_logo_1791799184731.jpg"
+                alt="ATM Cash Forecasting Logo"
+                className="w-full h-full object-cover"
+                referrerPolicy="no-referrer"
+              />
             </div>
             <div>
               <div className="flex items-center gap-2">
@@ -164,6 +193,18 @@ export const Navbar: React.FC<NavbarProps> = ({
               </button>
             )}
 
+            {/* Smart CSV & Executive Reporting Suite */}
+            {onOpenReportsModal && (
+              <button
+                onClick={onOpenReportsModal}
+                className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-emerald-950/60 hover:bg-emerald-900/60 text-xs font-semibold text-emerald-300 border border-emerald-500/50 transition-colors cursor-pointer shadow-xs"
+                title="Open Smart CSV Export & Executive Reporting Suite"
+              >
+                <FileSpreadsheet className="w-3.5 h-3.5 text-emerald-400" />
+                <span className="hidden sm:inline">Reports & CSV</span>
+              </button>
+            )}
+
             {/* Feature-Engineered CSV Importer */}
             {onOpenImportModal && (
               <button
@@ -185,16 +226,112 @@ export const Navbar: React.FC<NavbarProps> = ({
               </button>
             )}
 
-            {/* 1-Click Reset to Default App Data */}
-            {isCustomDataActive && onResetToDefault && (
+            {/* Reset to Default Button */}
+            {onResetToDefault && (
               <button
+                type="button"
                 onClick={onResetToDefault}
-                className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-semibold bg-rose-950/60 hover:bg-rose-900/60 border border-rose-500/60 text-rose-300 transition-all cursor-pointer shadow-xs"
-                title="Reset back to default 256 football legends fleet"
+                className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer shadow-xs ${
+                  isCustomDataActive
+                    ? 'bg-rose-600 hover:bg-rose-700 text-white border border-rose-500 animate-pulse'
+                    : 'bg-slate-800/90 hover:bg-slate-700 text-slate-200 hover:text-white border border-slate-700'
+                }`}
+                title={
+                  isCustomDataActive
+                    ? `Reset custom CSV data back to default fleet (${customDataCount} active)`
+                    : 'Reset fleet state and filters back to default'
+                }
               >
-                <RotateCcw className="w-3.5 h-3.5 text-rose-400" />
-                <span className="hidden md:inline">Reset Default</span>
+                <RotateCcw className="w-3.5 h-3.5" />
+                <span>{isCustomDataActive ? 'Reset to Default' : 'Reset Fleet'}</span>
               </button>
+            )}
+
+            {/* User Profile Badge & Dropdown */}
+            {currentUser && (
+              <div className="relative ml-1 pl-2 border-l border-slate-800" ref={userMenuRef}>
+                <button
+                  type="button"
+                  onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
+                  className="flex items-center gap-2 px-2.5 py-1 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-slate-700/80 transition-all cursor-pointer group shadow-xs"
+                  title="Active Terminal Operator Profile"
+                >
+                  <div className={`w-7 h-7 rounded-lg ${currentUser.avatarColor || 'bg-blue-600'} text-white flex items-center justify-center font-bold text-xs ring-1 ring-white/20 shadow-xs shrink-0`}>
+                    {(currentUser.name || currentUser.email || 'OP')
+                      .split(/[\s@._-]+/)
+                      .filter(Boolean)
+                      .map((n) => n[0])
+                      .slice(0, 2)
+                      .join('')
+                      .toUpperCase() || 'OP'}
+                  </div>
+                  <div className="text-left hidden lg:block leading-tight">
+                    <div className="text-xs font-semibold text-slate-200 group-hover:text-blue-400 flex items-center gap-1.5">
+                      <span className="truncate max-w-[120px]">{currentUser.name}</span>
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                    </div>
+                    <div className="text-[10px] text-slate-400 truncate max-w-[120px] font-mono">
+                      {currentUser.badgeId}
+                    </div>
+                  </div>
+                  <ChevronDown className="w-3.5 h-3.5 text-slate-400 group-hover:text-slate-200" />
+                </button>
+
+                {/* Dropdown Menu */}
+                {isUserMenuOpen && (
+                  <div className="absolute right-0 mt-2 w-72 rounded-2xl bg-[#0f172a] border border-slate-700 shadow-2xl p-3 z-50 animate-in fade-in zoom-in-95 duration-100">
+                    <div className="flex items-center gap-3 pb-3 border-b border-slate-800">
+                      <div className={`w-10 h-10 rounded-xl ${currentUser.avatarColor || 'bg-blue-600'} text-white flex items-center justify-center font-bold text-sm ring-2 ring-white/10 shrink-0`}>
+                        {(currentUser.name || currentUser.email || 'OP')
+                          .split(/[\s@._-]+/)
+                          .filter(Boolean)
+                          .map((n) => n[0])
+                          .slice(0, 2)
+                          .join('')
+                          .toUpperCase() || 'OP'}
+                      </div>
+                      <div className="overflow-hidden">
+                        <p className="font-bold text-sm text-white truncate">{currentUser.name}</p>
+                        <p className="text-[11px] text-blue-400 font-medium truncate">{currentUser.role}</p>
+                        <p className="text-[10px] text-slate-400 truncate">{currentUser.email}</p>
+                      </div>
+                    </div>
+
+                    <div className="py-2.5 space-y-1.5 text-xs text-slate-300 border-b border-slate-800">
+                      <div className="flex items-center justify-between text-[11px]">
+                        <span className="text-slate-400">Terminal Node:</span>
+                        <span className="font-mono text-emerald-400 font-semibold">{currentUser.badgeId}</span>
+                      </div>
+                      <div className="flex items-center justify-between text-[11px]">
+                        <span className="text-slate-400">Unit:</span>
+                        <span className="text-slate-300 truncate max-w-[150px]">{currentUser.department}</span>
+                      </div>
+                      <div className="flex items-center justify-between text-[11px]">
+                        <span className="text-slate-400">Security Access:</span>
+                        <span className="px-1.5 py-0.2 rounded bg-blue-950 text-blue-300 text-[10px] border border-blue-800">
+                          Level-4 Clearance
+                        </span>
+                      </div>
+                    </div>
+
+                    <div className="pt-2">
+                      {onLogout && (
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setIsUserMenuOpen(false);
+                            onLogout();
+                          }}
+                          className="w-full flex items-center justify-center gap-2 py-2 px-3 rounded-xl bg-rose-950/70 hover:bg-rose-900/90 text-rose-300 border border-rose-800/80 text-xs font-semibold transition-all cursor-pointer"
+                        >
+                          <LogOut className="w-3.5 h-3.5" />
+                          <span>Lock Terminal & Sign Out</span>
+                        </button>
+                      )}
+                    </div>
+                  </div>
+                )}
+              </div>
             )}
           </div>
         </div>

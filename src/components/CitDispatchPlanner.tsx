@@ -583,7 +583,7 @@ export const CitDispatchPlanner: React.FC<CitDispatchPlannerProps> = ({
 
                     return (
                       <div
-                        key={wp.atm.ATMID}
+                        key={`${wp.atm.ATMID}-step-${wp.sequence ?? sIdx}`}
                         onClick={() => onSelectAtm(wp.atm.ATMID)}
                         className={`min-w-[150px] p-2.5 rounded-lg border transition-all cursor-pointer ${
                           isCompleted
@@ -657,9 +657,9 @@ export const CitDispatchPlanner: React.FC<CitDispatchPlannerProps> = ({
 
                       {/* Stop Sequence List */}
                       <div className="space-y-1.5 max-h-[220px] overflow-y-auto pr-1">
-                        {rt.waypoints.map((wp) => (
+                        {rt.waypoints.map((wp, wIdx) => (
                           <div
-                            key={wp.atm.ATMID}
+                            key={`${wp.atm.ATMID}-stop-${wp.sequence ?? wIdx}`}
                             onClick={() => onSelectAtm(wp.atm.ATMID)}
                             className="bg-white p-2.5 rounded-lg border border-slate-200 flex justify-between items-center hover:border-blue-400 cursor-pointer transition-colors"
                           >
@@ -732,11 +732,11 @@ export const CitDispatchPlanner: React.FC<CitDispatchPlannerProps> = ({
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100 font-mono">
-              {candidateAtms.slice(0, 30).map((atm) => {
+              {candidateAtms.slice(0, 30).map((atm, idx) => {
                 const isSelected = manifestIds.includes(atm.ATMID);
                 return (
                   <tr
-                    key={atm.ATMID}
+                    key={`${atm.ATMID}-${idx}`}
                     className={`hover:bg-slate-50 ${isSelected ? 'bg-blue-50/50' : ''}`}
                   >
                     <td className="p-2.5 text-center">

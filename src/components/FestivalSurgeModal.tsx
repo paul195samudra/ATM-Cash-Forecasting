@@ -288,7 +288,7 @@ export const FestivalSurgeModal: React.FC<FestivalSurgeModalProps> = ({
                   onChange={(e) => setTargetCorridors(e.target.value as any)}
                   className="w-full p-2 border border-slate-300 rounded-lg text-xs bg-slate-50 font-medium"
                 >
-                  <option value="all">All 256 Fleet Terminals Nationwide</option>
+                  <option value="all">All {atms.length} Fleet Terminals Nationwide</option>
                   <option value="cattle_markets_transit">Cattle Haats & Inter-District Transit Hubs</option>
                   <option value="commercial_shopping">Shopping Mall & Garment Worker Hubs</option>
                   <option value="rural_hubs">Rural Home Migration Branches</option>

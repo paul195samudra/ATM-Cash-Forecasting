@@ -27,7 +27,7 @@ export const ExecutiveAuditReportModal: React.FC<ExecutiveAuditReportModalProps>
   atms,
   policy,
 }) => {
-  const [reportAuditor, setReportAuditor] = useState('Zinedine Zidane, Lead Compliance Auditor');
+  const [reportAuditor, setReportAuditor] = useState('M. A. Karim, Lead Compliance & Cash Audit Officer');
 
   if (!isOpen) return null;
 
@@ -123,7 +123,7 @@ export const ExecutiveAuditReportModal: React.FC<ExecutiveAuditReportModalProps>
             </div>
             <div>
               <span className="text-slate-400 block font-medium">Fleet Coverage</span>
-              <strong className="text-slate-900 font-mono">256 / 256 Terminals (100%)</strong>
+              <strong className="text-slate-900 font-mono">{atms.length} / {atms.length} Terminals (100%)</strong>
             </div>
           </div>
 
@@ -194,8 +194,8 @@ export const ExecutiveAuditReportModal: React.FC<ExecutiveAuditReportModalProps>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-100 font-mono">
-                  {refillNow.slice(0, 5).map((atm) => (
-                    <tr key={atm.ATMID} className="hover:bg-slate-50">
+                  {refillNow.slice(0, 5).map((atm, idx) => (
+                    <tr key={`${atm.ATMID}-${idx}`} className="hover:bg-slate-50">
                       <td className="p-2.5 font-bold text-slate-900">{atm.ATMID}</td>
                       <td className="p-2.5 font-sans text-slate-600 truncate max-w-[200px]">
                         {atm.Location.replace('(location not in dataset)', '').trim() ||

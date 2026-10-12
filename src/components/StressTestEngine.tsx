@@ -102,7 +102,7 @@ export const StressTestEngine: React.FC<StressTestEngineProps> = ({
             Network Stress Testing & Cash Shock Simulation
           </h2>
           <p className="text-xs sm:text-sm text-slate-300 mt-1 leading-relaxed">
-            Test the 256-machine network against extreme operational disruptions, severe regional holidays,
+            Test the {atms.length}-machine network against extreme operational disruptions, severe regional holidays,
             and armored carrier delivery delays to identify hidden vulnerabilities before they trigger cash-outs.
           </p>
         </div>
@@ -259,10 +259,10 @@ export const StressTestEngine: React.FC<StressTestEngineProps> = ({
                   </td>
                 </tr>
               ) : (
-                newAtRiskAtms.map((a) => {
+                newAtRiskAtms.map((a, idx) => {
                   const isInRoute = manifestIds.includes(a.ATMID);
                   return (
-                    <tr key={a.ATMID} className="hover:bg-slate-50 transition-colors">
+                    <tr key={`${a.ATMID}-${idx}`} className="hover:bg-slate-50 transition-colors">
                       <td className="py-2.5 px-3 font-mono font-bold text-slate-900">{a.ATMID}</td>
                       <td className="py-2.5 px-3 text-slate-600 max-w-[200px] truncate" title={a.Location}>
                         {a.Location.replace('(location not in dataset)', '').trim() || 'Central Regional Hub'}

@@ -23,8 +23,8 @@ export const AtmChart: React.FC<AtmChartProps> = ({ atm, policy }) => {
   const [hoverIndex, setHoverIndex] = useState<number | null>(null);
 
   const history: HistoryRecord = useMemo(() => {
-    return getAtmHistory(atm.ATMID);
-  }, [atm.ATMID]);
+    return getAtmHistory(atm.ATMID, atm.Predicted_Demand);
+  }, [atm.ATMID, atm.Predicted_Demand]);
 
   const filteredData = useMemo(() => {
     if (!history.dates || history.dates.length === 0) return { dates: [], actual: [], predicted: [] };
@@ -239,7 +239,7 @@ export const AtmChart: React.FC<AtmChartProps> = ({ atm, policy }) => {
               onMouseMove={(e) => {
                 const rect = e.currentTarget.getBoundingClientRect();
                 const relX = ((e.clientX - rect.left) / rect.width) * width;
-                if (relX >= padding.left && relX <= padding.left + chartW) {
+                if (n > 1 && relX >= padding.left && relX <= padding.left + chartW) {
                   const fraction = (relX - padding.left) / chartW;
                   const idx = Math.round(fraction * (n - 1));
                   setHoverIndex(Math.max(0, Math.min(n - 1, idx)));

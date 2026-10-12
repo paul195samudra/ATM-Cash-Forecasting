@@ -202,7 +202,7 @@ export const MlForecastExplorer: React.FC = () => {
             </h3>
           </div>
           <p className="text-xs text-slate-500 mb-4 leading-relaxed">
-            Derived from SHAP value attributions and tree split gain across the 256 ATM forecasting
+            Derived from SHAP value attributions and tree split gain across the fleet ATM forecasting
             regressors.
           </p>
 

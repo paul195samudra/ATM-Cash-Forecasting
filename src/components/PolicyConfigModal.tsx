@@ -220,7 +220,7 @@ export const PolicyConfigModal: React.FC<PolicyConfigModalProps> = ({
           <div className="p-4 bg-blue-50/60 rounded-xl border border-blue-200">
             <div className="font-bold text-slate-800 text-xs mb-2 flex items-center gap-1.5">
               <Scale className="w-4 h-4 text-blue-600" />
-              <span>Simulated Fleet Impact Across All 256 ATMs</span>
+              <span>Simulated Fleet Impact Across All {atms.length} ATMs</span>
             </div>
 
             <div className="grid grid-cols-3 gap-2 text-center">

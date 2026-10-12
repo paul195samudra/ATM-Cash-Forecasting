@@ -237,7 +237,7 @@ export const CapitalOptimizerView: React.FC<CapitalOptimizerViewProps> = ({
             </h4>
             <p>
               Idle cash holdings drop and interest costs decrease, but total fixed armored vehicle fees
-              skyrocket due to high visit counts (৳{citCostPerStop} per visit across 256 machines).
+              skyrocket due to high visit counts (৳{citCostPerStop} per visit across {atms.length} machines).
             </p>
           </div>
 
